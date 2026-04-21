@@ -211,6 +211,60 @@
 </head>
 <body>
 
+  <!-- =====================================================
+       PASSWORD GATE — renders over entire page until auth
+       ===================================================== -->
+  <div id="auth-gate" style="position:fixed;inset:0;background:#ede2c5;z-index:9999;display:flex;align-items:center;justify-content:center;font-family:'Inter Tight','Inter',sans-serif;">
+    <div style="text-align:center;width:100%;max-width:360px;padding:0 32px;">
+
+      <div style="font-family:'Fraunces',Georgia,serif;font-size:34px;font-weight:600;color:#2a2420;line-height:1.1;margin-bottom:6px;">
+        Rusty's <em style="font-style:italic;color:#d14e2a;font-weight:400;">Bait &amp; Lures</em>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:#6b5f56;margin-bottom:44px;">Strategy · 2026</div>
+
+      <div style="width:40px;height:1px;background:#a89878;margin:0 auto 44px;"></div>
+
+      <input type="password" id="pw-input" placeholder="Password"
+        style="display:block;width:100%;padding:13px 16px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.05em;background:#f0e7ce;border:1px solid #a89878;border-radius:2px;color:#2a2420;outline:none;box-sizing:border-box;margin-bottom:10px;transition:border-color 0.2s;"
+        onkeydown="if(event.key==='Enter')rustysAuth()">
+
+      <button onclick="rustysAuth()"
+        style="display:block;width:100%;padding:13px 16px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;background:#d14e2a;color:#f0e7ce;border:none;border-radius:2px;cursor:pointer;">
+        Enter
+      </button>
+
+      <div id="pw-error" style="display:none;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.06em;color:#d14e2a;margin-top:14px;">Incorrect password.</div>
+
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#a89878;margin-top:44px;">Confidential · For Don and Joseph</div>
+    </div>
+  </div>
+
+  <script>
+    // Hide gate immediately if already authenticated this session
+    if (sessionStorage.getItem('rustys_auth') === '1') {
+      document.getElementById('auth-gate').style.display = 'none';
+    }
+
+    function rustysAuth() {
+      var input = document.getElementById('pw-input');
+      var error = document.getElementById('pw-error');
+      var gate  = document.getElementById('auth-gate');
+
+      if (input.value === 'rustys2026!!') {
+        sessionStorage.setItem('rustys_auth', '1');
+        gate.style.transition = 'opacity 0.25s ease';
+        gate.style.opacity = '0';
+        setTimeout(function() { gate.style.display = 'none'; }, 260);
+      } else {
+        error.style.display = 'block';
+        input.style.borderColor = '#d14e2a';
+        input.value = '';
+        input.focus();
+        setTimeout(function() { input.style.borderColor = '#a89878'; }, 900);
+      }
+    }
+  </script>
+
   <!-- Status strip -->
   <div class="status-strip">
     <div class="status-strip-item">
