@@ -13,16 +13,23 @@
     .layout { max-width: 1220px; margin: 0 auto; }
     .viz { padding: 12px 0 4px; }
     .viz svg { overflow: visible; }
+
+    /* ── Section banding ── */
+    .section.band-a { background: var(--kraft-light); border: 1px solid var(--kraft-line); border-radius: 2px; padding: 40px; margin-bottom: 24px; }
+    .section.band-b { background: var(--paper); border: 1px solid var(--kraft-line); border-radius: 2px; padding: 40px; margin-bottom: 24px; }
+    .section.band-a h2.section-title,
+    .section.band-b h2.section-title { border-bottom-color: var(--kraft-deep); }
+
+    /* ── Callouts ── */
     .callout-teal {
       background: var(--kraft-light);
-      border-left: 4px solid #3d6670;
+      border-left: 4px solid var(--teal);
       padding: 24px 28px;
       margin: 32px 0;
       border-radius: 2px;
     }
-    .callout-teal .callout-label {
-      color: #3d6670;
-    }
+    .callout-teal .callout-label { color: var(--teal); }
+
     .callout-critical {
       background: var(--paper);
       border: 2px solid var(--rust);
@@ -49,6 +56,7 @@
       margin: 0;
       line-height: 1.3;
     }
+
     .callout-zoning {
       background: #fff8f5;
       border: 2px solid var(--rust);
@@ -75,10 +83,11 @@
       margin: 0;
       line-height: 1.4;
     }
+
     .callout-free {
       background: var(--kraft-light);
-      border: 1px solid #3d6670;
-      border-left: 4px solid #3d6670;
+      border: 1px solid var(--teal);
+      border-left: 4px solid var(--teal);
       padding: 24px 28px;
       margin: 32px 0;
       border-radius: 2px;
@@ -88,11 +97,13 @@
       font-size: 10px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: #3d6670;
+      color: var(--teal);
       font-weight: 600;
       margin-bottom: 8px;
       display: block;
     }
+
+    /* ── OSHA Limits ── */
     .osha-limits {
       border: 1px solid var(--kraft-line);
       border-radius: 2px;
@@ -116,13 +127,8 @@
       align-items: center;
     }
     .osha-row:last-child { border-bottom: none; }
-    .osha-row-header {
-      background: var(--kraft-deep);
-    }
-    .osha-cell {
-      padding: 14px 20px;
-      font-size: 14px;
-    }
+    .osha-row-header { background: var(--kraft-deep); }
+    .osha-cell { padding: 14px 20px; font-size: 14px; }
     .osha-cell-label {
       font-family: var(--font-mono);
       font-size: 10px;
@@ -145,6 +151,8 @@
       padding: 14px 20px;
       line-height: 1.45;
     }
+
+    /* ── Tables ── */
     .required-table {
       width: 100%;
       border-collapse: collapse;
@@ -169,6 +177,38 @@
       line-height: 1.5;
     }
     .required-table tr:last-child td { border-bottom: none; }
+    .required-table tr.total-row td { font-weight: 700; background: var(--kraft-deep); border-top: 2px solid var(--charcoal); }
+    .required-table td.num { text-align: right; font-family: var(--font-mono); font-size: 13px; }
+    .required-table th.num { text-align: right; }
+
+    .generator-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0 28px;
+      font-size: 14px;
+    }
+    .generator-table th {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--charcoal-mute);
+      padding: 10px 14px;
+      border-bottom: 2px solid var(--charcoal);
+      background: var(--kraft-light);
+      text-align: left;
+    }
+    .generator-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--kraft-line);
+      vertical-align: top;
+    }
+    .generator-table tr.highlight td {
+      background: rgba(209,78,42,0.06);
+      font-weight: 600;
+    }
+
+    /* ── Tags ── */
     .tag-required {
       display: inline-block;
       font-family: var(--font-mono);
@@ -200,11 +240,13 @@
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      background: #3d6670;
+      background: var(--teal);
       color: white;
       padding: 2px 7px;
       border-radius: 2px;
     }
+
+    /* ── Contacts grid ── */
     .contacts-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -213,13 +255,17 @@
     }
     .contacts-grid .stat-card .stat-value {
       font-family: var(--font-mono);
-      font-size: 22px;
+      font-size: 18px;
       letter-spacing: 0.02em;
       color: var(--rust-deep);
     }
-    .priority-flow {
-      margin: 32px 0;
+    .contact-priority .stat-value {
+      color: var(--rust) !important;
+      font-size: 20px !important;
     }
+
+    /* ── Flow cards ── */
+    .priority-flow { margin: 32px 0; }
     .flow-connector {
       display: flex;
       align-items: center;
@@ -263,10 +309,7 @@
       flex-shrink: 0;
       margin-top: 2px;
     }
-    .flow-num-free {
-      background: #3d6670;
-    }
-    .flow-body {}
+    .flow-num-free { background: var(--teal); }
     .flow-title {
       font-family: var(--font-display);
       font-size: 18px;
@@ -275,33 +318,105 @@
       margin-bottom: 6px;
       line-height: 1.2;
     }
-    .flow-meta {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .flow-cost {
+    .flow-meta { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+    .flow-cost { font-family: var(--font-mono); font-size: 13px; color: var(--rust-deep); font-weight: 600; }
+    .flow-cost-free { color: var(--teal); }
+    .flow-timing { font-family: var(--font-mono); font-size: 12px; color: var(--charcoal-mute); }
+
+    /* ── Path cards (zoning) ── */
+    .path-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 32px 0; }
+    .path-card { padding: 28px 24px; border-radius: 2px; border: 1px solid var(--kraft-line); }
+    .path-card-1 { background: var(--paper); border-left: 5px solid var(--rust); }
+    .path-card-2 { background: var(--paper); border-left: 5px solid var(--charcoal); }
+    .path-card-3 { background: var(--kraft-pale); border-left: 5px solid var(--charcoal-mute); opacity: 0.85; }
+    .path-label {
       font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--rust-deep);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .path-label-1 { color: var(--rust); }
+    .path-label-2 { color: var(--charcoal); }
+    .path-label-3 { color: var(--charcoal-mute); }
+    .path-title { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--charcoal); margin-bottom: 12px; line-height: 1.25; }
+    .path-card ul { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.7; color: var(--charcoal-soft); }
+
+    /* ── Zone grid ── */
+    .zone-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0; }
+    .zone-card { padding: 28px 32px; border-radius: 2px; }
+    .zone-card-clean {
+      background: var(--kraft-light);
+      border: 1px solid var(--kraft-line);
+      border-left: 5px solid var(--rust);
+    }
+    .zone-card-prod {
+      background: var(--charcoal-soft);
+      border: 1px solid var(--charcoal);
+    }
+    .zone-card-prod .zone-card-title,
+    .zone-card-prod li,
+    .zone-card-prod p { color: var(--kraft-light); }
+    .zone-card-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .zone-card-clean .zone-card-label { color: var(--rust); }
+    .zone-card-prod .zone-card-label { color: var(--rust-light); }
+    .zone-card-title {
+      font-family: var(--font-display);
+      font-size: 18px;
       font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 4px;
     }
-    .flow-cost-free {
-      color: #3d6670;
-    }
-    .flow-timing {
+    .zone-card-sub { font-size: 13px; color: var(--charcoal-mute); margin-bottom: 16px; font-style: italic; }
+    .zone-card-prod .zone-card-sub { color: var(--kraft); }
+    .zone-card ul { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.8; }
+    .zone-card-clean ul { color: var(--charcoal); }
+
+    /* ── Checklist ── */
+    .checklist-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 32px 0; }
+    .checklist-head {
       font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--charcoal-mute);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rust);
+      font-weight: 600;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--kraft-line);
     }
-    .generator-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 20px 0 28px;
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--kraft-line);
       font-size: 14px;
+      line-height: 1.45;
     }
-    .generator-table th {
+    .checklist-box {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--kraft-line);
+      border-radius: 2px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      background: white;
+    }
+
+    /* ── Risk register ── */
+    .risk-register { width: 100%; border-collapse: collapse; margin: 24px 0 32px; font-size: 13px; }
+    .risk-register th {
       font-family: var(--font-mono);
       font-size: 10px;
       text-transform: uppercase;
@@ -312,21 +427,155 @@
       background: var(--kraft-light);
       text-align: left;
     }
-    .generator-table td {
+    .risk-register td {
       padding: 12px 14px;
       border-bottom: 1px solid var(--kraft-line);
       vertical-align: top;
+      line-height: 1.5;
     }
-    .generator-table tr.highlight td {
-      background: rgba(209,78,42,0.06);
-      font-weight: 600;
-    }
-    .bottom-line-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+    .risk-register tr:last-child td { border-bottom: none; }
+    .risk-prob { color: var(--rust); font-weight: 600; }
+
+    /* ── Cost summary box ── */
+    .cost-summary-box {
+      background: var(--charcoal);
+      border-radius: 2px;
+      overflow: hidden;
       margin: 28px 0;
     }
+    .cost-summary-box table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .cost-summary-box th {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--kraft);
+      padding: 12px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      text-align: left;
+    }
+    .cost-summary-box th.num { text-align: right; }
+    .cost-summary-box td {
+      padding: 12px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      color: var(--kraft-light);
+      vertical-align: top;
+    }
+    .cost-summary-box td.num {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--rust-light);
+    }
+    .cost-summary-box tr.total-summary td {
+      font-weight: 700;
+      color: white;
+      border-top: 1px solid rgba(255,255,255,0.25);
+      font-family: var(--font-mono);
+      font-size: 14px;
+    }
+    .cost-summary-box tr.total-summary td.num { color: var(--rust-light); font-size: 15px; }
+
+    /* ── Exec layer cards ── */
+    .exec-layers { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 28px 0; }
+    @media (max-width: 900px) { .exec-layers { grid-template-columns: 1fr 1fr; } .path-grid { grid-template-columns: 1fr; } }
+    .layer-card {
+      background: white;
+      border: 1px solid var(--kraft-line);
+      border-radius: 2px;
+      padding: 20px 16px;
+      border-top: 4px solid var(--kraft-line);
+    }
+    .layer-card-open { border-top-color: var(--rust); }
+    .layer-card-confirmed { border-top-color: var(--teal); }
+    .layer-card-locked { border-top-color: var(--charcoal); }
+    .layer-card-managed { border-top-color: var(--charcoal-mute); }
+    .layer-num {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--charcoal-mute);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .layer-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .layer-status {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .layer-status-open { color: var(--rust); }
+    .layer-status-confirmed { color: var(--teal); }
+    .layer-status-locked { color: var(--charcoal); }
+    .layer-status-managed { color: var(--charcoal-mute); }
+    .layer-desc { font-size: 12px; color: var(--charcoal-soft); line-height: 1.5; }
+
+    /* ── Zoning flow diagram ── */
+    .zoning-flow { margin: 32px 0; }
+    .zf-start {
+      background: var(--charcoal);
+      color: var(--kraft-light);
+      padding: 18px 24px;
+      border-radius: 2px;
+      text-align: center;
+      max-width: 540px;
+      margin: 0 auto 8px;
+    }
+    .zf-start-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--kraft);
+      margin-bottom: 6px;
+    }
+    .zf-start-title { font-family: var(--font-display); font-size: 17px; font-weight: 600; line-height: 1.35; }
+    .zf-arrow-down {
+      display: flex;
+      justify-content: center;
+      margin: 0 auto 8px;
+      color: var(--charcoal-mute);
+      font-size: 22px;
+      line-height: 1;
+    }
+    .zf-branches { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 0; }
+    .zf-branch { border-radius: 2px; overflow: hidden; }
+    .zf-branch-header { padding: 12px 16px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; }
+    .zf-branch-1 .zf-branch-header { background: var(--rust); color: white; }
+    .zf-branch-2 .zf-branch-header { background: var(--charcoal-soft); color: var(--kraft-light); }
+    .zf-branch-3 .zf-branch-header { background: var(--charcoal-mute); color: var(--kraft-pale); }
+    .zf-branch-body { padding: 16px; border: 1px solid var(--kraft-line); border-top: none; font-size: 13px; line-height: 1.55; color: var(--charcoal-soft); background: var(--paper); }
+    .zf-branch-1 .zf-branch-body { border-color: var(--rust); }
+    .zf-branch-outcome {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 2px;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      font-weight: 600;
+    }
+    .zf-branch-1 .zf-branch-outcome { background: rgba(209,78,42,0.08); color: var(--rust-deep); }
+    .zf-branch-2 .zf-branch-outcome { background: rgba(42,36,32,0.07); color: var(--charcoal); }
+    .zf-branch-3 .zf-branch-outcome { background: rgba(107,95,86,0.08); color: var(--charcoal-mute); }
+
+    /* ── Bottom-line grid ── */
+    .bottom-line-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
     .bottom-line-card {
       background: var(--charcoal);
       color: var(--kraft-pale);
@@ -350,14 +599,58 @@
       line-height: 1.1;
       margin-bottom: 6px;
     }
-    .bottom-line-card .blc-note {
-      font-size: 13px;
-      color: var(--kraft-light);
+    .bottom-line-card .blc-note { font-size: 13px; color: var(--kraft-light); line-height: 1.5; }
+
+    /* ── Document metadata ── */
+    .doc-meta-box {
+      background: var(--charcoal-soft);
+      border-radius: 2px;
+      padding: 24px 28px;
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .doc-meta-box-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--kraft-mute, var(--kraft));
+      margin-bottom: 4px;
+    }
+    .doc-meta-box-value { font-size: 14px; color: var(--kraft-light); line-height: 1.5; }
+
+    /* ── Misc ── */
+    blockquote.action-quote {
+      border-left: 4px solid var(--rust);
+      margin: 24px 0;
+      padding: 16px 24px;
+      background: var(--paper);
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-style: italic;
+      color: var(--charcoal);
       line-height: 1.5;
     }
+    blockquote.action-quote cite {
+      display: block;
+      margin-top: 10px;
+      font-style: normal;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--charcoal-mute);
+    }
+    .section-divider { margin: 8px 0 24px; }
+
     @media (max-width: 640px) {
       .bottom-line-grid { grid-template-columns: 1fr; }
       .osha-row { grid-template-columns: 1fr; }
+      .checklist-grid { grid-template-columns: 1fr; }
+      .zone-grid { grid-template-columns: 1fr; }
+      .exec-layers { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -377,44 +670,45 @@
       <li><a href="03-go-to-market.html"><span class="nav-num">03</span> Go-to-Market</a></li>
       <li><a href="04-personnel.html"><span class="nav-num">04</span> Personnel</a></li>
       <li><a href="05-regulatory.html" class="current"><span class="nav-num">05</span> Regulatory</a></li>
+      <li><a href="06-formaldehyde-free.html"><span class="nav-num">06</span> Formaldehyde-Free</a></li>
     </ul>
 
     <div class="nav-section">On This Page</div>
     <ul class="nav-toc">
-      <li><a href="#exec-summary">Executive Summary</a></li>
-      <li><a href="#zoning">Zoning &amp; Land Use</a></li>
+      <li><a href="#exec-read">Executive Read</a></li>
+      <li><a href="#zoning">Zoning — The Gating Question</a></li>
       <li><a href="#osha">OSHA Formaldehyde</a></li>
-      <li><a href="#youth-employment">Youth Employment</a></li>
-      <li><a href="#epa-rcra">EPA RCRA Hazardous Waste</a></li>
-      <li><a href="#building-code">NC Building Code</a></li>
-      <li><a href="#buncombe">Buncombe County</a></li>
-      <li><a href="#commercial-feed">NC Commercial Feed</a></li>
-      <li><a href="#fda">FDA Registration</a></li>
-      <li><a href="#marine-fisheries">NC Marine Fisheries</a></li>
-      <li><a href="#facility-standards">Facility Build-Out</a></li>
-      <li><a href="#setup-costs">One-Time Costs</a></li>
-      <li><a href="#annual-costs">Annual Costs</a></li>
-      <li><a href="#priority-actions">Priority Actions</a></li>
+      <li><a href="#rcra">EPA RCRA</a></li>
+      <li><a href="#building-code">Building Code — F-1</a></li>
+      <li><a href="#youth">Youth Employment</a></li>
+      <li><a href="#not-applicable">What Does Not Apply</a></li>
+      <li><a href="#spill">Spill Response</a></li>
+      <li><a href="#costs">Cost Summary</a></li>
       <li><a href="#contacts">Key Contacts</a></li>
-      <li><a href="#uncertainties">Uncertainties</a></li>
-      <li><a href="#bottom-line">The Bottom Line</a></li>
+      <li><a href="#open-questions">Open Questions</a></li>
+      <li><a href="#caveats">Professional Caveats</a></li>
+      <li><a href="#section-a">Interim Operating Strategy</a></li>
     </ul>
   </aside>
 
   <main class="content">
 
     <header class="doc-header">
-      <div class="doc-eyebrow">DOCUMENT 05</div>
+      <div class="doc-eyebrow">Document 05</div>
       <h1 class="doc-title"><em>Regulatory</em> Compliance</h1>
       <p class="doc-subtitle">What applies, what doesn't, and what to do before production restart</p>
       <div class="doc-meta">
         <div class="doc-meta-item">
           <span class="doc-meta-label">Prepared for</span>
-          <span class="doc-meta-value">Joseph Skinner</span>
+          <span class="doc-meta-value">Don and Joseph</span>
         </div>
         <div class="doc-meta-item">
           <span class="doc-meta-label">Updated</span>
           <span class="doc-meta-value">April 2026</span>
+        </div>
+        <div class="doc-meta-item">
+          <span class="doc-meta-label">Location</span>
+          <span class="doc-meta-value">Buncombe County, NC</span>
         </div>
         <div class="doc-meta-item">
           <span class="doc-meta-label">Status</span>
@@ -423,227 +717,223 @@
       </div>
     </header>
 
-    <!-- ===================================================
-         SECTION 1 — EXECUTIVE SUMMARY
-         =================================================== -->
-    <section id="exec-summary" class="section section-full" style="background:#e6d9bc; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
-      <span class="section-num">Section 01</span>
-      <h2 class="section-title">Executive Summary</h2>
+    <!-- ═══════════════════════════════════════════════════
+         EXECUTIVE READ
+         ═══════════════════════════════════════════════════ -->
+    <section id="exec-read" class="section band-a" style="scroll-margin-top:40px;">
+      <span class="section-num">Executive Read</span>
+      <h2 class="section-title">Five Compliance Layers</h2>
+      <p class="lead">Every regulation that touches Rusty's, mapped to a status. One open question gates everything else.</p>
 
-      <p class="lead">Three open questions before production restarts — in order of importance.</p>
-
-      <p><strong>Open Question 1 — Zoning.</strong> The property is zoned CS (Commercial Service). Manufacturing is not a permitted use in CS under <strong>Buncombe County Code of Ordinances, Chapter 78, Section 78-641, Table 1</strong>. The Month 1 call to Buncombe County Planning at <strong>(828) 250-4830</strong> takes priority over all other regulatory steps. The entire value of the owned building — and the $18–24K/year in avoided rent that drives Year 1 P&amp;L — depends on whether grandfathered nonconforming manufacturing status exists.</p>
-
-      <p><strong>Open Question 2 — OSHA Formaldehyde Standard (<strong>29 CFR 1910.1048</strong>).</strong> The most operationally consequential regulation. Real requirements, but most compliance is DIY-capable. Initial air monitoring and medical surveillance require outside contractors; everything else can be done internally by Joe and the Operations Manager. The NC Department of Labor runs a free confidential consultation that replaces most paid EHS consulting. Contact: OSH Consultative Services, <strong>(919) 807-2899</strong>.</p>
-
-      <p><strong>Open Question 3 — EPA RCRA Hazardous Waste (<strong>40 CFR 261.33</strong>, code <strong>U122</strong>).</strong> Procedural but non-optional. VSQG status expected at our production volumes. Manageable once set up.</p>
-
-      <p><strong>Required — Youth Employment (Easton).</strong> NC and federal law impose specific restrictions on a 16-year-old working in a facility that handles formaldehyde. A <strong>Youth Employment Certificate</strong> must be obtained from NC DOL before his first day — required by <strong>NCGS § 95-25.5</strong>. A written job description documenting Zone A scope and prohibited tasks is required before work begins. The legal framework is clear; the action items are straightforward. See <a href="#youth-employment">Section 04 — Youth Employment</a>.</p>
-
-      <p><strong>Resolved — Occupancy Classification.</strong> F-1 (Factory Industrial — Moderate-Hazard) confirmed. The operation stays clearly below Maximum Allowable Quantity thresholds. Standard construction requirements apply. No Group H contingency.</p>
-
-      <p><strong>Resolved — Product Regulation.</strong> NC Commercial Feed (<strong>NCGS § 106-284.33(4)</strong>), FDA food facility registration (<strong>21 CFR 1.227</strong>), and NC Marine Fisheries licenses do not apply to prepared fish bait. One confirmation call to NCDA&amp;CS at <strong>(984) 236-4820</strong> closes the feed question permanently.</p>
+      <div class="exec-layers">
+        <div class="layer-card layer-card-open">
+          <div class="layer-num">Layer 1</div>
+          <div class="layer-title">Zoning</div>
+          <span class="layer-status layer-status-open">Open Question</span>
+          <div class="layer-desc">CS zoning does not permit manufacturing as of right. Grandfathered nonconforming status is the most likely path. Call (828) 250-4830. Month 1 priority.</div>
+        </div>
+        <div class="layer-card layer-card-confirmed">
+          <div class="layer-num">Layer 2</div>
+          <div class="layer-title">OSHA Formaldehyde</div>
+          <span class="layer-status layer-status-confirmed">Confirmed Applies</span>
+          <div class="layer-desc">29 CFR 1910.1048. Action level 0.5 ppm. Monitoring, ventilation, PPE, training, medical surveillance, recordkeeping. Most DIY-capable. $4–8K year one.</div>
+        </div>
+        <div class="layer-card layer-card-confirmed">
+          <div class="layer-num">Layer 3</div>
+          <div class="layer-title">EPA RCRA</div>
+          <span class="layer-status layer-status-confirmed">Confirmed Applies</span>
+          <div class="layer-desc">40 CFR 261.33, code U122. VSQG status expected. EPA ID required. Licensed hauler for disposal. Setup $500–1K; annual $800–2.5K.</div>
+        </div>
+        <div class="layer-card layer-card-locked">
+          <div class="layer-num">Layer 4</div>
+          <div class="layer-title">Building Code F-1</div>
+          <span class="layer-status layer-status-locked">Locked</span>
+          <div class="layer-desc">Factory Industrial Moderate Hazard. Classification resolved. Formaldehyde quantities managed below MAQ thresholds. No Group H. Standard construction requirements.</div>
+        </div>
+        <div class="layer-card layer-card-managed">
+          <div class="layer-num">Layer 5</div>
+          <div class="layer-title">Youth Employment</div>
+          <span class="layer-status layer-status-managed">Managed</span>
+          <div class="layer-desc">Easton, 16. Zone A / Zone B separation required. Youth Employment Certificate before Day 1. Written job description. NCGS § 95-25.5.</div>
+        </div>
+      </div>
 
       <div class="callout-free">
-        <span class="callout-label">The priority sequence — three calls and one contract</span>
-        <p><strong>(1)</strong> Buncombe County Planning <strong>(828) 250-4830</strong> — zoning/nonconforming status. Free, 15 minutes, clears the biggest risk in this document.<br>
-        <strong>(2)</strong> NC DOL OSH Consultative Services <strong>(919) 807-2899</strong> — free advisory visit, Week 1–2. Replaces most paid EHS consulting.<br>
-        <strong>(3)</strong> Buncombe County Fire Marshal <strong>(828) 250-6620</strong> — free pre-consultation on chemical storage layout.<br>
-        <strong>(4)</strong> Industrial hygienist for initial air monitoring — required within 30 days of production start (~$1,500–3,000).</p>
+        <span class="callout-label">The formaldehyde-free parallel track</span>
+        <p>If reformulation succeeds, <strong>Layers 2 and 3 largely disappear</strong> and annual compliance overhead drops by $2,500–7,500. This does not gate production restart — it runs in parallel. See <a href="06-formaldehyde-free.html">Document 06 — Formaldehyde-Free Initiative</a>.</p>
       </div>
     </section>
 
     <div class="ornament"><span class="ornament-mark">* * *</span></div>
 
-    <!-- ===================================================
-         SECTION 2 — ZONING AND LAND USE
-         =================================================== -->
-    <section id="zoning" class="section section-full" style="background:#ede2c5; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
-      <span class="section-num">Section 02</span>
-      <h2 class="section-title">Zoning and Land Use — The Single Most Important Question</h2>
+    <!-- ═══════════════════════════════════════════════════
+         SECTION 1 — ZONING
+         ═══════════════════════════════════════════════════ -->
+    <section id="zoning" class="section band-b" style="scroll-margin-top:40px;">
+      <span class="section-num">Section 01</span>
+      <h2 class="section-title">Zoning and Land Use — The Gating Question</h2>
 
-      <div class="callout-zoning">
-        <span class="callout-label">Priority — Resolve Before Any Other Regulatory Spend</span>
-        <p>This is the single most important compliance question before production restart. The Month 1 call to Planning at (828) 250-4830 takes priority over all other regulatory steps.</p>
+      <div class="callout-critical">
+        <span class="callout-label">Gating Item — Highest Month 1 Priority</span>
+        <p>This is the single most important compliance question before production restart. The Month 1 call to Buncombe County Planning (828-250-4830) takes priority over all other regulatory steps.</p>
+      </div>
+
+      <!-- Figure 01 — Zoning Resolution Flow -->
+      <div class="viz">
+        <div class="viz-title">Figure 01</div>
+        <div class="viz-subtitle">Zoning Resolution Flow — Three Paths from Current CS Zoning</div>
+
+        <div class="zoning-flow">
+          <div class="zf-start">
+            <div class="zf-start-label">Current Status</div>
+            <div class="zf-start-title">Zoned CS (Commercial Service)<br>Manufacturing NOT permitted as of right<br><span style="font-family:var(--font-mono);font-size:13px;font-weight:400;">Chapter 78 § 78-641 Table 1</span></div>
+          </div>
+          <div class="zf-arrow-down">↓</div>
+          <div class="zf-branches">
+            <div class="zf-branch zf-branch-1">
+              <div class="zf-branch-header">Path 1 — Preferred</div>
+              <div class="zf-branch-body">
+                <strong>Grandfathered Nonconforming Use</strong><br>
+                Most likely path. Prior manufacturing activity grandfathers the use. Call Planning: Month 1. Document determination in writing.
+                <div class="zf-branch-outcome">Call (828) 250-4830 → confirm in writing → file permanently</div>
+              </div>
+            </div>
+            <div class="zf-branch zf-branch-2">
+              <div class="zf-branch-header">Path 2 — Formal Process</div>
+              <div class="zf-branch-body">
+                <strong>Rezoning to EMP or OU</strong><br>
+                Formal process. Planning Board and County Commissioners. Months. Public hearing required. Not guaranteed. Adjacent zoning and neighbor support matter.
+                <div class="zf-branch-outcome">Last resort if nonconforming path is closed</div>
+              </div>
+            </div>
+            <div class="zf-branch zf-branch-3">
+              <div class="zf-branch-header">Path 3 — Closed</div>
+              <div class="zf-branch-body">
+                <strong style="color:var(--charcoal-mute);">Variance / Conditional Use</strong><br>
+                Variance addresses hardship, not use changes. Conditional use permit not listed for manufacturing in CS. These paths exist in principle but are not realistic here.
+                <div class="zf-branch-outcome">Not a realistic path — do not pursue</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <h3>The Finding</h3>
 
-      <p>The property is zoned <strong>CS (Commercial Service) / Multi-Use Commercial</strong> under Buncombe County zoning. Per <strong>Buncombe County Code of Ordinances, Chapter 78, Section 78-641, Table 1 (Permitted Use Table)</strong>, manufacturing and processing operations are <strong>not a permitted use</strong> in the CS district.</p>
+      <p>The current property is zoned <strong>CS (Commercial Service) / Multi-Use Commercial</strong>. Per <strong>Buncombe County Code of Ordinances, Chapter 78, Section 78-641, Table 1 — Permitted Use Table</strong>, manufacturing and processing operations are <strong>not a permitted use</strong> in the CS district.</p>
 
-      <p>Per <strong>Section 78-640(f)</strong>, CS is designed for "Clustered commercial development… commercial activity in those specified areas with access to major traffic arteries." CS is intended for retail, offices, restaurants, and service-oriented commercial — not production operations.</p>
+      <p>The zoning districts that permit manufacturing are: <strong>EMP</strong> (Employment District), <strong>AI</strong> (Airport Industry District), and <strong>OU</strong> (Open Use District).</p>
 
-      <p>The ordinance permits manufacturing only in <strong>EMP</strong> (Employment), <strong>AI</strong> (Airport Industry), and <strong>OU</strong> (Open Use) districts.</p>
+      <p>Per <strong>Section 78-640(f)</strong>, the CS district purpose is "clustered commercial development… commercial activity in those specified areas with access to major traffic arteries." It is designed for retail, offices, restaurants, and service-oriented commercial uses — not production operations.</p>
 
-      <p>This is not a gray area. CS and manufacturing are incompatible uses under the current ordinance text.</p>
+      <p><strong>This is not a gray area. The ordinance is explicit: manufacturing requires EMP, AI, or OU zoning. CS does not have it.</strong></p>
 
-      <div class="callout">
-        <span class="callout-label">Citation</span>
-        <p style="margin:0;">Buncombe County Code of Ordinances, Chapter 78, Section 78-641, Table 1 — Permitted Use Table.<br>
-        Available at: <strong>buncombecounty.org/common/planning/zoning/zoning-ordinance.pdf</strong></p>
+      <h3>Three Paths — In Detail</h3>
+
+      <div class="path-grid">
+        <div class="path-card path-card-1">
+          <span class="path-label path-label-1">Path 1 — Preferred</span>
+          <div class="path-title">Grandfathered Nonconforming Use</div>
+          <p style="font-size:13px;color:var(--charcoal-soft);margin-bottom:12px;">If prior manufacturing was active at this address before the current zoning took effect, the property may carry grandfathered nonconforming use status. This is common with older buildings in corridors later rezoned commercial.</p>
+          <p style="font-size:13px;font-weight:600;color:var(--charcoal);margin-bottom:6px;">Four key questions to resolve with Planning:</p>
+          <ul>
+            <li>Does this parcel have nonconforming use status on record for manufacturing or industrial activity?</li>
+            <li>Does nonconforming status transfer with acquisition, or does it attach only to the prior operator?</li>
+            <li>What is the abandonment rule? Nonconforming uses typically lapse if discontinued for 6–12 months. If the prior owner ceased manufacturing before the sale closed, the status may already be lost.</li>
+            <li>Would any expansion or modification of the manufacturing use trigger loss of nonconforming status?</li>
+          </ul>
+          <p style="font-size:13px;margin-top:12px;color:var(--charcoal);"><strong>If grandfathered: get the determination in writing. Keep it in the permanent compliance file.</strong></p>
+        </div>
+        <div class="path-card path-card-2">
+          <span class="path-label path-label-2">Path 2 — Formal Process</span>
+          <div class="path-title">Rezoning to EMP or OU</div>
+          <p style="font-size:13px;color:var(--charcoal-soft);margin-bottom:12px;">Formal process through the Planning Board and County Commissioners. Takes months, not days. Not guaranteed. Adjacent zoning patterns and neighbor support matter. Public hearing required.</p>
+          <p style="font-size:13px;color:var(--charcoal-soft);">This is the right path only if nonconforming status does not exist and the location is fixed. Do not begin this process before the Month 1 Planning call confirms that Path 1 is closed.</p>
+        </div>
+        <div class="path-card path-card-3">
+          <span class="path-label path-label-3">Path 3 — Closed</span>
+          <div class="path-title">Alternative Paths (Variance / CUP)</div>
+          <p style="font-size:13px;color:var(--charcoal-mute);margin-bottom:12px;">Variance is unlikely because variances address hardship, not use changes. Conditional use permit appears closed — the ordinance doesn't list manufacturing as a conditional use in CS (no "C" in Table 1 for that use category).</p>
+          <p style="font-size:13px;color:var(--charcoal-mute);">These paths exist in principle but are not realistic here. Do not invest time pursuing them before confirming Path 1 and Path 2 are exhausted.</p>
+        </div>
       </div>
 
-      <h3>Three Paths to Resolve</h3>
+      <h3>The Month 1 Action</h3>
 
-      <h4>Path 1 — Grandfathered Nonconforming Use <em>(most likely path if prior manufacturing was active)</em></h4>
-      <p>If Rusty's was operating at this address under prior ownership with an active manufacturing use before the current zoning took effect — or before the area was rezoned around it — the property may have "grandfathered" nonconforming use status. This is common with older industrial buildings in corridors later rezoned commercial.</p>
-      <p><strong>Key questions to ask Planning:</strong></p>
-      <ul>
-        <li>Does this parcel have nonconforming use status on record for manufacturing or industrial activity?</li>
-        <li>Does nonconforming status transfer with acquisition, or does it attach only to the prior operator?</li>
-        <li>What is the abandonment rule? Nonconforming uses typically lapse if discontinued for 6–12 months. If the prior owner ceased manufacturing before the sale closed, the status may already be lost.</li>
-        <li>Would any expansion or modification of the manufacturing use trigger loss of nonconforming status?</li>
-      </ul>
-      <p>If the answer is yes: get it in writing. Confirm transfer rules and the abandonment clock.</p>
-
-      <h4>Path 2 — Rezoning to EMP or OU</h4>
-      <p>Formal process through the Planning Board and County Commissioners. Takes months, not days. Not guaranteed. Adjacent zoning patterns, neighbor sentiment, and staff recommendation all affect the outcome. Not the first path to pursue — but the right one if nonconforming status doesn't exist and the location is fixed.</p>
-
-      <h4>Path 3 — No Clear Path</h4>
-      <p>A variance is unlikely — variances address dimensional hardships, not fundamental use changes. A Conditional Use Permit appears unavailable — the ordinance does not list manufacturing as a conditional use in CS (no "C" in Table 1 for that use category). If neither nonconforming status nor rezoning is available, the location question goes back to Don before more capital is committed.</p>
-
-      <h3>Month 1 Critical Action</h3>
+      <blockquote class="action-quote">
+        "What is the current zoning of [address], and does the property have any nonconforming use status on record for manufacturing or industrial activity?"
+        <cite>Buncombe County Planning &amp; Development — (828) 250-4830</cite>
+      </blockquote>
 
       <div class="callout-free">
-        <span class="callout-label">Call — 15 Minutes — Free</span>
-        <p><strong>Buncombe County Planning: (828) 250-4830</strong></p>
-        <p>Ask directly: <em>"What is the current zoning of [property address], and does the property have any nonconforming use status on record for manufacturing or industrial activity?"</em></p>
-        <p style="margin:0;">If yes (nonconforming status confirmed): get it in writing. Confirm transfer rules and abandonment period. If no: the conversation about rezoning versus an alternative location happens before any further compliance or equipment spending.</p>
+        <span class="callout-label">Call — Free — 15 Minutes — Month 1 Priority</span>
+        <p>If yes (nonconforming confirmed): get it in writing. Confirm transfer rules and abandonment period. If no: the conversation about rezoning versus an alternative location happens before any further compliance or equipment spending.</p>
       </div>
 
       <h3>The Stakes</h3>
 
-      <p>If the property does not have grandfathered nonconforming manufacturing status, the business cannot legally operate as a manufacturer at that address under current zoning. The "owned building" advantage — which saves an estimated $18–24K/year in rent and is a material driver of Year 1 P&amp;L — may not be usable for manufacturing without rezoning or a confirmed nonconforming designation.</p>
+      <p>If the property does not have grandfathered nonconforming manufacturing status, the business cannot legally operate as a manufacturer at that address under current zoning. The "owned building" advantage that saves $18–24K/year on rent — a material driver of Year 1 P&amp;L — may not be usable for manufacturing without rezoning or a formal nonconforming designation.</p>
 
-      <p><strong>Resolve this before committing additional capital to equipment move, compliance setup, or recipe verification.</strong></p>
+      <p>This is why Don is actively searching for a permanent, properly zoned and classified facility. The current building is being treated as interim for this and other reasons. See <a href="#section-a">Section A — Interim Operating Strategy</a> for the interim operating posture.</p>
     </section>
 
     <div class="ornament"><span class="ornament-mark">* * *</span></div>
 
-    <!-- ===================================================
-         SECTION 3 — OSHA
-         =================================================== -->
-    <section id="osha" class="section section-full" style="background:#e6d9bc; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
-      <span class="section-num">Section 03</span>
-      <h2 class="section-title">OSHA Formaldehyde Standard — <strong>29 CFR 1910.1048</strong></h2>
+    <!-- ═══════════════════════════════════════════════════
+         SECTION 2 — OSHA
+         ═══════════════════════════════════════════════════ -->
+    <section id="osha" class="section band-a" style="scroll-margin-top:40px;">
+      <span class="section-num">Section 02</span>
+      <h2 class="section-title">OSHA Formaldehyde Standard (29 CFR 1910.1048) — Confirmed Applies</h2>
 
-      <p class="lead">The most operationally consequential regulation we face. Most compliance is DIY-capable — only air monitoring, medical surveillance, and fit-testing require contractors. Sourced directly from the eCFR and OSHA enforcement materials.</p>
+      <p class="lead">This is the most operationally consequential regulation we face. Sourced directly from the eCFR and OSHA enforcement materials.</p>
 
-      <h3>Required Items: What the Regulation Actually Mandates</h3>
-
-      <!-- Required vs. DIY/Contracted table -->
-      <table class="required-table">
-        <thead>
-          <tr>
-            <th style="width:30%">Item</th>
-            <th style="width:15%">Required?</th>
-            <th>How to Comply</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Initial exposure monitoring</strong> (air sampling)</td>
-            <td><span class="tag-required">Required</span></td>
-            <td><strong>Contracted</strong> — industrial hygienist with calibrated equipment and accredited lab analysis. One-time initial, then every 6 months if at or above Action Level. ~$1,500–3,000 initial.</td>
-          </tr>
-          <tr>
-            <td><strong>Written compliance program</strong></td>
-            <td><span class="tag-required">Required</span> if at or above 0.5 ppm</td>
-            <td><span class="tag-diy">DIY</span> — 29 CFR 1910.1048 is the template. Read the regulation, write the program, follow it. No consultant required.</td>
-          </tr>
-          <tr>
-            <td><strong>Medical surveillance</strong> (exams, questionnaires)</td>
-            <td><span class="tag-required">Required</span> for qualifying employees</td>
-            <td><strong>Contracted</strong> — occupational health provider. ~$150–300 per employee per year.</td>
-          </tr>
-          <tr>
-            <td><strong>Hazard communication</strong> (SDS, labels)</td>
-            <td><span class="tag-required">Required</span></td>
-            <td><span class="tag-diy">DIY</span> — SDS sheets from suppliers, GHS-compliant container labeling.</td>
-          </tr>
-          <tr>
-            <td><strong>Training</strong> (initial + annual)</td>
-            <td><span class="tag-required">Required</span></td>
-            <td><span class="tag-diy">DIY</span> — OSHA provides free training materials at osha.gov.</td>
-          </tr>
-          <tr>
-            <td><strong>Respiratory protection program</strong> (if engineering controls insufficient)</td>
-            <td><span class="tag-required">Required if applicable</span></td>
-            <td><span class="tag-diy">DIY</span> written program. Respirator fit-testing contracted (~$75–150 per employee).</td>
-          </tr>
-          <tr>
-            <td><strong>Ventilation engineering design</strong></td>
-            <td>Not required to hire; controls must be sufficient</td>
-            <td>One-time mechanical engineer engagement is worth it for initial design (~$1,500–4,000). After that, DIY maintenance.</td>
-          </tr>
-          <tr>
-            <td><strong>Full EHS consultant on retainer</strong></td>
-            <td><span class="tag-optional">Recommended — Not Required</span></td>
-            <td>OSHA doesn't require it. Firms sell this. If Joe and the Operations Manager can read 29 CFR 1910.1048 and follow it, they can comply directly. See NC DOL free alternative below.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>The Free Alternative: NC Department of Labor Consultation</h3>
-
-      <div class="callout-free">
-        <span class="callout-label">Free · Confidential · No Citations</span>
-        <p><strong>NC Department of Labor, OSH Consultative Services: (919) 807-2899</strong></p>
-        <p>NC DOL runs a free, confidential consultation program for small employers. No fines, no citations — purely advisory. They visit the facility, review the setup, identify compliance gaps, and provide a written punch list. This replaces roughly 80% of what a paid EHS consultant would do.</p>
-        <p style="margin:0;"><strong>Schedule this as a top-priority Week 1–2 action, before production restarts.</strong></p>
-      </div>
-
-      <!-- Figure 05 — Exposure Limits -->
+      <!-- Figure 02 — OSHA Exposure Limits -->
       <div class="viz">
-        <div class="viz-title">Figure 05</div>
-        <div class="viz-subtitle">OSHA Formaldehyde Exposure Limits — <code>29 CFR 1910.1048</code></div>
+        <div class="viz-title">Figure 02</div>
+        <div class="viz-subtitle">OSHA Formaldehyde Exposure Limits Reference Card</div>
         <div class="osha-limits">
-          <div class="osha-limits-header">Confirmed from 29 CFR 1910.1048 — All limits are binding at Rusty's</div>
+          <div class="osha-limits-header">OSHA 29 CFR 1910.1048 — Exposure Limits — All Limits Are Binding at Rusty's</div>
           <div class="osha-row osha-row-header">
             <div class="osha-cell-label">Limit Type</div>
             <div class="osha-cell-label">Level</div>
             <div class="osha-cell-label">What It Triggers</div>
           </div>
           <div class="osha-row">
-            <div class="osha-cell"><strong>Permissible Exposure Limit (PEL)</strong></div>
-            <div class="osha-val">0.75 ppm</div>
-            <div class="osha-note">8-hour time-weighted average (TWA) — triggers full compliance program: engineering controls, medical surveillance, regulated areas, signage</div>
-          </div>
-          <div class="osha-row">
             <div class="osha-cell"><strong>Action Level</strong></div>
             <div class="osha-val">0.5 ppm</div>
-            <div class="osha-note">8-hour TWA — triggers exposure monitoring and medical surveillance requirements even before reaching PEL</div>
+            <div class="osha-note">8-hr TWA — triggers exposure monitoring and medical surveillance requirements even before reaching PEL</div>
+          </div>
+          <div class="osha-row">
+            <div class="osha-cell"><strong>Permissible Exposure Limit (PEL)</strong></div>
+            <div class="osha-val">0.75 ppm</div>
+            <div class="osha-note">8-hr TWA — triggers full compliance program: engineering controls, medical surveillance, regulated areas, signage</div>
           </div>
           <div class="osha-row">
             <div class="osha-cell"><strong>Short-Term Exposure Limit (STEL)</strong></div>
             <div class="osha-val">2 ppm</div>
-            <div class="osha-note">Any 15-minute period — short-term ceiling; exceeding triggers immediate corrective action</div>
+            <div class="osha-note">Any 15-minute period — short-term peak ceiling; exceeding triggers immediate corrective action regardless of TWA</div>
           </div>
         </div>
-        <div class="viz-caption">Real-world enforcement context: A NC cabinet manufacturer was fined $47,000 after air sampling showed 1.2 ppm average. Remediation cost $180,000 in ventilation and reformulation. This is the kind of operation OSHA actively inspects.</div>
+        <div class="viz-caption">Enforcement context: A NC cabinet manufacturer was fined $47,000 after air sampling showed 1.2 ppm average. Remediation cost $180,000 in ventilation and reformulation. This is the class of operation OSHA actively inspects.</div>
       </div>
 
-      <h3>Initial Monitoring</h3>
-      <p>Every employer with formaldehyde exposure must conduct initial exposure monitoring within first operations. Conducted by an industrial hygienist with passive diffusion badges or active sampling.</p>
-      <p>Exception: If formaldehyde mixtures are ≤0.1% concentration AND exposure is documented below 0.1 ppm AND no employee health complaints, monitoring is not required.</p>
-      <div class="callout">
-        <span class="callout-label">Practical Reality for Rusty's</span>
-        <p>Rusty's formaldehyde solutions exceed the 0.1% exception threshold. <strong>We need to monitor.</strong> Initial monitoring must be conducted within 30 days of production start.</p>
-      </div>
+      <h4>Initial Monitoring</h4>
+      <p>Every employer with formaldehyde exposure must conduct initial exposure monitoring within first operations. Conducted by an industrial hygienist with passive diffusion badges or active sampling equipment and accredited lab analysis. Required within 30 days of production start. Rusty's formaldehyde solutions exceed the 0.1% exception threshold — we need to monitor.</p>
 
-      <h3>Periodic Monitoring</h3>
+      <h4>Periodic Monitoring</h4>
       <ul>
         <li>Every 6 months if exposure is at or above Action Level (0.5 ppm)</li>
-        <li>Annually if above STEL</li>
+        <li>Annually if above STEL (2 ppm)</li>
         <li>Can reduce frequency after two consecutive samples below Action Level</li>
       </ul>
 
-      <h3>Hierarchy of Controls (Required by OSHA)</h3>
+      <h4>Hierarchy of Controls (Required by OSHA)</h4>
       <ol>
-        <li>Substitution with less hazardous materials</li>
-        <li><strong>Engineering controls (ventilation, enclosed processes)</strong> — primary expected control</li>
-        <li>Administrative controls</li>
-        <li>PPE (respirators) — last resort, not a substitute</li>
+        <li><strong>Substitution</strong> with less hazardous materials — the goal of Document 06</li>
+        <li><strong>Engineering controls</strong> (ventilation, enclosed processes) — primary expected control at Rusty's</li>
+        <li><strong>Administrative controls</strong> — work scheduling, reduced exposure duration</li>
+        <li><strong>PPE</strong> (respirators) — last resort, never a substitute for engineering controls</li>
       </ol>
 
       <h4>Engineering Controls Specifically Required</h4>
@@ -654,35 +944,68 @@
         <li>Air changes per hour sufficient to maintain below Action Level</li>
       </ul>
 
-      <h3>Respiratory Protection Program — <strong>29 CFR 1910.134</strong></h3>
-      <p>Triggered if:</p>
-      <ul>
-        <li>Engineering/work practice controls alone cannot reduce exposure below PEL</li>
-        <li>During installation or repair of engineering controls</li>
-        <li>Emergency situations</li>
-        <li>Employee voluntarily requests protection</li>
-      </ul>
+      <h4>Respiratory Protection Program — 29 CFR 1910.134</h4>
+      <p>Triggered if engineering and work practice controls alone cannot reduce exposure below the PEL; during installation or repair of engineering controls; in emergency situations; or when an employee voluntarily requests protection. Written program required. Fit-testing by contractor ($75–150/person).</p>
 
-      <h3>Medical Surveillance</h3>
-      <p>Required if employee is exposed at or above Action Level (0.5 ppm):</p>
-      <ul>
-        <li>Baseline exam, annual exams thereafter</li>
-        <li>Examination within 24 hours of any emergency exposure</li>
-        <li>Medical removal protection if physician determines health impairment</li>
-      </ul>
+      <h4>Medical Surveillance</h4>
+      <p>Required if employee is exposed at or above Action Level (0.5 ppm): baseline exam before exposure, annual exams thereafter, examination within 24 hours of any emergency exposure, medical removal protection if physician determines health impairment. Contracted occupational health provider — approximately $150–300 per employee per year.</p>
 
-      <h3>Training Requirements</h3>
-      <p>At least annually for employees exposed at or above 0.1 ppm. Free OSHA training materials available at osha.gov — this is DIY:</p>
+      <h4>Training — At Least Annually</h4>
+      <p>Required for all employees exposed at or above 0.1 ppm. Free OSHA training materials available at osha.gov — this is a DIY task. Content required:</p>
       <ul>
-        <li>Health effects of formaldehyde</li>
-        <li>Control measures</li>
-        <li>Safe work practices</li>
-        <li>Emergency procedures</li>
+        <li>Health effects of formaldehyde — including carcinogenicity</li>
+        <li>Engineering and administrative controls in place</li>
+        <li>Safe work practices and PPE use</li>
+        <li>Emergency procedures, spill response</li>
         <li>Signs and symptoms of overexposure</li>
+        <li>Rights under the standard — access to medical records and monitoring results</li>
       </ul>
 
-      <h3>Who This Training Applies To — By Phase</h3>
-      <div class="callout callout-critical" style="border-left-color: var(--rust);">
+      <h4>Regulated Areas — Required Signage</h4>
+      <p>Where exposure may exceed the PEL or STEL, post signs bearing exactly:</p>
+      <blockquote style="border-left:4px solid var(--rust);padding:12px 20px;margin:16px 0;background:var(--paper);font-family:var(--font-mono);font-size:13px;letter-spacing:0.05em;line-height:1.7;color:var(--charcoal);">
+        DANGER — FORMALDEHYDE — MAY CAUSE CANCER — CAUSES SKIN, EYE, AND RESPIRATORY IRRITATION — AUTHORIZED PERSONNEL ONLY
+      </blockquote>
+
+      <h4>Recordkeeping</h4>
+      <ul>
+        <li>Exposure records: <strong>30 years</strong></li>
+        <li>Medical records: <strong>duration of employment + 30 years</strong></li>
+        <li>Respirator fit testing records: until replaced by new test</li>
+        <li>Training records: duration of employment</li>
+      </ul>
+
+      <h4>Hazard Communication — 29 CFR 1910.1200</h4>
+      <ul>
+        <li>SDS (Safety Data Sheets) for every formaldehyde product — accessible to workers at all times in a binder on the production floor</li>
+        <li>Labels per GHS standards on all containers</li>
+        <li>Chemical inventory list maintained and updated</li>
+      </ul>
+
+      <h4>Emergency Procedures</h4>
+      <ul>
+        <li>Spill response plan with appropriate neutralizer — sodium bisulfite is the primary recommended neutralizer</li>
+        <li>Eyewash stations and safety showers within 10 seconds' travel time per <strong>ANSI Z358.1</strong></li>
+        <li>Written evacuation procedures, posted floor plan, designated assembly point</li>
+      </ul>
+
+      <h3>What This Looks Like for Rusty's</h3>
+      <ul>
+        <li>Dedicated formaldehyde storage and mixing area with source-capture exhaust ventilation</li>
+        <li>Nitrile gloves, splash goggles, chemical-resistant apron at all mixing stations</li>
+        <li>Written OSHA Formaldehyde Protection Program <span class="tag-diy">DIY</span> — 29 CFR 1910.1048 is the template</li>
+        <li>Initial air monitoring within 30 days of production start — contracted industrial hygienist, ~$1,500–3,000</li>
+        <li>SDS binder accessible to all production staff, updated when products change <span class="tag-diy">DIY</span></li>
+        <li>Warning signage posted in all regulated areas <span class="tag-diy">DIY</span></li>
+        <li>Eyewash/shower station installed per ANSI Z358.1 — non-negotiable</li>
+        <li>Annual medical surveillance for Operations Manager and regularly exposed associates</li>
+        <li>Formaldehyde spill kit with sodium bisulfite on production floor at all times</li>
+        <li>Annual training documented with signatures and date <span class="tag-diy">DIY</span></li>
+      </ul>
+
+      <h3>Training — Who This Applies To</h3>
+
+      <div class="callout-teal">
         <span class="callout-label">Employer-of-Record Is Irrelevant to OSHA Obligations</span>
         <p>OSHA training and exposure protection requirements attach to the <strong>work being performed</strong>, not to how the worker is paid or which entity cuts their check. A contractor billed through a separate payroll company, a W2 employee of a related entity, and a direct Rusty's W2 hire are all subject to the same OSHA 29 CFR 1910.1048 training and medical surveillance obligations if they have potential formaldehyde exposure. There is no payroll arrangement that exempts a person from this obligation.</p>
       </div>
@@ -690,249 +1013,75 @@
       <table class="required-table">
         <thead>
           <tr>
-            <th>Personnel</th>
+            <th>Person</th>
             <th>Phase</th>
-            <th>Training Required Before Starting</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Joseph</strong></td>
-            <td>Months 1&ndash;8 (hands-on production)</td>
-            <td>Yes — formaldehyde training before first production day, regardless of payroll source</td>
-          </tr>
-          <tr>
-            <td><strong>Part-time production contractor</strong></td>
-            <td>Months 1&ndash;8</td>
-            <td>Yes — regardless of whether on Rusty's P&amp;L, Don's payroll, or 1099. Potential exposure is the trigger, not employment classification.</td>
-          </tr>
-          <tr>
-            <td><strong>Operations Manager</strong></td>
-            <td>Month 9 start and ongoing</td>
-            <td>Yes — before first production day. Annual refresher thereafter.</td>
-          </tr>
-          <tr>
-            <td><strong>Any future hire with production access</strong></td>
-            <td>From their start date</td>
-            <td>Yes — any Production Associate, temp worker, or other role with potential formaldehyde exposure must complete training before starting production work.</td>
-          </tr>
-          <tr>
-            <td><strong>Easton</strong></td>
-            <td>Zone A only — no production exposure</td>
-            <td>Not required — Zone B exclusion means Easton never enters areas at or above the Action Level (0.5 ppm). Zone separation must be maintained for this exemption to hold.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>Regulated Areas</h3>
-      <p>Where exposure may exceed PEL or STEL — must be marked with signs bearing:</p>
-      <blockquote>
-        DANGER — FORMALDEHYDE — MAY CAUSE CANCER — CAUSES SKIN, EYE, AND RESPIRATORY IRRITATION — AUTHORIZED PERSONNEL ONLY
-      </blockquote>
-
-      <h3>Recordkeeping</h3>
-      <ul>
-        <li>Exposure records: <strong>30 years</strong></li>
-        <li>Medical records: <strong>duration of employment + 30 years</strong></li>
-        <li>Respirator fit testing: until replaced</li>
-        <li>Training records: duration of employment</li>
-      </ul>
-
-      <h3>Hazard Communication — <strong>29 CFR 1910.1200</strong></h3>
-      <ul>
-        <li>SDS (Safety Data Sheets) for every formaldehyde product — accessible to workers at all times</li>
-        <li>Labels per GHS standards</li>
-        <li>Chemical inventory list maintained</li>
-      </ul>
-
-      <h3>Emergency Procedures</h3>
-      <ul>
-        <li>Spill response plan with appropriate neutralizer (sodium sulfite or sodium bisulfite commonly recommended)</li>
-        <li>Eyewash stations and safety showers within 10 seconds' travel time (<strong>ANSI Z358.1</strong>)</li>
-        <li>Written evacuation procedures</li>
-      </ul>
-
-      <h3>What This Looks Like for Rusty's</h3>
-      <ul>
-        <li>Dedicated formaldehyde storage and mixing area with source-capture exhaust</li>
-        <li>Nitrile gloves, splash goggles, chemical apron at mixing stations</li>
-        <li>Written OSHA Formaldehyde Protection Program <span class="tag-diy">DIY</span> — 29 CFR 1910.1048 is the template</li>
-        <li>Initial monitoring within 30 days of production start (contracted — industrial hygienist)</li>
-        <li>SDS binder accessible to all staff <span class="tag-diy">DIY</span></li>
-        <li>Warning signage posted <span class="tag-diy">DIY</span></li>
-        <li>Eyewash/shower station installed to <strong>ANSI Z358.1</strong></li>
-        <li>Annual medical surveillance for Operations Manager and regularly exposed associates (contracted — occupational health provider)</li>
-        <li>Spill kit with sodium bisulfite on hand</li>
-        <li>Annual training documented <span class="tag-diy">DIY</span> — free OSHA materials</li>
-      </ul>
-
-      <div class="callout">
-        <span class="callout-label">Estimated First-Year OSHA Compliance Cost — Required Items Only</span>
-        <p style="margin:0; font-family:var(--font-mono); font-size:18px; color:var(--rust-deep); font-weight:600;">$2,500 – $5,500</p>
-        <p style="margin:8px 0 0;">Initial air monitoring ($1,500–3,000, contracted) + medical surveillance for qualifying employees ($400–1,000, contracted) + respirator fit-testing if needed ($75–150/person). Written programs and training are DIY at near-zero cost. Ventilation is a facility cost covered separately.</p>
-      </div>
-    </section>
-
-    <div class="ornament"><span class="ornament-mark">* * *</span></div>
-
-    <!-- ===================================================
-         SECTION 4 — YOUTH EMPLOYMENT
-         =================================================== -->
-    <section id="youth-employment" class="section section-full" style="background:#ede2c5; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
-      <span class="section-num">Section 04</span>
-      <h2 class="section-title">Youth Employment — Easton's Scope of Work</h2>
-
-      <p class="lead">Easton is 16, part-time W2, owner's son. NC and federal law impose real restrictions that are different — and more specific — than a typical teen job, because formaldehyde is in the building.</p>
-
-      <div class="callout-zoning">
-        <span class="callout-label">Required — Before His First Day</span>
-        <p>A Youth Employment Certificate must be obtained from the NC Department of Labor before Easton begins work. Required by NCGS § 95-25.5. A written job description documenting his Zone A scope and all prohibited tasks must also be in place before Day 1.</p>
-      </div>
-
-      <h3>Applicable Law</h3>
-      <ul>
-        <li><strong>NC Wage and Hour Act (NCGS § 95-25.5)</strong> — governs minors 14–17 in NC; Youth Employment Certificate required before work begins, hour restrictions, prohibited occupations list</li>
-        <li><strong>FLSA Hazardous Orders (HO 1–17)</strong> — federal prohibitions on hazardous work for minors under 18; administered by the U.S. Department of Labor Wage and Hour Division</li>
-        <li><strong>NC Detrimental Occupations List</strong> — NC-specific restrictions beyond FLSA that apply to 16–17 year olds under NC DOL authority</li>
-        <li><strong>OSHA 29 CFR 1910.1048</strong> — formaldehyde standard that defines the action level (0.5 ppm) and governs who may be present in regulated production areas</li>
-      </ul>
-
-      <h3>NC Hour Rules for 16–17 Year Olds</h3>
-      <ul>
-        <li>No federal or NC daily or weekly hour cap for 16–17 (unlike 14–15 year olds, who have stricter limits)</li>
-        <li>Cannot work between <strong>11:00 PM and 5:00 AM on school nights</strong> without written consent from parent and school principal — NCGS § 95-25.5(c)</li>
-        <li>Given Easton's 10–15 hr school year schedule, this is not a practical constraint — but it must be documented if he ever works late on a school night</li>
-      </ul>
-
-      <!-- Zone A / Zone B visual -->
-      <h3>Zone Framework — Clean vs. Production</h3>
-      <p>The facility operates on a two-zone model for Easton's scope. The <strong>Operations Manager is responsible</strong> for maintaining physical zone separation and ensuring Easton is never present in Zone B during active production. This is not Easton's responsibility to manage — it is a supervision and facility management obligation.</p>
-
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:28px 0;">
-        <div style="background:var(--kraft-light); border:2px solid #3d6670; border-radius:2px; padding:24px;">
-          <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:#3d6670; font-weight:700; margin-bottom:12px;">Zone A — Clean / Administrative</div>
-          <p style="font-size:13px; color:var(--charcoal-soft); margin:0 0 12px;">Office, warehouse storage, order fulfillment, packaging of sealed goods, content creation. No formaldehyde handling at any point.</p>
-          <ul style="font-size:13px; color:var(--charcoal); margin:0; padding-left:18px; line-height:1.9;">
-            <li>Office and administrative work</li>
-            <li>Order processing and fulfillment</li>
-            <li>Packaging and labeling (sealed finished goods only)</li>
-            <li>Inventory counting and FIFO rotation (dry goods only)</li>
-            <li>Facility organization and cleaning (non-production areas)</li>
-            <li>Photo/video content creation</li>
-            <li>Marketing and social media support</li>
-            <li>Product field testing (fishing trips with finished product)</li>
-            <li>Learning rotations — observation only</li>
-          </ul>
-        </div>
-        <div style="background:#fff8f5; border:2px solid var(--rust); border-radius:2px; padding:24px;">
-          <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--rust); font-weight:700; margin-bottom:12px;">Zone B — Production / Regulated</div>
-          <p style="font-size:13px; color:var(--charcoal-soft); margin:0 0 12px;">Active formaldehyde production, mixing, and batch operations. Easton is not permitted in this zone during active production under any circumstance.</p>
-          <ul style="font-size:13px; color:var(--charcoal); margin:0; padding-left:18px; line-height:1.9;">
-            <li>Formaldehyde handling — <strong>prohibited</strong></li>
-            <li>Active batch production — <strong>prohibited</strong></li>
-            <li>Chemical mixing station area — <strong>prohibited</strong></li>
-            <li>Waste handling and disposal — <strong>prohibited</strong></li>
-            <li>Forklift / Komatsu FG25C operation — <strong>prohibited</strong></li>
-            <li>Confined space entry — <strong>prohibited</strong></li>
-            <li>Any respirator-required task — <strong>prohibited</strong></li>
-          </ul>
-        </div>
-      </div>
-
-      <h3>Firm Lines — What Easton Cannot Do (with Citations)</h3>
-      <table class="required-table">
-        <thead>
-          <tr>
-            <th style="width:32%">Prohibition</th>
-            <th style="width:30%">Authority</th>
+            <th>Training Required</th>
             <th>Notes</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>Formaldehyde handling</strong> — measuring, mixing, adding to batches, disposing</td>
-            <td>OSHA 29 CFR 1910.1048; NC Detrimental Occupations</td>
-            <td>No exceptions. Applies to all handling regardless of concentration or duration.</td>
+            <td><strong>Joseph</strong></td>
+            <td>M1+ (hands-on production)</td>
+            <td><span class="tag-required">Required</span></td>
+            <td>Before first production day, regardless of payroll source</td>
           </tr>
           <tr>
-            <td><strong>Presence in active production zone at or above 0.5 ppm action level</strong></td>
-            <td>OSHA 29 CFR 1910.1048 — Action Level</td>
-            <td>Operations Manager is accountable for zone enforcement. Air monitoring results govern this boundary. When production is active, Easton stays in Zone A.</td>
+            <td><strong>Contractor</strong></td>
+            <td>M1–8</td>
+            <td><span class="tag-required">Required</span></td>
+            <td>Payroll irrelevant — potential exposure is the trigger, not employment classification</td>
           </tr>
           <tr>
-            <td><strong>Any task requiring a respirator</strong></td>
-            <td>NC Detrimental Occupation #9 — respiratory protection tasks for minors</td>
-            <td>Respirator-required work is prohibited for minors regardless of task duration or equipment type.</td>
+            <td><strong>Ops Manager</strong></td>
+            <td>M9+</td>
+            <td><span class="tag-required">Required</span></td>
+            <td>Before first production day. Annual refresher thereafter.</td>
           </tr>
           <tr>
-            <td><strong>Forklift operation</strong> (Komatsu FG25C or any powered industrial truck)</td>
-            <td>FLSA Hazardous Order #7 — powered industrial vehicles</td>
-            <td>No exceptions under age 18. Absolute prohibition.</td>
+            <td><strong>Future hires with production access</strong></td>
+            <td>From start date</td>
+            <td><span class="tag-required">Required</span></td>
+            <td>Any Production Associate, temp worker, or other role with potential formaldehyde exposure must complete before starting production work</td>
           </tr>
           <tr>
-            <td><strong>Confined space entry</strong></td>
-            <td>NC Detrimental Occupation #8 — confined or enclosed spaces</td>
-            <td>Applies to permit-required and non-permit confined spaces alike.</td>
-          </tr>
-          <tr>
-            <td><strong>Production tasks generating airborne chemical exposures</strong></td>
-            <td>FLSA Hazardous Orders; NC Detrimental Occupations</td>
-            <td>Includes cleanup of production residue, handling open containers of bait product during or after production.</td>
-          </tr>
-          <tr>
-            <td><strong>Batch production responsibility</strong></td>
-            <td>Operational policy + legal framework above</td>
-            <td>Easton works in Zone A under direct supervision only. He is not a batch operator and cannot be tasked as one.</td>
+            <td><strong>Easton</strong></td>
+            <td>Zone A only</td>
+            <td>Exempt from formaldehyde training</td>
+            <td>Zone B exclusion means Easton never enters areas at or above the Action Level. Zone separation must be maintained for this exemption to hold.</td>
           </tr>
         </tbody>
       </table>
 
-      <h3>What He Can Do With Conditions</h3>
-      <ul>
-        <li><strong>Vehicle operation</strong> — permitted if: valid NC license, trips within 25-mile radius, vehicle under 6,000 lbs GVW, no towing, driver's ed certificate on file, written driving policy signed by employee and employer. FLSA HO #2 governs minor motor vehicle operation.</li>
-        <li><strong>Small hand-operated tools</strong> — permitted in non-production areas for packaging, maintenance, and organization. Keep to tasks clearly outside the production process; avoid power tools in gray-zone contexts.</li>
-        <li><strong>Being in Zone B when production is fully inactive</strong> — when no active formaldehyde work is underway and the area has been cleared, brief supervised entry for observation or general facility tasks is not prohibited. When active production is running: Zone A only.</li>
-      </ul>
-
-      <h3>Before Day 1 — Required Documentation Checklist</h3>
-      <ul>
-        <li><input type="checkbox" disabled> <strong>Youth Employment Certificate</strong> — obtain from NC DOL Wage and Hour Bureau before first day. Required by NCGS § 95-25.5. Contact: <strong>1-800-625-2267</strong>. Cannot be obtained retroactively.</li>
-        <li><input type="checkbox" disabled> <strong>Written job description</strong> — Easton's scope of work in writing, specifying Zone A activities, the full prohibition list above with citations, and supervision requirements. Signed by Don.</li>
-        <li><input type="checkbox" disabled> <strong>Signed acknowledgment (Easton + Don)</strong> — documents that Easton has been briefed on zone rules and his specific restrictions.</li>
-        <li><input type="checkbox" disabled> <strong>OSHA formaldehyde hazard awareness training</strong> — even though Easton doesn't handle formaldehyde, general chemical hazard awareness is appropriate and creates a defensible training record.</li>
-        <li><input type="checkbox" disabled> <strong>Driving authorization documents</strong> (if applicable) — copy of NC license, driver's ed certificate, signed driving policy.</li>
-        <li><input type="checkbox" disabled> <strong>Training records file created</strong> — maintained per standard employment practice for duration of employment.</li>
-      </ul>
-
-      <div class="callout-teal">
-        <span class="callout-label">Why the Zone Structure Works</span>
-        <p>Most of what Easton is genuinely good at — content creation, marketing support, order fulfillment, product field testing — is squarely in Zone A anyway. The legal framework doesn't conflict with the role design; it requires that Zone B stays physically separate and that the separation is documented. A well-maintained zone boundary protects the business, gives Easton a clear scope with real accountability, and makes the employment arrangement fully auditable if a labor audit ever occurs.</p>
-        <p style="margin:0;">Zone enforcement is an Operations Manager responsibility, not Easton's. Build it into facility procedure before he starts.</p>
+      <div class="callout">
+        <span class="callout-label">Estimated First-Year OSHA Compliance Cost — Required Items Only</span>
+        <p style="font-family:var(--font-mono);font-size:20px;color:var(--rust-deep);font-weight:600;margin:0 0 8px;">$4,000 – $8,000</p>
+        <p style="margin:0;">Initial air monitoring ($1,500–3,000) + ventilation ($8–18K, facility cost covered separately) + medical surveillance for qualifying employees ($400–1,000) + PPE initial stock ($300–600) + eyewash station ($800–2,000) + signage and spill kit ($300–600). Written programs and training are DIY at near-zero cost.</p>
       </div>
     </section>
 
     <div class="ornament"><span class="ornament-mark">* * *</span></div>
 
-    <!-- ===================================================
-         SECTION 5 — EPA RCRA
-         =================================================== -->
-    <section id="epa-rcra" class="section section-full" style="background:#e6d9bc; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
-      <span class="section-num">Section 05</span>
+    <!-- ═══════════════════════════════════════════════════
+         SECTION 3 — EPA RCRA
+         ═══════════════════════════════════════════════════ -->
+    <section id="rcra" class="section band-b" style="scroll-margin-top:40px;">
+      <span class="section-num">Section 03</span>
       <h2 class="section-title">EPA RCRA Hazardous Waste — Confirmed Applies</h2>
 
-      <p class="lead">Sourced from <strong>40 CFR 261.33</strong>, EPA formaldehyde page, and NCDEQ Hazardous Waste Section.</p>
+      <p class="lead">Sourced from <strong>40 CFR 261.33</strong>, EPA formaldehyde guidance, and NCDEQ Hazardous Waste Section.</p>
 
-      <h3>Formaldehyde Is Federally Hazardous Waste</h3>
+      <h3>Formaldehyde Is Federally Classified Hazardous Waste</h3>
       <ul>
-        <li><strong>40 CFR 261.33</strong> classifies discarded commercial chemical products containing formaldehyde as hazardous (EPA code <strong>U122</strong>)</li>
+        <li><strong>40 CFR 261.33</strong> classifies discarded commercial chemical products containing formaldehyde as hazardous waste — EPA code <strong>U122</strong></li>
         <li><strong>40 CFR 116.4</strong> — formaldehyde is a Clean Water Act designated hazardous substance</li>
-        <li>Clean Air Act Section 112 — formaldehyde is a Hazardous Air Pollutant (HAP)</li>
+        <li><strong>Clean Air Act Section 112</strong> — formaldehyde is a Hazardous Air Pollutant (HAP)</li>
       </ul>
 
-      <h3>NC Has State RCRA Authority</h3>
-      <p>NC DEQ Division of Waste Management Hazardous Waste Section administers federal RCRA regulations. NC has adopted federal generator categories and reporting requirements without adding state-specific waste codes.</p>
+      <p>NC DEQ Division of Waste Management Hazardous Waste Section administers federal RCRA regulations in North Carolina. NC has state RCRA authority and has adopted federal generator categories and reporting requirements.</p>
 
       <h3>Generator Categories</h3>
+
       <table class="generator-table">
         <thead>
           <tr>
@@ -965,405 +1114,267 @@
         </tbody>
       </table>
 
-      <p>Waste streams to track:</p>
-      <ul>
-        <li>Spent rinse water from equipment cleaning (likely hazardous if not neutralized)</li>
-        <li>Residual formaldehyde in empty containers</li>
-        <li>Off-spec or expired solutions</li>
-        <li>Contaminated PPE in some scenarios</li>
-      </ul>
-
-      <h3>VSQG Requirements (NC Specifically)</h3>
-      <ul>
-        <li><strong>EPA ID number</strong> via EPA Form 8700-12 (submitted to NCDEQ)</li>
-        <li>Proper waste characterization documentation</li>
-        <li>No disposal down drains, in trash, or on ground</li>
-        <li>Licensed hazardous waste hauler to transport to permitted disposal facility</li>
-        <li>Manifests for every shipment</li>
-        <li>Sealed, labeled containers in designated area</li>
-        <li><strong>Weekly inspection records</strong> (NC specifically requires documentation)</li>
-        <li><strong>2 feet of aisle space</strong> in central accumulation area (NC-specific)</li>
-        <li>Labels must include "hazardous waste" wording and hazard class</li>
-      </ul>
-
-      <div class="callout">
-        <span class="callout-label">Effective January 22, 2025</span>
-        <p>All SQGs and LQGs must register in federal e-Manifest system. VSQGs aren't required but should understand the framework.</p>
+      <div class="callout-teal">
+        <span class="callout-label">VSQG Status Projected</span>
+        <p>At Rusty's production volumes, VSQG status is the expected classification. Waste streams include: spent rinse water from equipment cleaning (hazardous if not neutralized), residual formaldehyde in empty containers, off-spec or expired solutions, and contaminated PPE in some scenarios. All must be tracked and disposed of properly regardless of quantity.</p>
       </div>
+
+      <h3>VSQG Requirements — NC Specifically</h3>
+      <ul>
+        <li><strong>EPA ID number</strong> — file EPA Form 8700-12 via RCRAInfo. Contact: Andrew Minter, NCDEQ HW Section, 919-707-8265. See Section A.2 for corrected guidance on VSQG ID requirements.</li>
+        <li>Waste characterization documentation for each waste stream</li>
+        <li>No disposal down drains, in trash, or on ground — zero exceptions</li>
+        <li>Licensed hazardous waste hauler required to transport to permitted disposal facility</li>
+        <li>Manifests for every shipment</li>
+        <li>Sealed, labeled containers stored in designated area with secondary containment</li>
+        <li><strong>Weekly inspection records</strong> — NC specifically requires documentation of accumulation area inspections</li>
+        <li><strong>2 feet of aisle space</strong> maintained in central accumulation area — NC-specific requirement</li>
+        <li>Labels must include "Hazardous Waste" wording, EPA waste code U122, and hazard class</li>
+      </ul>
 
       <h3>Estimated Cost</h3>
       <ul>
-        <li>Setup (EPA ID, hauler contract, labeled containers): <strong>$500–$1,000</strong></li>
+        <li>Setup (EPA ID, hauler contract, labeled containers, secondary containment): <strong>$500–$1,000</strong></li>
         <li>Annual disposal (quarterly pickups at VSQG volumes): <strong>$800–$2,500/year</strong></li>
       </ul>
+
+      <p style="font-size:13px;color:var(--charcoal-soft);">Licensed NC hazardous waste haulers operating in the region include Wattbar Environmental, Clean Harbors, and Stericycle. Get quotes from at least two before signing a contract.</p>
     </section>
 
     <div class="ornament"><span class="ornament-mark">* * *</span></div>
 
-    <!-- ===================================================
-         SECTION 6 — BUILDING CODE
-         =================================================== -->
-    <section id="building-code" class="section section-full" style="background:#ede2c5; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
-      <span class="section-num">Section 06</span>
-      <h2 class="section-title">NC Building Code — Occupancy Confirmed F-1</h2>
-
-      <p class="lead">Sourced from NC State Building Code Chapter 3 (based on IBC). Occupancy classification is confirmed: Group F-1 (Factory Industrial — Moderate-Hazard).</p>
-
-      <h3>Confirmed Classification: Group F-1 (Factory Industrial — Moderate-Hazard)</h3>
-
-      <p>The operation falls under <strong>Group F-1 (Factory Industrial — Moderate-Hazard)</strong>. Joe has confirmed the operation will stay clearly below the Maximum Allowable Quantity (MAQ) thresholds that would trigger Group H classification. F-1 is the operative classification. No Group H contingency.</p>
-
-      <p>F-1 covers most manufacturing operations, including chemical blending below high-hazard thresholds. Standard construction requirements apply: typical wall/ceiling fire ratings per Chapter 6, code-compliant egress per Chapter 10, sprinklers if building exceeds 12,000 sq ft.</p>
-
-      <p>By keeping formaldehyde quantities on-site below MAQ thresholds through proper storage planning and inventory management, F-1 classification is maintained. This is designed in, not assumed — the mechanical engineer engagement for ventilation also confirms control area design supports F-1.</p>
-
-      <h3>Change of Occupancy Review</h3>
-      <p>NC Existing Building Code Chapter 10 requires a Change of Occupancy review when a building's use changes from its last certified occupancy. If the previous use of the Buncombe County building was something other than light manufacturing / factory industrial, we may trigger this review. It's not a deal-breaker, but it's a permitting step. Confirm the building's current certified occupancy during the County Planning call.</p>
-
-      <h3>Action Items for Building Code Compliance</h3>
-      <ol>
-        <li>Confirm the building's currently-certified occupancy classification (ask during the Planning call)</li>
-        <li>Confirm formaldehyde inventory plan stays below MAQ thresholds — F-1 classification maintained</li>
-        <li>Engage a licensed mechanical engineer for ventilation design and F-1 compliance confirmation</li>
-        <li>Apply for permits reflecting F-1 classification</li>
-        <li>Complete Change of Occupancy review if required</li>
-      </ol>
-
-      <h3>Estimated Cost</h3>
-      <ul>
-        <li>Mechanical engineer — ventilation design and F-1 confirmation: <strong>$1,500–$4,000</strong></li>
-        <li>Permits and Change of Occupancy review: <strong>$500–$1,500</strong></li>
-        <li>Construction to meet F-1 requirements: within operational build-out budget</li>
-      </ul>
-    </section>
-
-    <div class="ornament"><span class="ornament-mark">* * *</span></div>
-
-    <!-- ===================================================
-         SECTION 7 — BUNCOMBE COUNTY
-         =================================================== -->
-    <section id="buncombe" class="section section-full" style="background:#e6d9bc; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
-      <span class="section-num">Section 07</span>
-      <h2 class="section-title">Buncombe County Requirements</h2>
-
-      <p class="lead">Sourced from Buncombe County Permits &amp; Inspections, NC Building Code, and County zoning ordinances.</p>
-
-      <h3>Zoning — See Section 2</h3>
-      <p>The zoning issue is covered in full in Section 2. The critical call is to Buncombe County Planning at <strong>(828) 250-4830</strong>. That conversation should also confirm whether Change of Occupancy review is triggered and what the current certified occupancy is.</p>
-
-      <h3>Building Permits</h3>
-      <p>Required when:</p>
-      <ul>
-        <li>Any construction valued over $40,000 (<strong>NCGS Section 87-1</strong>)</li>
-        <li>Any load-bearing modifications</li>
-        <li>Plumbing design changes</li>
-        <li>Mechanical/HVAC additions or modifications</li>
-        <li>Electrical design changes</li>
-      </ul>
-      <p><strong>Ventilation system installation for formaldehyde will trigger mechanical and electrical permits.</strong> Combined cost of permits: $300–$800.</p>
-
-      <h3>Fire Marshal — Pre-Consultation Recommended</h3>
-      <div class="callout">
-        <span class="callout-label">Free Consultation — Schedule Early</span>
-        <p><strong>Buncombe County Fire Marshal: (828) 250-6620</strong></p>
-        <p>Bring: formaldehyde quantities planned on-site, storage layout sketch, SDS sheets, planned ventilation system description.</p>
-        <p>The Fire Marshal will identify: chemical storage room rating requirements, required NFPA hazard diamond signage, secondary containment (spill pallets) requirements, fire suppression requirements, and specific egress requirements.</p>
-      </div>
-
-      <h3>Business Licensing</h3>
-      <p><strong>NC does not have a statewide business license.</strong> Buncombe County does not require one either for most operations. What we DO need:</p>
-      <ul>
-        <li><strong>Federal EIN</strong> (IRS)</li>
-        <li><strong>NC Sales &amp; Use Tax Number</strong> via NC Department of Revenue (required for any NC sales) — Form AS/RP1</li>
-        <li><strong>Certificate of Assumed Name (DBA)</strong> if operating under "Rusty's Bait &amp; Lures" different from legal entity name (filed with Buncombe County Register of Deeds)</li>
-        <li><strong>Asheville Business Privilege License</strong> if within city limits (not required in unincorporated county)</li>
-        <li><strong>NC Unemployment Insurance</strong> registration via NC Division of Employment Security (required for any employer)</li>
-        <li><strong>NC Workers' Compensation</strong> coverage (required for 3+ employees under <strong>NCGS Chapter 97</strong>)</li>
-      </ul>
-
-      <h3>Estimated Buncombe County One-Time Setup Cost</h3>
-      <ul>
-        <li>Zoning verification and permits: $150–$500</li>
-        <li>Building and mechanical permits: $300–$800</li>
-        <li>Change of Occupancy review (if needed): $250–$1,000</li>
-        <li>Fire Marshal consultation: free</li>
-        <li>DBA filing: ~$50</li>
-        <li>Business registrations: ~$100–$200</li>
-        <li><strong>Total: $850–$2,550</strong></li>
-      </ul>
-    </section>
-
-    <div class="ornament"><span class="ornament-mark">* * *</span></div>
-
-    <!-- ===================================================
-         SECTION 8 — COMMERCIAL FEED
-         =================================================== -->
-    <section id="commercial-feed" class="section section-full" style="background:#ede2c5; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
-      <span class="section-num">Section 08</span>
-      <h2 class="section-title">NC Commercial Feed Law — Probably Does Not Apply</h2>
+    <!-- ═══════════════════════════════════════════════════
+         SECTION 4 — BUILDING CODE
+         ═══════════════════════════════════════════════════ -->
+    <section id="building-code" class="section band-a" style="scroll-margin-top:40px;">
+      <span class="section-num">Section 04</span>
+      <h2 class="section-title">NC Building Code — F-1 Classification (Locked)</h2>
 
       <div class="callout-teal">
-        <span class="callout-label">Finding: Does Not Apply</span>
-        <p><strong>Statute: NCGS § 106-284.33(4)</strong> — NC Commercial Feed Law of 1973, Chapter 106, Article 31C.</p>
-        <p>Prepared fish bait distributed for recreational angling is not "commercial feed" under this statute. Fish bait is designed to attract fish for capture, not to nutritionally sustain them. One confirmation call to NCDA&amp;CS at <strong>(984) 236-4820</strong> closes this permanently.</p>
+        <span class="callout-label">Classification: Confirmed and Locked</span>
+        <p><strong>Factory Industrial F-1 (Moderate Hazard).</strong> This determination is locked. F-1 is the outcome. Group H contingency has been removed from the analysis. The operation is designed to stay clearly below Maximum Allowable Quantity thresholds.</p>
       </div>
 
-      <p class="lead">Sourced directly from NCGS Chapter 106, Article 31C (NC Commercial Feed Law of 1973).</p>
+      <p>F-1 covers light manufacturing including food processing and chemical blending at quantities below high-hazard thresholds. Formaldehyde quantities are managed below the MAQ thresholds set out in Tables 307.1(1) and 307.1(2) of the NC Building Code (based on IBC Chapter 3). MAQ without sprinklers for toxic liquids: approximately 500 lbs. With sprinklers and approved storage: that threshold doubles. The operation is designed to stay comfortably under MAQ.</p>
 
-      <h3>The Statutory Definition</h3>
-      <p><strong>§ 106-284.33(4):</strong> "The term 'commercial feed' means all materials, except whole unmixed seed such as corn... which are distributed for use as feed or for mixing in feed..."</p>
-
-      <h3>Why Fish Bait Isn't "Commercial Feed"</h3>
-      <p>"Feed" in agricultural and regulatory context means materials intended for nutritional consumption by animals. A prepared dip bait, stink bait, or sponge bait is designed to:</p>
-      <ul>
-        <li>Attract fish through scent and taste</li>
-        <li>Stick to a hook</li>
-        <li>Release attractants in water</li>
-      </ul>
-      <p>It is NOT designed to nutritionally sustain fish or be consumed as a complete or supplemental diet. This matches how AAFCO (Association of American Feed Control Officials, whose definitions NC adopts) treats the distinction.</p>
-
-      <h3>Industry Practice Confirms This</h3>
-      <p>Major prepared fish bait manufacturers (Sonny's/Triple S by Hootman Brothers in Kansas, Magic Bait in Oklahoma, Team Catfish by Doc Lange in Georgia, Catfish Charlie) do not register products under state commercial feed laws. They operate as manufacturers of fishing tackle/bait products, not feed manufacturers.</p>
-
-      <h3>Other States Explicitly Exempt Prepared Bait</h3>
-      <p>Kansas regulation (<strong>K.A.R. 115-17-3</strong>) explicitly exempts "nonliving, commercially packaged fish bait" from its commercial fish bait permit system. The principle is consistent across states.</p>
-
-      <h3>Recommended Verification</h3>
-      <div class="callout">
-        <span class="callout-label">Action — 20 Minutes</span>
-        <p><strong>NCDA&amp;CS Food &amp; Drug Protection Division: (984) 236-4820</strong></p>
-        <p>Ask specifically: "Does prepared fish bait manufactured for recreational use fall under NC Commercial Feed Law registration requirements, or is it outside that regulatory framework?"</p>
-        <p style="margin:0;">Document the response in writing. Get the name and title of whoever we speak with. This is a 20-minute task that eliminates the question permanently.</p>
-      </div>
-
-      <p><strong>Estimated cost if somehow it does apply:</strong> Worst case: annual registration at $40/SKU × 5–10 SKUs = $200–$400/year. Manageable even if it applies.</p>
-    </section>
-
-    <div class="ornament"><span class="ornament-mark">* * *</span></div>
-
-    <!-- ===================================================
-         SECTION 9 — FDA
-         =================================================== -->
-    <section id="fda" class="section section-full" style="background:#e6d9bc; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
-      <span class="section-num">Section 09</span>
-      <h2 class="section-title">FDA Food Facility Registration — Probably Does Not Apply</h2>
-
-      <div class="callout-teal">
-        <span class="callout-label">Finding: Does Not Apply</span>
-        <p><strong>Statute: 21 CFR 1.227</strong> — FDA Small Entity Compliance Guide (2018).</p>
-        <p>Prepared fish bait is not "food" under the FFDCA definition. Bait is used to attract fish for capture, not consumed as food or feed. Established bait manufacturers operate across states without FDA animal food registration. The statutory reading is clear; no registration action required.</p>
-      </div>
-
-      <p class="lead">Sourced directly from <strong>21 CFR 1.227</strong> and FDA Small Entity Compliance Guide (2018).</p>
-
-      <h3>What the Regulation Covers</h3>
-      <p>FDA food facility registration applies to facilities that "manufacture, process, pack, or hold food for human or animal consumption." The "food" definition at <strong>21 CFR 1.227</strong> includes fruits, vegetables, fish, dairy, animal feed (including pet food), food and feed ingredients, dietary supplements, bakery goods, and canned foods. It explicitly excludes food contact substances and pesticides. Fish bait is not mentioned.</p>
-
-      <h3>The FFDCA Statutory Definition</h3>
-      <p>Section 201(f) of the Federal Food, Drug, and Cosmetic Act defines "food" as "articles used for food or drink for man or other animals." The key phrase: "used for food." Bait is used to <em>attract</em>, not to be consumed as food. This is the same distinction that excludes fish bait from NC Commercial Feed Law.</p>
-
-      <h3>Industry Practice Confirms</h3>
-      <p>Prepared bait manufacturers operate without FDA food facility registration. If FDA considered fish bait animal food, the industry would have been compelled to register after FSMA took effect in 2011, and they would publicly discuss compliance. They don't.</p>
-
-      <h3>One Edge Case to Note</h3>
-      <div class="callout">
-        <span class="callout-label">Future Product Caution</span>
-        <p>If we ever developed a product intended as actual catfish feed — for example, for catfish pond owners stocking private waters — that product would be commercial feed and would require NC registration and FDA facility registration. Pro Series catfish bait for recreational anglers is not that product.</p>
-      </div>
-
-      <h3>Verification (Optional)</h3>
-      <p>FDA's Industry Systems portal (fda.gov/furls) handles registration questions. Email FURLS@fda.gov to confirm if desired. Not required — statutory reading is clear.</p>
-    </section>
-
-    <div class="ornament"><span class="ornament-mark">* * *</span></div>
-
-    <!-- ===================================================
-         SECTION 10 — MARINE FISHERIES
-         =================================================== -->
-    <section id="marine-fisheries" class="section section-full" style="background:#ede2c5; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
-      <span class="section-num">Section 10</span>
-      <h2 class="section-title">NC Marine Fisheries — Does Not Apply</h2>
-
-      <div class="callout-teal">
-        <span class="callout-label">Finding: Does Not Apply</span>
-        <p>NC Division of Marine Fisheries licenses regulate the harvest and commercial handling of live marine and estuarine organisms. Rusty's product is a manufactured good, not a marine organism. None of these licenses apply to prepared bait manufacturing.</p>
-        <p>Relevant statutes reviewed and confirmed inapplicable: <strong>NCGS § 113-169.3</strong> (Fish Dealer License), Standard Commercial Fishing License, Recreational Commercial Gear License, Permit to Introduce/Transfer/Hold Imported Marine and Estuarine Organisms.</p>
-      </div>
-
-      <h3>Licenses Reviewed and Confirmed Inapplicable</h3>
-      <ul>
-        <li><strong>Fish Dealer License</strong> (<strong>NCGS § 113-169.3</strong>) — for dealing in raw fish or live bait</li>
-        <li><strong>Standard Commercial Fishing License</strong> — for commercial fishermen</li>
-        <li><strong>Recreational Commercial Gear License</strong> — for recreational use of commercial-type gear</li>
-        <li><strong>Permit to Introduce, Transfer, or Hold Imported Marine and Estuarine Organisms</strong> — for moving live organisms</li>
-      </ul>
-
-      <p><strong>None of these apply to prepared bait manufacturing.</strong> The NC Division of Marine Fisheries regulates the harvest and commercial handling of live marine and estuarine organisms. Our product is a manufactured good, not a marine organism.</p>
-    </section>
-
-    <div class="ornament"><span class="ornament-mark">* * *</span></div>
-
-    <!-- ===================================================
-         SECTION 11 — FACILITY STANDARDS
-         =================================================== -->
-    <section id="facility-standards" class="section section-full" style="background:#e6d9bc; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
-      <span class="section-num">Section 11</span>
-      <h2 class="section-title">Facility Build-Out Standards</h2>
-
-      <p class="lead">Because we're not regulated as a food or feed facility, the strict NSF/ANSI, USDA, and Grade A Dairy-style construction standards do not apply.</p>
-
-      <h3>Required by OSHA (Worker Safety, Not Product Safety)</h3>
-      <ul>
-        <li>Adequate ventilation (engineering controls for formaldehyde)</li>
-        <li>Eyewash station and safety shower to <strong>ANSI Z358.1</strong></li>
-        <li>Emergency lighting and egress per NC Fire Code</li>
-        <li>Warning signage in regulated areas</li>
-        <li>Shatter-resistant lighting over any area with product exposure</li>
-      </ul>
-
-      <h3>Required by NC Building Code F-1 Classification</h3>
+      <h3>What F-1 Requires</h3>
       <ul>
         <li>Standard commercial construction</li>
-        <li>Wall/floor/ceiling fire ratings per Chapter 6</li>
-        <li>Sprinklers if building exceeds 12,000 sq ft (F-1 threshold)</li>
+        <li>Control area design to manage hazardous material quantities</li>
+        <li>Normal fire-rated separations per Chapter 6</li>
+        <li>Standard sprinkler system (not the enhanced Group H suppression system)</li>
         <li>Code-compliant egress per Chapter 10</li>
       </ul>
 
-      <h3>Required by Buncombe County Fire Code</h3>
-      <ul>
-        <li>Chemical storage per NC Fire Code (based on IFC)</li>
-        <li>NFPA hazard diamond signage on storage areas</li>
-        <li>Proper electrical classification in chemical use/storage areas (may not require explosion-proof at our quantities)</li>
-      </ul>
+      <h3>Why F-1 Classification Matters Financially</h3>
+      <p>Group H (High Hazard) occupancy would add <strong>$30,000–80,000</strong> to build-out cost through enhanced suppression systems, explosion-proof electrical, more restrictive construction assemblies, and additional permitting. Staying F-1 by managing formaldehyde quantities below MAQ thresholds is the difference between a manageable compliance build-out and a facility-changing capital expense. This is not assumed — it is designed in, and it is locked.</p>
 
-      <h3>Not Strictly Required — But Smart Practice</h3>
-      <ul>
-        <li><strong>FRP (Fiberglass Reinforced Panel) walls:</strong> Not required for fish bait. FRP in mixing and production zones is still worth doing — $8–$15/sq ft installed in wet-process zones means ~$2,000–$4,000 for a focused installation. Makes cleaning easier, signals professionalism during any inspection, prevents moisture damage to drywall.</li>
-        <li><strong>Floor drains to grease trap:</strong> Not required unless discharging food-grade wastewater. For formaldehyde-contaminated rinse water, collect to hazardous waste stream — not sewer discharge.</li>
-        <li><strong>Separate handwashing sink:</strong> Not federally mandated, but OSHA requires handwashing facilities for hygiene. Good practice at minimal cost.</li>
-        <li><strong>Stainless steel food-contact surfaces:</strong> Not required. Food-grade plastic containers, properly cleanable painted or FRP surfaces are adequate.</li>
-      </ul>
+      <h3>What's Required Regardless</h3>
+      <p>A <strong>licensed NC mechanical engineer</strong> to design the ventilation system is required before construction. One-time engagement: <strong>$1,500–4,000</strong>. This is an engineering design confirmation and ventilation specification — not an occupancy classification analysis. The classification question is resolved. The engineering engagement is about designing a compliant ventilation system that keeps air monitoring results below Action Level.</p>
 
-      <h3>Ventilation — The Real Build Cost</h3>
-      <p>Source-capture exhaust at formaldehyde mixing points plus general dilution ventilation in the production area. Designed by a licensed mechanical engineer.</p>
-
-      <div class="callout">
-        <span class="callout-label">Typical System Cost for Our Scale</span>
-        <p style="font-family:var(--font-mono); font-size:18px; color:var(--rust-deep); font-weight:600; margin-bottom:8px;">$8,000 – $18,000 installed</p>
-        <p>Specs we'd want:</p>
-        <ul style="margin-bottom:0;">
-          <li>Source-capture hood over mixing/addition stations</li>
-          <li>Downdraft or side-draft capture at open containers</li>
-          <li>General exhaust to achieve 10–12 air changes per hour in the production area</li>
-          <li>Make-up air to replace exhausted air</li>
-          <li>Exhaust discharge located away from building air intakes and property lines</li>
-        </ul>
-      </div>
-
-      <h3>Insurance Requirements</h3>
-      <p>Not a regulatory requirement but financially essential:</p>
-      <ul>
-        <li>General Liability: $1M/$2M minimum</li>
-        <li>Product Liability: $1M minimum (critical — even if not intended for human consumption, kids and pets could access)</li>
-        <li>Workers' Compensation: mandatory in NC for 3+ employees</li>
-        <li>Commercial Property: facility and equipment</li>
-        <li>Pollution Liability: recommended ($1,500–$3,000/year for $500K–$1M coverage)</li>
-      </ul>
-      <p><strong>Expected total annual premiums: $4,000–$8,000</strong></p>
+      <h3>Change of Occupancy</h3>
+      <p>NC Existing Building Code Chapter 10 may require a Change of Occupancy review if the building's use changes from its last certified occupancy. Confirm the building's currently-certified occupancy during the Month 1 Planning call. If triggered: permits, $250–1,000 and a few weeks. Not a deal-breaker; just a step. Contact Buncombe County Permits &amp; Inspections: <strong>(828) 250-5360</strong>.</p>
     </section>
 
     <div class="ornament"><span class="ornament-mark">* * *</span></div>
 
-    <!-- ===================================================
-         SECTION 12 — ONE-TIME SETUP COSTS
-         =================================================== -->
-    <section id="setup-costs" class="section section-full" style="background:#ede2c5; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
-      <span class="section-num">Section 12</span>
-      <h2 class="section-title">One-Time Setup Costs</h2>
+    <!-- ═══════════════════════════════════════════════════
+         SECTION 5 — YOUTH EMPLOYMENT
+         ═══════════════════════════════════════════════════ -->
+    <section id="youth" class="section band-b" style="scroll-margin-top:40px;">
+      <span class="section-num">Section 05</span>
+      <h2 class="section-title">Youth Employment — Easton's Scope of Work</h2>
 
-      <!-- Figure 02 — One-Time Setup Cost Breakdown -->
+      <p class="lead">Easton is 16, the owner's son, and a part-time team member. NC and federal law impose restrictions on what minors under 18 can do in a manufacturing environment. The formaldehyde piece makes this more constrained than a typical teen job.</p>
+
+      <h3>The Rules</h3>
+
+      <p><strong>NC Wage and Hour Act (NCGS § 95-25.5)</strong> governs minors 14–17 in NC. A Youth Employment Certificate is required before work begins. Hour restrictions and a prohibited occupations list apply.</p>
+
+      <p><strong>Work hour rules for 16–17 year olds in NC:</strong></p>
+      <ul>
+        <li>No daily or weekly hour limits for 16–17 (unlike 14–15 year olds, who have stricter caps)</li>
+        <li>Cannot work between <strong>11:00 PM and 5:00 AM on school nights</strong> if enrolled in grade 12 or lower — NCGS § 95-25.5(c)</li>
+        <li>Work permit (Youth Employment Certificate) is required before starting — from the school administration, not NC DOL directly</li>
+      </ul>
+
+      <p><strong>The hazardous and detrimental occupations list applies until he turns 18.</strong> Federal FLSA Hazardous Orders (HO 1–17) and NC's Detrimental Occupations List both impose specific restrictions beyond general hour rules.</p>
+
+      <!-- Figure 03 — Zone A / Zone B -->
       <div class="viz">
-        <div class="viz-title">Figure 02</div>
-        <div class="viz-subtitle">One-Time Setup Cost Breakdown — Required Base Case</div>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th class="num">Low</th>
-              <th class="num">High</th>
-              <th class="num">Running Total (Low)</th>
-              <th class="num">Running Total (High)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Mechanical engineer — ventilation design</td>
-              <td class="num">$1,500</td>
-              <td class="num">$4,000</td>
-              <td class="num">$1,500</td>
-              <td class="num">$4,000</td>
-            </tr>
-            <tr>
-              <td>Zoning, building, mechanical permits</td>
-              <td class="num">$450</td>
-              <td class="num">$2,300</td>
-              <td class="num">$1,950</td>
-              <td class="num">$6,300</td>
-            </tr>
-            <tr>
-              <td>Initial formaldehyde air monitoring (industrial hygienist)</td>
-              <td class="num">$1,500</td>
-              <td class="num">$3,000</td>
-              <td class="num">$3,450</td>
-              <td class="num">$9,300</td>
-            </tr>
-            <tr>
-              <td>Ventilation system installation</td>
-              <td class="num">$8,000</td>
-              <td class="num">$18,000</td>
-              <td class="num">$11,450</td>
-              <td class="num">$27,300</td>
-            </tr>
-            <tr>
-              <td>Eyewash station and safety shower (ANSI Z358.1)</td>
-              <td class="num">$800</td>
-              <td class="num">$2,000</td>
-              <td class="num">$12,250</td>
-              <td class="num">$29,300</td>
-            </tr>
-            <tr>
-              <td>Signage, spill kits, PPE initial stock</td>
-              <td class="num">$500</td>
-              <td class="num">$1,500</td>
-              <td class="num">$12,750</td>
-              <td class="num">$30,800</td>
-            </tr>
-            <tr>
-              <td>EPA ID registration and waste hauler setup</td>
-              <td class="num">$500</td>
-              <td class="num">$1,000</td>
-              <td class="num">$13,250</td>
-              <td class="num">$31,800</td>
-            </tr>
-            <tr>
-              <td>Insurance initial binder/first quarter</td>
-              <td class="num">$1,000</td>
-              <td class="num">$2,000</td>
-              <td class="num">$14,250</td>
-              <td class="num">$33,800</td>
-            </tr>
-            <tr class="total">
-              <td><strong>Required Base Total</strong></td>
-              <td class="num"><strong>$14,250</strong></td>
-              <td class="num"><strong>$33,800</strong></td>
-              <td class="num"><strong>$14,250</strong></td>
-              <td class="num"><strong>$33,800</strong></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="viz-title">Figure 03</div>
+        <div class="viz-subtitle">Zone A / Zone B Separation — Easton's Work Scope</div>
+        <div class="zone-grid">
+          <div class="zone-card zone-card-clean">
+            <span class="zone-card-label">Zone A — Clean Zone</span>
+            <div class="zone-card-title">Easton works here fully</div>
+            <div class="zone-card-sub">No formaldehyde handling at any point in this zone</div>
+            <ul>
+              <li>Office and administrative work</li>
+              <li>Customer service and order processing</li>
+              <li>Packaging sealed finished goods</li>
+              <li>Social media and photography</li>
+              <li>Warehouse and FIFO inventory rotation (dry goods)</li>
+              <li>Marketing support and campaign execution</li>
+              <li>Learning the business operations side</li>
+              <li>Fishing content and product field testing</li>
+              <li>Basic hand tools in non-production areas</li>
+            </ul>
+          </div>
+          <div class="zone-card zone-card-prod">
+            <span class="zone-card-label">Zone B — Production Zone</span>
+            <div class="zone-card-title">Off-limits during active production</div>
+            <div class="zone-card-sub">(May observe when fully inactive)</div>
+            <ul>
+              <li>Mix, measure, or handle formaldehyde — <strong>prohibited</strong></li>
+              <li>Active formaldehyde operations at or above 0.5 ppm — <strong>prohibited</strong></li>
+              <li>Any task requiring a respirator — <strong>prohibited</strong></li>
+              <li>Forklift operation (Komatsu FG25C or any powered industrial truck) — <strong>prohibited</strong></li>
+              <li>Confined space entry — <strong>prohibited</strong></li>
+              <li>Production tasks generating airborne chemical exposures — <strong>prohibited</strong></li>
+              <li>Batch production responsibility — <strong>prohibited</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-        <p style="margin:20px 0 8px; font-family:var(--font-mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--charcoal-mute); font-weight:600;">Optional Additions — Label Separately in Budget</p>
-        <table class="data-table">
+      <h3>What Easton Can Do Freely</h3>
+      <ul>
+        <li>All office and administrative tasks</li>
+        <li>Customer-facing communication and order management</li>
+        <li>Packaging and labeling of sealed finished goods only</li>
+        <li>Inventory counting and FIFO rotation in the dry goods warehouse</li>
+        <li>Photo and video content creation</li>
+        <li>Marketing support and social media management</li>
+        <li>Product field testing (fishing trips with finished product)</li>
+        <li>Facility organization and cleaning in non-production areas</li>
+        <li>Learning rotations — observation only when Zone B is inactive</li>
+      </ul>
+
+      <h3>What He Can Do With Caveats</h3>
+      <ul>
+        <li><strong>Drive for business:</strong> Permitted if he has a valid NC license, trips within 25-mile radius, vehicle under 6,000 lbs GVW, no towing, driver's ed certificate on file, and a written vehicle policy signed by employee and employer. FLSA HO #2 governs minor motor vehicle operation.</li>
+        <li><strong>Small non-industrial hand tools:</strong> Permitted in non-production areas for packaging, maintenance, and organization tasks. Avoid power tools in gray-zone contexts; keep clearly outside the production process.</li>
+        <li><strong>Present in Zone B when fully inactive:</strong> When no active formaldehyde work is underway and the area has been cleared and ventilated, brief supervised entry for observation is not prohibited. When active production is running: Zone A only, no exceptions.</li>
+      </ul>
+
+      <h3>What He Cannot Do — Firm Lines</h3>
+      <ul>
+        <li><strong>Formaldehyde handling</strong> of any kind — OSHA 29 CFR 1910.1048; NC Detrimental Occupations. No exceptions.</li>
+        <li><strong>Presence in active production zone at or above 0.5 ppm Action Level</strong> — OSHA 29 CFR 1910.1048. Operations Manager is accountable for zone enforcement.</li>
+        <li><strong>Any task requiring a respirator</strong> — NC Detrimental Occupation #9. Prohibited for minors regardless of task duration or equipment type.</li>
+        <li><strong>Forklift operation</strong> (Komatsu FG25C or any powered industrial truck) — FLSA Hazardous Order #7. Absolute prohibition under age 18.</li>
+        <li><strong>Confined space entry</strong> — NC Detrimental Occupation #8. Applies to permit-required and non-permit confined spaces alike.</li>
+        <li><strong>Production tasks generating airborne chemical exposures</strong> — FLSA Hazardous Orders; NC Detrimental Occupations. Includes cleanup of production residue and handling open containers of bait product during or after production.</li>
+        <li><strong>Batch production responsibility</strong> — Operational policy plus the legal framework above. Easton is not a batch operator and cannot be tasked as one.</li>
+      </ul>
+
+      <h3>Documentation Required</h3>
+      <ol>
+        <li><strong>Youth Employment Certificate</strong> — from school administration before Day 1. Required by NCGS § 95-25.5. Cannot be obtained retroactively. Contact NC DOL Wage and Hour Bureau: 1-800-625-2267 with questions.</li>
+        <li><strong>Written job description</strong> — listing Zone A scope, the full prohibition list with citations, and supervision requirements. Signed by Don.</li>
+        <li><strong>Training records</strong> — formaldehyde hazard awareness (general chemical awareness even though Easton doesn't handle it) plus equipment restriction acknowledgment.</li>
+        <li><strong>Signed acknowledgment</strong> — Easton and parent/guardian. Documents that zone rules and specific restrictions have been explained and understood.</li>
+        <li><strong>If he drives:</strong> copy of NC license, driver's ed certificate, signed vehicle policy.</li>
+      </ol>
+
+      <p style="font-size:13px;color:var(--charcoal-mute);">Contact for questions: <strong>NC DOL Wage and Hour Bureau: 1-800-625-2267</strong></p>
+
+      <h3>Why This Framing Works</h3>
+      <p>The legal constraints align with where Easton's development value is highest. The off-limits work is the regulated production work he'll never do again in his career. The work he can do freely — marketing, content, fulfillment, operations admin, customer-facing — is the work that translates to almost any future role. Joseph runs the business, the Operations Manager handles regulated production, Easton learns everything around the edges of both. Clean lines, three scopes, real education.</p>
+    </section>
+
+    <div class="ornament"><span class="ornament-mark">* * *</span></div>
+
+    <!-- ═══════════════════════════════════════════════════
+         SECTION 6 — WHAT DOES NOT APPLY
+         ═══════════════════════════════════════════════════ -->
+    <section id="not-applicable" class="section band-a" style="scroll-margin-top:40px;">
+      <span class="section-num">Section 06</span>
+      <h2 class="section-title">What Does Not Apply — Verified Against Primary Sources</h2>
+
+      <p class="lead">Three regulatory categories were considered and ruled out based on primary-source research. These are documented here so they don't get revisited.</p>
+
+      <div class="callout-teal">
+        <span class="callout-label">1 — NC Commercial Feed Law — Does Not Apply</span>
+        <p><strong>Statute: NCGS § 106-284.33(4)</strong> — NC Commercial Feed Law of 1973, Chapter 106, Article 31C. Prepared fish bait distributed for recreational angling is not "commercial feed" under this statute. "Feed" means materials intended for nutritional consumption by animals. A dip bait or sponge bait is designed to attract fish through scent — not to nutritionally sustain them. Kansas K.A.R. 115-17-3 explicitly exempts "nonliving, commercially packaged fish bait." Major prepared bait manufacturers operate without state commercial feed registration.</p>
+        <p style="margin-bottom:0;"><strong>Confirmation call:</strong> NCDA&amp;CS Food &amp; Drug Protection Division, (984) 236-4820. Ask: "Does prepared fish bait manufactured for recreational use fall under NC Commercial Feed Law registration requirements?" Document the response in writing. 20 minutes closes this permanently.</p>
+      </div>
+
+      <div class="callout-teal">
+        <span class="callout-label">2 — FDA Food Facility Registration — Does Not Apply</span>
+        <p><strong>Statute: 21 CFR 1.227; FFDCA Section 201(f).</strong> FDA food facility registration applies to facilities that manufacture, process, pack, or hold food for human or animal consumption. The statutory definition of "food" under Section 201(f) is "articles used for food or drink for man or other animals." The key phrase: "used for food." Bait is used to attract, not consumed as food. Established bait manufacturers operate across the country without FDA food facility registration. If FDA considered fish bait animal food, the industry would have been compelled to register after FSMA took effect in 2011.</p>
+        <p style="margin-bottom:0;"><strong>Edge case to note:</strong> If a future product were developed as actual catfish feed for pond owners stocking private waters, that product would require registration. Pro Series catfish bait for recreational anglers is not that product.</p>
+      </div>
+
+      <div class="callout-teal">
+        <span class="callout-label">3 — NC Marine Fisheries Fish Dealer Licenses — Does Not Apply</span>
+        <p><strong>Relevant statutes: NCGS § 113-169.3</strong> (Fish Dealer License), Standard Commercial Fishing License, Recreational Commercial Gear License, Permit to Introduce/Transfer/Hold Imported Marine and Estuarine Organisms. NC Division of Marine Fisheries licenses regulate the harvest and commercial handling of live marine and estuarine organisms, and commercial fishermen. Rusty's product is a manufactured good — not a marine organism. None of these licenses apply to prepared bait manufacturing.</p>
+      </div>
+    </section>
+
+    <div class="ornament"><span class="ornament-mark">* * *</span></div>
+
+    <!-- ═══════════════════════════════════════════════════
+         SECTION 7 — SPILL RESPONSE
+         ═══════════════════════════════════════════════════ -->
+    <section id="spill" class="section band-b" style="scroll-margin-top:40px;">
+      <span class="section-num">Section 07</span>
+      <h2 class="section-title">Spill Response — Operational Requirements</h2>
+
+      <h3>Minor Spill Protocol (under approximately 1 liter)</h3>
+
+      <h4>Step 1 — Immediate Personal Protection</h4>
+      <p>Stop the source if safe to do so. Don nitrile gloves, splash goggles, and chemical-resistant apron before approaching. If any airborne vapor is present, add half-face respirator with organic vapor cartridge. Alert others to stay clear of the area.</p>
+
+      <h4>Step 2 — Contain</h4>
+      <p>Use absorbent booms or socks from the spill kit to contain lateral spread. Prevent from reaching floor drains. Do not use paper towels or combustibles as primary absorbent for formaldehyde solutions.</p>
+
+      <h4>Step 3 — Neutralize</h4>
+      <p>Apply sodium bisulfite (primary neutralizer) to the spilled material. Allow to react for 5–10 minutes. Sodium bisulfite reacts with formaldehyde to form a stable, less hazardous compound. Do not use bleach — the reaction generates chloromethyl ether, a known carcinogen.</p>
+
+      <h4>Step 4 — Clean Up and Document</h4>
+      <p>Collect all absorbed and neutralized material into a labeled waste container. Even neutralized spill cleanup material remains U122 hazardous waste and must be disposed of through the licensed hauler. Document the spill: date, time, estimated quantity, personnel involved, response actions taken. Retain documentation.</p>
+
+      <h3>Spill Kit Contents — Required on Production Floor</h3>
+      <ul>
+        <li>Sodium bisulfite neutralizer (minimum 5 lbs)</li>
+        <li>Absorbent booms and socks — formaldehyde-compatible</li>
+        <li>Absorbent granules or pads (at least 1 bag)</li>
+        <li>Nitrile gloves — extra pairs (two sizes)</li>
+        <li>Splash goggles — two pairs</li>
+        <li>Sealed waste disposal bags/container with hazardous waste labels</li>
+        <li>Written spill response SOP laminated inside the kit</li>
+      </ul>
+
+      <p style="font-size:13px;color:var(--charcoal-soft);">Pre-assembled commercial formaldehyde spill kits are available for <strong>$80–150</strong>. Recommended — faster than assembling components and ensures correct materials are present.</p>
+
+      <h3>When to Handle In-House vs. Escalate</h3>
+
+      <p><strong>Handle in-house:</strong> Small splash on work surface, limited spread, contained to production area, no floor drain exposure, vapors manageable with ventilation and PPE, under approximately 1 liter.</p>
+      <p><strong>Escalate immediately:</strong> Spill reaches floor drain, heavy vapor generation, over approximately 1 gallon, significant employee exposure symptoms, spill cannot be fully contained with on-hand materials.</p>
+
+      <div class="callout-critical">
+        <span class="callout-label">NC NCDEQ 24-Hour Spill Hotline</span>
+        <p>1-800-858-0368 — Legal requirement to report releases that may impact the environment or reach waters of the state. When in doubt, call. Failure to report is its own violation.</p>
+      </div>
+
+      <p><strong>Neutralized spill cleanup material is still U122 hazardous waste.</strong> Do not dispose of it in regular trash or down the drain. Collect in labeled HDPE containers and include in the next scheduled hazardous waste pickup.</p>
+    </section>
+
+    <div class="ornament"><span class="ornament-mark">* * *</span></div>
+
+    <!-- ═══════════════════════════════════════════════════
+         SECTION 8 — COST SUMMARY
+         ═══════════════════════════════════════════════════ -->
+    <section id="costs" class="section band-a" style="scroll-margin-top:40px;">
+      <span class="section-num">Section 08</span>
+      <h2 class="section-title">Cost Summary</h2>
+
+      <div class="viz">
+        <div class="viz-title">Figure 04 — Cost Summary</div>
+        <div class="viz-subtitle">Table 1: One-Time Required Setup Costs</div>
+        <table class="required-table">
           <thead>
             <tr>
               <th>Item</th>
@@ -1374,51 +1385,107 @@
           </thead>
           <tbody>
             <tr>
-              <td>FRP walls (recommended, not required)</td>
+              <td>Mechanical engineer ventilation design</td>
+              <td class="num">$1,500</td>
+              <td class="num">$4,000</td>
+              <td>One-time. Licensed NC engineer.</td>
+            </tr>
+            <tr>
+              <td>Initial formaldehyde air monitoring</td>
+              <td class="num">$1,500</td>
+              <td class="num">$3,000</td>
+              <td>IH + lab. Required by OSHA within 30 days.</td>
+            </tr>
+            <tr>
+              <td>Ventilation system installation</td>
+              <td class="num">$8,000</td>
+              <td class="num">$18,000</td>
+              <td>Source-capture + general dilution. Installed by Don's construction crew.</td>
+            </tr>
+            <tr>
+              <td>Eyewash station + safety shower (ANSI Z358.1)</td>
+              <td class="num">$800</td>
+              <td class="num">$2,000</td>
+              <td>Non-negotiable. Required before production starts.</td>
+            </tr>
+            <tr>
+              <td>Signage, spill kits, PPE initial stock</td>
+              <td class="num">$500</td>
+              <td class="num">$1,500</td>
+              <td>Gloves, goggles, apron, respirator, spill kit, regulatory signage.</td>
+            </tr>
+            <tr>
+              <td>EPA ID registration + waste hauler setup</td>
+              <td class="num">$500</td>
+              <td class="num">$1,000</td>
+              <td>RCRAInfo filing, hauler contract setup.</td>
+            </tr>
+            <tr>
+              <td>Insurance initial binder/first quarter</td>
+              <td class="num">$1,000</td>
+              <td class="num">$2,000</td>
+              <td>GL + WC baseline.</td>
+            </tr>
+            <tr>
+              <td>FRP walls (selective, wet production areas)</td>
               <td class="num">$2,000</td>
               <td class="num">$4,000</td>
-              <td>Worth doing; not mandated for fish bait</td>
+              <td>Recommended where appropriate. Not strictly mandated for fish bait.</td>
             </tr>
-            <tr>
-              <td>EHS consultant pre-launch review</td>
-              <td class="num">$1,500</td>
-              <td class="num">$3,500</td>
-              <td>Optional if NC DOL consultation addresses gaps</td>
-            </tr>
-            <tr>
-              <td>Written OSHA/HazCom programs (contracted)</td>
-              <td class="num">$0</td>
-              <td class="num">$2,000</td>
-              <td>DIY at no cost using 29 CFR 1910.1048 as template; contracted if capacity limited</td>
+            <tr class="total-row">
+              <td><strong>Total Required One-Time</strong></td>
+              <td class="num"><strong>$15,800</strong></td>
+              <td class="num"><strong>$35,500</strong></td>
+              <td></td>
             </tr>
           </tbody>
         </table>
 
-        <div class="viz-caption">Confidence: High on all required line items except permits (Medium — depends on Change of Occupancy outcome). Written programs and training are DIY at near-zero cost. With all optional additions: $17,750–$43,300.</div>
-      </div>
-
-      <p>The required base case of $14,250–$33,800 is larger than the original operational budget assumed ($12–$16K for "equipment move + facility setup") and should be explicitly flagged — absorb into the "ramp-up costs" category, budgeted separately from the $130K envelope.</p>
-    </section>
-
-    <div class="ornament"><span class="ornament-mark">* * *</span></div>
-
-    <!-- ===================================================
-         SECTION 13 — ANNUAL COSTS
-         =================================================== -->
-    <section id="annual-costs" class="section section-full" style="background:#e6d9bc; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
-      <span class="section-num">Section 13</span>
-      <h2 class="section-title">Ongoing Annual Compliance Costs</h2>
-
-      <!-- Figure 03 — Annual Compliance Cost Table -->
-      <div class="viz">
-        <div class="viz-title">Figure 03</div>
-        <div class="viz-subtitle">Annual Compliance Cost Table</div>
-        <table class="data-table">
+        <div class="viz-subtitle" style="margin-top:28px;">Table 2: One-Time Optional (Recommended) Costs</div>
+        <table class="required-table">
           <thead>
             <tr>
               <th>Item</th>
-              <th class="num">Low / Year</th>
-              <th class="num">High / Year</th>
+              <th class="num">Low</th>
+              <th class="num">High</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>EHS consultant pre-launch review</td>
+              <td class="num">$1,500</td>
+              <td class="num">$3,500</td>
+              <td>Optional but recommended. Free alternative: NC DOL (919) 807-2899.</td>
+            </tr>
+            <tr>
+              <td>Written OSHA/HazCom programs (outside)</td>
+              <td class="num">$500</td>
+              <td class="num">$2,000</td>
+              <td>Optional. DIY possible using 29 CFR 1910.1048 as template.</td>
+            </tr>
+            <tr>
+              <td>Zoning/building/mechanical permits</td>
+              <td class="num">$450</td>
+              <td class="num">$2,300</td>
+              <td>Deferred during interim. Required at permanent facility.</td>
+            </tr>
+            <tr class="total-row">
+              <td><strong>Total Optional One-Time</strong></td>
+              <td class="num"><strong>$2,450</strong></td>
+              <td class="num"><strong>$7,800</strong></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="viz-subtitle" style="margin-top:28px;">Table 3: Required Annual Costs</div>
+        <table class="required-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th class="num">Low</th>
+              <th class="num">High</th>
               <th>Notes</th>
             </tr>
           </thead>
@@ -1427,421 +1494,504 @@
               <td>Periodic formaldehyde monitoring</td>
               <td class="num">$800</td>
               <td class="num">$2,000</td>
-              <td>Every 6 months if at Action Level</td>
+              <td>Every 6 months if at Action Level.</td>
             </tr>
             <tr>
               <td>Medical surveillance (2–3 employees)</td>
               <td class="num">$400</td>
               <td class="num">$1,000</td>
-              <td>$150–300 per exam — contracted, occupational health provider</td>
+              <td>$150–300 per exam. Contracted occupational health provider.</td>
             </tr>
             <tr>
               <td>Hazardous waste disposal</td>
               <td class="num">$800</td>
               <td class="num">$2,500</td>
-              <td>Quarterly pickups</td>
+              <td>Quarterly pickups at VSQG volumes.</td>
             </tr>
             <tr>
               <td>Insurance premiums</td>
               <td class="num">$4,000</td>
               <td class="num">$8,000</td>
-              <td>GL, PL, WC, Property</td>
+              <td>GL, PL, WC, Property.</td>
             </tr>
             <tr>
-              <td>Pest control service</td>
-              <td class="num">$600</td>
-              <td class="num">$1,500</td>
-              <td>Monthly or quarterly</td>
-            </tr>
-            <tr>
-              <td>Training costs</td>
+              <td>Training (annual OSHA formaldehyde)</td>
               <td class="num">$200</td>
               <td class="num">$500</td>
-              <td>Annual OSHA formaldehyde training (DIY — free OSHA materials)</td>
+              <td>DIY using free OSHA materials.</td>
             </tr>
-            <tr>
-              <td>EHS consultant retainer (optional)</td>
-              <td class="num">$500</td>
-              <td class="num">$2,000</td>
-              <td>Optional annual review — not required if compliance managed internally</td>
-            </tr>
-            <tr class="total">
-              <td><strong>Total Annual</strong></td>
-              <td class="num"><strong>$7,300</strong></td>
-              <td class="num"><strong>$17,500</strong></td>
+            <tr class="total-row">
+              <td><strong>Total Required Annual</strong></td>
+              <td class="num"><strong>$6,200</strong></td>
+              <td class="num"><strong>$14,000</strong></td>
               <td></td>
             </tr>
           </tbody>
         </table>
-        <div class="viz-caption">Insurance dominates the range — pollution liability and product liability coverage drives the high end. The optional EHS retainer is included in the total; without it, annual required costs run $6,800–$15,500.</div>
+
+        <div class="viz-subtitle" style="margin-top:28px;">Table 4: Optional Annual Costs</div>
+        <table class="required-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th class="num">Low</th>
+              <th class="num">High</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Pest control service</td>
+              <td class="num">$600</td>
+              <td class="num">$1,500</td>
+              <td>Recommended for food-adjacent production environment.</td>
+            </tr>
+            <tr>
+              <td>EHS consultant retainer</td>
+              <td class="num">$500</td>
+              <td class="num">$2,000</td>
+              <td>Optional. Free NC DOL consultation available as alternative.</td>
+            </tr>
+            <tr class="total-row">
+              <td><strong>Total Optional Annual</strong></td>
+              <td class="num"><strong>$1,100</strong></td>
+              <td class="num"><strong>$3,500</strong></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cost-summary-box">
+        <table>
+          <thead>
+            <tr>
+              <th>Total Cost Envelope</th>
+              <th class="num">Low</th>
+              <th class="num">High</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>One-time required</td>
+              <td class="num">$15,800</td>
+              <td class="num">$35,500</td>
+            </tr>
+            <tr>
+              <td>One-time optional</td>
+              <td class="num">$2,450</td>
+              <td class="num">$7,800</td>
+            </tr>
+            <tr>
+              <td>Annual required</td>
+              <td class="num">$6,200</td>
+              <td class="num">$14,000</td>
+            </tr>
+            <tr>
+              <td>Annual optional</td>
+              <td class="num">$1,100</td>
+              <td class="num">$3,500</td>
+            </tr>
+            <tr class="total-summary">
+              <td>Year 1 total (required only)</td>
+              <td class="num">$22,000</td>
+              <td class="num">$49,500</td>
+            </tr>
+            <tr class="total-summary">
+              <td>Year 1 total (required + optional)</td>
+              <td class="num">$25,550</td>
+              <td class="num">$60,800</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout-free">
+        <span class="callout-label">The Formaldehyde-Free Argument</span>
+        <p>If formaldehyde-free reformulation succeeds (see <a href="06-formaldehyde-free.html">Document 06</a>), the OSHA monitoring, EPA RCRA, medical surveillance, and waste disposal line items drop to near zero. Annual compliance cost falls to primarily insurance — roughly <strong>$4,000–8,000/year</strong>. One-time capital savings at facility build-out potentially <strong>$10,000–30,000+</strong> from simplified ventilation requirements and no Group H risk at all.</p>
       </div>
     </section>
 
     <div class="ornament"><span class="ornament-mark">* * *</span></div>
 
-    <!-- ===================================================
-         SECTION 14 — PRIORITY ACTIONS
-         =================================================== -->
-    <section id="priority-actions" class="section section-full" style="background:#ede2c5; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
-      <span class="section-num">Section 14</span>
-      <h2 class="section-title">Priority Action List</h2>
+    <!-- ═══════════════════════════════════════════════════
+         SECTION 9 — KEY CONTACTS
+         ═══════════════════════════════════════════════════ -->
+    <section id="contacts" class="section band-b" style="scroll-margin-top:40px;">
+      <span class="section-num">Section 09</span>
+      <h2 class="section-title">Key Contacts</h2>
 
-      <p class="lead">Ranked by urgency. The first four items — three free calls and one contract — resolve the most significant open questions.</p>
+      <p class="lead">Priority contacts first. Four calls resolve the most significant open questions at zero cost.</p>
 
-      <!-- Figure 01 — Priority Action Flow -->
-      <div class="viz">
-        <div class="viz-title">Figure 01</div>
-        <div class="viz-subtitle">Priority Action Flow — Before Production Restarts</div>
-
-        <div class="priority-flow">
-
-          <div class="flow-card">
-            <div class="flow-num flow-num-free">1</div>
-            <div class="flow-body">
-              <div class="flow-title">Call Buncombe County Planning — Zoning &amp; Nonconforming Status</div>
-              <div class="flow-meta">
-                <span class="flow-cost flow-cost-free">Free</span>
-                <span class="flow-timing">Month 1 — Highest Priority</span>
-              </div>
-              <p style="margin:8px 0 0; font-size:14px; color:var(--charcoal-soft);"><strong>(828) 250-4830.</strong> Ask: "What is the current zoning of [address], and does the property have any nonconforming use status on record for manufacturing or industrial activity?" Get the answer in writing. Determines whether the owned-building advantage holds. This call takes priority over every other item on this list.</p>
-            </div>
-          </div>
-          <div class="flow-connector"></div>
-
-          <div class="flow-card">
-            <div class="flow-num flow-num-free">2</div>
-            <div class="flow-body">
-              <div class="flow-title">Schedule NC DOL OSH Consultative Services</div>
-              <div class="flow-meta">
-                <span class="flow-cost flow-cost-free">Free</span>
-                <span class="flow-timing">Week 1–2</span>
-              </div>
-              <p style="margin:8px 0 0; font-size:14px; color:var(--charcoal-soft);"><strong>(919) 807-2899.</strong> NC Department of Labor's free, confidential consultation for small employers. No fines, no citations — purely advisory. They visit the facility, identify compliance gaps, and provide a written punch list. Replaces roughly 80% of what a paid EHS consultant would do. Schedule before production restarts.</p>
-            </div>
-          </div>
-          <div class="flow-connector"></div>
-
-          <div class="flow-card">
-            <div class="flow-num flow-num-free">3</div>
-            <div class="flow-body">
-              <div class="flow-title">Call Buncombe County Fire Marshal</div>
-              <div class="flow-meta">
-                <span class="flow-cost flow-cost-free">Free</span>
-                <span class="flow-timing">Week 2</span>
-              </div>
-              <p style="margin:8px 0 0; font-size:14px; color:var(--charcoal-soft);"><strong>(828) 250-6620.</strong> Free pre-consultation on chemical storage and facility layout. Bring formaldehyde quantities, storage layout sketch, SDS sheets.</p>
-            </div>
-          </div>
-          <div class="flow-connector"></div>
-
-          <div class="flow-card">
-            <div class="flow-num flow-num-free">4</div>
-            <div class="flow-body">
-              <div class="flow-title">Call NCDA&amp;CS — Confirm Feed Law Exemption</div>
-              <div class="flow-meta">
-                <span class="flow-cost flow-cost-free">Free</span>
-                <span class="flow-timing">Week 1</span>
-              </div>
-              <p style="margin:8px 0 0; font-size:14px; color:var(--charcoal-soft);"><strong>(984) 236-4820.</strong> Confirm in writing that prepared fish bait is not regulated as Commercial Feed. Document the conversation. 20 minutes.</p>
-            </div>
-          </div>
-          <div class="flow-connector"></div>
-
-          <div class="flow-card">
-            <div class="flow-num flow-num-free">5</div>
-            <div class="flow-body">
-              <div class="flow-title">Obtain Youth Employment Certificate — Easton</div>
-              <div class="flow-meta">
-                <span class="flow-cost flow-cost-free">Free</span>
-                <span class="flow-timing">Month 1 — Before First Day</span>
-              </div>
-              <p style="margin:8px 0 0; font-size:14px; color:var(--charcoal-soft);">NC DOL Wage and Hour Bureau: <strong>1-800-625-2267</strong>. Required by NCGS § 95-25.5 before any minor under 18 begins work. Cannot be obtained retroactively. 20 minutes. Also ask for the current NC Detrimental Occupations list to confirm Easton's scope exclusions.</p>
-            </div>
-          </div>
-          <div class="flow-connector"></div>
-
-          <div class="flow-card">
-            <div class="flow-num flow-num-free">6</div>
-            <div class="flow-body">
-              <div class="flow-title">Draft Written Job Description and Scope Document — Easton</div>
-              <div class="flow-meta">
-                <span class="flow-cost flow-cost-free">DIY — No Cost</span>
-                <span class="flow-timing">Month 1 — Before First Day</span>
-              </div>
-              <p style="margin:8px 0 0; font-size:14px; color:var(--charcoal-soft);">Document Easton's Zone A scope in writing: permitted tasks, prohibited tasks (with citations), zone rules, and supervision responsibilities. Get signed acknowledgment from Easton and Don. See <a href="#youth-employment">Section 04 — Youth Employment</a> for the full framework.</p>
-            </div>
-          </div>
-          <div class="flow-connector"></div>
-
-          <div class="flow-card">
-            <div class="flow-num">7</div>
-            <div class="flow-body">
-              <div class="flow-title">Engage Licensed NC Mechanical Engineer — Ventilation Design</div>
-              <div class="flow-meta">
-                <span class="flow-cost">$1,500–$4,000</span>
-                <span class="flow-timing">Week 2–3</span>
-              </div>
-              <p style="margin:8px 0 0; font-size:14px; color:var(--charcoal-soft);">One-time engagement to design ventilation system and confirm F-1 control area design. F-1 classification is confirmed — scope is ventilation, not occupancy analysis.</p>
-            </div>
-          </div>
-          <div class="flow-connector"></div>
-
-          <div class="flow-card">
-            <div class="flow-num">8</div>
-            <div class="flow-body">
-              <div class="flow-title">Contract Industrial Hygienist for Baseline Air Monitoring</div>
-              <div class="flow-meta">
-                <span class="flow-cost">$1,500–$3,000</span>
-                <span class="flow-timing">First 30 days of production</span>
-              </div>
-              <p style="margin:8px 0 0; font-size:14px; color:var(--charcoal-soft);">Initial formaldehyde exposure monitoring required within 30 days of production start. Establishes baseline and determines monitoring frequency. Search AIHA directory for qualified hygienists.</p>
-            </div>
-          </div>
-          <div class="flow-connector"></div>
-
-          <div class="flow-card flow-card-optional">
-            <div class="flow-num" style="background:var(--charcoal-mute);">9</div>
-            <div class="flow-body">
-              <div class="flow-title">Hire EHS Consultant for Pre-Launch Walkthrough <span class="tag-optional" style="vertical-align:middle; margin-left:8px;">Optional</span></div>
-              <div class="flow-meta">
-                <span class="flow-cost">$1,500–$3,500</span>
-                <span class="flow-timing">Optional — First 30 days if needed</span>
-              </div>
-              <p style="margin:8px 0 0; font-size:14px; color:var(--charcoal-soft);">Recommended only if internal capacity is insufficient after the NC DOL consultation. Not required by OSHA. The NC DOL free consultation covers most of what this provides. If there are gaps after the DOL visit, a one-time EHS walkthrough fills them.</p>
-            </div>
-          </div>
-
+      <div class="contacts-grid">
+        <div class="stat-card contact-priority">
+          <div class="stat-label">Buncombe County Planning</div>
+          <div class="stat-value">(828) 250-4830</div>
+          <div class="stat-note">Highest Month 1 Priority — Zoning / nonconforming manufacturing status. This call takes priority over every other item in this document.</div>
+        </div>
+        <div class="stat-card contact-priority">
+          <div class="stat-label">NC DOL OSH Consultative Services</div>
+          <div class="stat-value">(919) 807-2899</div>
+          <div class="stat-note">Free consultation. No citations. No fines. Purely advisory. Replaces roughly 80% of what a paid EHS consultant would do. Schedule Week 1–2.</div>
+        </div>
+        <div class="stat-card contact-priority">
+          <div class="stat-label">NC DOL Wage and Hour Bureau</div>
+          <div class="stat-value">1-800-625-2267</div>
+          <div class="stat-note">Youth employment questions. Youth Employment Certificate process. Call before Easton's first day.</div>
+        </div>
+        <div class="stat-card contact-priority">
+          <div class="stat-label">NCDEQ 24-Hr Spill Hotline</div>
+          <div class="stat-value">1-800-858-0368</div>
+          <div class="stat-note">Legal requirement for reportable releases. Post this number in the production area.</div>
         </div>
       </div>
 
-      <h3>Within First 30 Days of Production Restart</h3>
+      <div class="contacts-grid" style="margin-top:8px;">
+        <div class="stat-card">
+          <div class="stat-label">NCDA&amp;CS Food &amp; Drug</div>
+          <div class="stat-value">(984) 236-4820</div>
+          <div class="stat-note">Confirmation call for commercial feed law exemption. 20 minutes closes this permanently.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">NCDEQ HW Section — Andrew Minter</div>
+          <div class="stat-value">919-707-8265</div>
+          <div class="stat-note">EPA ID filing (Form 8700-12). VSQG questions. RCRA compliance guidance.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">OSHA Region 4 Atlanta</div>
+          <div class="stat-value">404-562-2300</div>
+          <div class="stat-note">Federal OSHA regional office covering NC. Formaldehyde standard questions.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">EPA Region 4</div>
+          <div class="stat-value">800-241-1754</div>
+          <div class="stat-note">EPA regional office. RCRA and hazardous waste questions.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Buncombe County Permits &amp; Inspections</div>
+          <div class="stat-value">(828) 250-5360</div>
+          <div class="stat-note">Building permits, change of occupancy review, mechanical permits.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Fire Marshal</div>
+          <div class="stat-value">(828) 250-6620</div>
+          <div class="stat-note">Free pre-consultation on chemical storage layout. Bring formaldehyde quantities, SDS sheets, storage sketch.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Asheville-Buncombe Air Quality</div>
+          <div class="stat-value">(828) 250-6777</div>
+          <div class="stat-note">Air quality permitting questions. Confirm whether VSQG formaldehyde operations require air permit.</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:32px;">Professional Services Needed</h3>
+      <ul>
+        <li><strong>Licensed NC mechanical engineer</strong> — ventilation design and F-1 control area confirmation. One-time engagement.</li>
+        <li><strong>Industrial hygienist</strong> — initial and periodic formaldehyde air monitoring. Search AIHA directory (aiha.org) for qualified consultants in the Asheville area.</li>
+        <li><strong>Occupational medicine clinic</strong> — annual medical surveillance for exposed employees. Many hospital systems have occupational health departments.</li>
+        <li><strong>Commercial insurance broker</strong> — GL, product liability, workers' comp, property, and pollution liability. Get quotes from brokers who work with small manufacturers.</li>
+        <li><strong>Licensed NC hazardous waste hauler</strong> — Wattbar Environmental, Clean Harbors, Stericycle. Get at least two quotes.</li>
+        <li><strong>EHS consultant</strong> (optional) — Pre-launch walkthrough, $1,500–3,500. Free alternative: NC DOL OSH Consultative Services at (919) 807-2899.</li>
+      </ul>
+    </section>
+
+    <div class="ornament"><span class="ornament-mark">* * *</span></div>
+
+    <!-- ═══════════════════════════════════════════════════
+         SECTION 10 — OPEN QUESTIONS
+         ═══════════════════════════════════════════════════ -->
+    <section id="open-questions" class="section band-a" style="scroll-margin-top:40px;">
+      <span class="section-num">Section 10</span>
+      <h2 class="section-title">Open Questions</h2>
+
+      <p class="lead">Three items remain unresolved. One gates production restart. Two are part of ongoing diligence.</p>
+
+      <h4>1. Zoning — Grandfathered Nonconforming Status</h4>
+      <p>The single highest-priority open question in this document. Call Buncombe County Planning at <strong>(828) 250-4830</strong> in Month 1. Ask specifically about nonconforming use status for manufacturing or industrial activity at the property address. Get the answer in writing. Everything downstream of this question — capital allocation, facility timeline, compliance spending — depends on the answer.</p>
+
+      <h4>2. Specific Formaldehyde SDS and Concentration</h4>
+      <p>The formaldehyde solution concentration affects PPE selection, ventilation sizing, MAQ calculations, and monitoring frequency interpretation. Pull the SDS from the seller as part of acquisition diligence. Confirm the concentration percentage, physical form, and any secondary ingredients. This is a due diligence item, not a regulatory filing — but it drives several compliance design decisions.</p>
+
+      <h4>3. Permanent Facility Search</h4>
+      <p>Don is leading the search for a permanent, properly zoned and classified facility. The interim posture documented in Section A is designed around the assumption that the permanent facility search resolves within a defined timeline. Ongoing. No action item here — documented for completeness.</p>
+    </section>
+
+    <div class="ornament"><span class="ornament-mark">* * *</span></div>
+
+    <!-- ═══════════════════════════════════════════════════
+         SECTION 11 — CAVEATS
+         ═══════════════════════════════════════════════════ -->
+    <section id="caveats" class="section band-b" style="scroll-margin-top:40px;">
+      <span class="section-num">Section 11</span>
+      <h2 class="section-title">Professional Caveats</h2>
+
+      <p>This document is grounded in primary sources — eCFR, OSHA enforcement materials, NCGS statutes, Buncombe County ordinances — but it is not a substitute for a professional EHS consultant who can evaluate the actual facility, the actual chemicals, and the actual quantities in person. A $1,500–3,500 pre-launch walkthrough by an EHS specialist converts this framework into a facility-specific action plan. Labeled as optional — but recommended.</p>
+
+      <div class="callout-free">
+        <span class="callout-label">Free Alternative — Use It</span>
+        <p><strong>NC Department of Labor, OSH Consultative Services: (919) 807-2899</strong></p>
+        <p style="margin-bottom:0;">Confidential, no fines, no citations — purely advisory. They visit the facility, identify compliance gaps, and provide a written punch list. Replaces roughly 80% of what a paid EHS consultant would do, at zero cost. Schedule this as a Week 1–2 action. It would be irrational not to use a free service of this quality.</p>
+      </div>
+
+      <p style="font-size:13px;color:var(--charcoal-mute);">Regulations change. All citations in this document were accurate as of April 2026. Verify active regulatory text with the relevant agency before acting on specific requirements. Amendments to 29 CFR 1910.1048, 40 CFR 261, and NC state RCRA rules are possible.</p>
+    </section>
+
+    <div class="ornament"><span class="ornament-mark">* * *</span></div>
+
+    <!-- ═══════════════════════════════════════════════════
+         SECTION A — INTERIM OPERATING STRATEGY
+         ═══════════════════════════════════════════════════ -->
+    <section id="section-a" class="section band-a" style="scroll-margin-top:40px;">
+      <span class="section-num">Section A</span>
+      <h2 class="section-title">Interim Operating Strategy</h2>
+
+      <blockquote style="border-left:4px solid var(--kraft-line);padding:16px 24px;margin:0 0 28px;font-style:italic;font-size:15px;color:var(--charcoal-soft);line-height:1.6;background:var(--paper);border-radius:0 2px 2px 0;">
+        This section documents the interim operating posture during the period between production restart and permanent facility acquisition. It is written with candor about tradeoffs and accepted risks. It is not a statement of long-term operating philosophy.
+      </blockquote>
+
+      <p>Rusty's will restart production at the current interim facility while searching for a permanent, properly zoned and classified space. This is a deliberate business decision made with open eyes. The goal of this section is to define exactly what that posture means: what is being done right, what risk is being accepted knowingly, and why the balance is defensible on a defined timeline.</p>
+
+      <p><strong>Core principle: Full physical compliance. Selective administrative registration. Every risk named explicitly.</strong></p>
+
+      <!-- A.1 -->
+      <h3>A.1 — How OSHA and Regulators Actually Find Out</h3>
+
+      <p>Understanding regulatory discovery mechanisms is essential for honest risk calibration. There are two categories: automatic external visibility and self-initiated requirements.</p>
+
+      <p><strong>Automatic external visibility:</strong> EPA ID filing (required and creates a public record), workers' compensation filings (trigger insurance audits), building permits (visible to county), incident reports (any injury requiring medical attention beyond first aid must be reported to OSHA), and tax filings that identify the business as a manufacturer.</p>
+
+      <p><strong>Self-initiated requirements</strong> include OSHA initial monitoring, EPA ID registration, and medical surveillance. If none of these are filed, the business is invisible to regulators — but also noncompliant.</p>
+
+      <p><strong>How OSHA finds small manufacturing operations:</strong></p>
       <ol>
-        <li>Contract industrial hygienist for baseline air monitoring ($1,500–$3,000) — required within 30 days</li>
-        <li>Contract with commercial insurance broker for full coverage package</li>
-        <li>EPA ID registration via NCDEQ Hazardous Waste Section</li>
-        <li>Contract with licensed hazardous waste hauler</li>
-        <li>Write OSHA Formaldehyde Protection Program (DIY — 29 CFR 1910.1048 is the template)</li>
-        <li>Write Hazard Communication Plan with SDS library (DIY)</li>
-        <li>Write Emergency Action Plan (DIY)</li>
-        <li>Eyewash/safety shower installation to <strong>ANSI Z358.1</strong></li>
-        <li>Warning signage posted</li>
+        <li><strong>Employee complaints</strong> — the #1 source. A current or former employee can file a complaint with OSHA at any time. OSHA investigates all formal complaints regardless of employer size.</li>
+        <li><strong>Referrals</strong> — from other agencies, insurance companies, and workers' comp carriers during claims processing.</li>
+        <li><strong>Incidents</strong> — any workplace injury or illness requiring more than first aid creates a paper trail. Formaldehyde-related health symptoms are a direct referral trigger.</li>
+        <li><strong>Insurance audits</strong> — workers' comp carriers conduct audits that often surface compliance gaps. Gaps found during an audit can be referred to OSHA or used to deny claims.</li>
       </ol>
 
-      <h3>Within First 60 Days</h3>
-      <ol start="10">
-        <li>Ventilation system designed, permitted, and installed</li>
-        <li>Initial air monitoring conducted and documented</li>
-        <li>FRP wall installation completed (if doing)</li>
-        <li>All employees trained on formaldehyde standard, hazard communication, emergency procedures</li>
-        <li>Medical surveillance enrollment for regularly exposed employees (occupational health provider)</li>
-        <li>Pest control contract</li>
-        <li>Written SOPs for: formaldehyde handling, spill response, batch production, packaging, QC, waste disposal</li>
-      </ol>
+      <p>A 3–4 person operation making fish bait in Buncombe County is not a high-priority target for proactive OSHA inspection. The realistic risk window is: an employee gets sick or files a complaint, a spill requires outside response, or an insurance audit uncovers gaps. Sound physical practices reduce the probability of all three. This is the bet being made.</p>
 
-      <h3>Ongoing Compliance Calendar</h3>
+      <!-- A.2 -->
+      <h3>A.2 — EPA ID: The Corrected Picture</h3>
 
-      <h4>Annually</h4>
+      <p>Earlier versions of this analysis stated that VSQGs are required to obtain an EPA ID number. The corrected picture, based on primary NCDEQ guidance:</p>
+
+      <p><strong>What primary sources actually say:</strong> Under the 2016 RCRA Generator Improvements Rule, VSQGs are not federally required to obtain an EPA ID. However, NCDEQ recommends it, and practically speaking, licensed hazardous waste haulers in NC will not accept waste from a generator without an EPA ID number on file. The requirement is operational rather than statutory for VSQGs.</p>
+
+      <p><strong>Practical conclusion: File for the EPA ID regardless.</strong> The filing is free, takes two days via RCRAInfo (rcrainfo.epa.gov), uses Form 8700-12, and creates a documented compliance record. Contact: Andrew Minter, NCDEQ Hazardous Waste Section, 919-707-8265.</p>
+
+      <p><strong>Confirmed facts:</strong> NC EPA ID numbers use the NCD format prefix. No filing fee. The ID stays with the facility, not the operator. Contact Andrew Minter at NCDEQ before filing to confirm the current submission process.</p>
+
+      <!-- A.3 -->
+      <h3>A.3 — What Physical Compliance Looks Like</h3>
+
+      <p>Everything below must be in place before production resumes. These protect the people in the building — that is the primary reason they exist, independent of any regulatory requirement.</p>
+
+      <h4>1. Ventilation</h4>
+      <p>Source-capture exhaust at formaldehyde mixing and addition points plus general dilution ventilation in the production area. Designed by a licensed NC mechanical engineer. Installation by Don's construction crew. Note: mechanical and electrical permits for ventilation installation are deferred during the interim period. This is an accepted gap — the risk of county discovery is low during a defined timeline. Physical function is not deferred: ventilation must work before production starts.</p>
+
+      <h4>2. PPE — Stocked Before Day 1</h4>
       <ul>
-        <li>Formaldehyde training refresh</li>
-        <li>Medical exams for enrolled employees</li>
-        <li>Insurance renewal</li>
-        <li>Fire Marshal re-inspection (if requested)</li>
-        <li>Respirator fit testing (if used)</li>
+        <li>Nitrile gloves (two sizes minimum)</li>
+        <li>Splash goggles (ANSI Z87.1 rated)</li>
+        <li>Chemical-resistant apron</li>
+        <li>Half-face respirator with OV/P100 combination cartridges</li>
+        <li>Extra PPE on hand — not just one set per person</li>
       </ul>
 
-      <h4>Semiannually</h4>
+      <h4>3. Spill Kit</h4>
+      <p>Dedicated formaldehyde spill kit on the production floor, fully stocked (see Section 7 for contents), with the written spill response SOP laminated inside. Pre-assembled kits available for $80–150. No reason to delay this purchase.</p>
+
+      <h4>4. Eyewash Station</h4>
+      <p>Non-negotiable. Required by ANSI Z358.1. Must be within 10 seconds of any formaldehyde handling point. Also cheap — a plumbed unit is $800–1,500; a self-contained gravity-fed unit is $150–300 as an interim measure if plumbing isn't available immediately. It's also cheap. No reason to skip it.</p>
+
+      <h4>5. Hazardous Waste Accumulation</h4>
+      <p>Two 5-gallon HDPE containers with tight-fitting lids, labeled with "Hazardous Waste," waste code U122, and hazard class. Stored in secondary containment tray. Weekly inspection log posted on the container (date, inspector initials, condition). Quarterly scheduled pickup with licensed hauler. The entire accumulation setup costs under $200 to establish.</p>
+
+      <h4>6. Written Programs (Internal)</h4>
+      <p>These live in a binder in the production area. They cost nothing to produce. Required programs:</p>
       <ul>
-        <li>Formaldehyde exposure monitoring</li>
-        <li>Hazardous waste pickups</li>
+        <li>OSHA Formaldehyde Protection Program (29 CFR 1910.1048 is the template)</li>
+        <li>Hazard Communication Plan (29 CFR 1910.1200)</li>
+        <li>Emergency Action Plan — evacuation routes, assembly point, emergency contacts</li>
+        <li>Spill Response SOP</li>
+        <li>Batch Production SOP</li>
       </ul>
 
-      <h4>Quarterly</h4>
-      <ul>
-        <li>Pest control</li>
-        <li>Hazardous waste container inspection (weekly required, documented quarterly)</li>
-      </ul>
+      <h4>7. Employee Health Baseline</h4>
+      <p>Baseline occupational health physicals for all team members before first formaldehyde exposure. $150–300 per person at an occupational medicine clinic. Annual follow-up thereafter. Creates a documented pre-exposure baseline that protects both the employee and the business in any future health claim.</p>
 
-      <h4>As-Needed</h4>
-      <ul>
-        <li>Waste manifests per shipment</li>
-        <li>SDS updates when formulations change</li>
-      </ul>
-    </section>
+      <!-- A.4 — Risk Register -->
+      <h3>A.4 — Risk Register: What Is Being Accepted Knowingly</h3>
 
-    <div class="ornament"><span class="ornament-mark">* * *</span></div>
-
-    <!-- ===================================================
-         SECTION 15 — CONTACTS
-         =================================================== -->
-    <section id="contacts" class="section section-full" style="background:#e6d9bc; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
-      <span class="section-num">Section 15</span>
-      <h2 class="section-title">Key Contact List</h2>
-
-      <!-- Figure 04 — Key Contacts Grid -->
       <div class="viz">
-        <div class="viz-title">Figure 04</div>
-        <div class="viz-subtitle">Key Agency Contacts</div>
-        <div class="contacts-grid">
-          <div class="stat-card">
-            <div class="stat-label">Buncombe County Planning</div>
-            <div class="stat-value">(828) 250-4830</div>
-            <p class="stat-detail"><strong>Month 1 priority call.</strong> Zoning verification and nonconforming use status for manufacturing at the property address. Get answer in writing.</p>
+        <div class="viz-title">Figure 05</div>
+        <div class="viz-subtitle">Interim Period Risk Register — Named Risks and Mitigations</div>
+        <table class="risk-register">
+          <thead>
+            <tr>
+              <th style="width:22%">Risk</th>
+              <th style="width:18%">Probability</th>
+              <th style="width:25%">Exposure If Triggered</th>
+              <th>Mitigation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Unpermitted ventilation installation</strong></td>
+              <td class="risk-prob">Low — private commercial, no permit pulled</td>
+              <td>$500–5,000/day county fine if discovered</td>
+              <td>Don controls the facility; low discovery probability on defined interim timeline. Move to permanent facility before any formal inspection pressure.</td>
+            </tr>
+            <tr>
+              <td><strong>Building not formally reclassified to F-1</strong></td>
+              <td class="risk-prob">Low — controlled formaldehyde quantities</td>
+              <td>$30–80K additional build-out if Group H triggered</td>
+              <td>Keep formaldehyde quantities below MAQ thresholds at all times. Move to permanent facility before any formal inspection of occupancy classification.</td>
+            </tr>
+            <tr>
+              <td><strong>OSHA employee complaint</strong></td>
+              <td class="risk-prob">Low if practices are genuinely sound</td>
+              <td>$80K–$195K in OSHA citations per serious/willful violation</td>
+              <td>Physical compliance eliminates the underlying basis for a complaint. Sound ventilation, PPE, written programs, and training = nothing to find.</td>
+            </tr>
+            <tr>
+              <td><strong>Workers' comp audit reveals gaps</strong></td>
+              <td class="risk-prob">Moderate — routine during any claim</td>
+              <td>Policy denial, direct employer liability for medical costs</td>
+              <td>Baseline physicals + written programs + EPA ID + documented training = defensible posture during any audit.</td>
+            </tr>
+            <tr>
+              <td><strong>Formaldehyde spill requiring outside response</strong></td>
+              <td class="risk-prob">Low with proper practices</td>
+              <td>Multi-agency response, $15–50K+ in cleanup and fines</td>
+              <td>Spill kit + eyewash + trained team + documented spill response SOP reduce probability and limit exposure if it occurs.</td>
+            </tr>
+            <tr>
+              <td><strong>Former employee retroactive complaint post-move</strong></td>
+              <td class="risk-prob">Low-moderate — sleeper risk</td>
+              <td>Penalties applied to the violation period, potentially years later</td>
+              <td>Sound physical practices during interim = nothing to find. Document everything. Retain records per OSHA retention requirements.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>The insurance gap is the most important risk to understand.</strong> General liability and workers' compensation insurance both have exclusions for knowing non-compliance with applicable regulations. If a claim arises during the interim period and an audit reveals material compliance gaps (no EPA ID, no written programs, no monitoring, no medical surveillance), the insurance company may deny the claim on grounds of knowing noncompliance. The physical compliance measures in Section A.3 exist in part to ensure that if a claim ever occurs, the employer can demonstrate that it was operating with due care — not ignoring the requirements it knew about.</p>
+
+      <!-- A.5 — Checklist -->
+      <h3>A.5 — Interim Period Checklist</h3>
+
+      <div class="viz">
+        <div class="viz-title">Figure 06</div>
+        <div class="viz-subtitle">Pre-Production and First Two Weeks Checklist</div>
+        <div class="checklist-grid">
+          <div class="checklist-col">
+            <div class="checklist-head">Before production starts — no exceptions</div>
+            <div class="checklist-item">
+              <div class="checklist-box"></div>
+              <div>File EPA Form 8700-12 via RCRAInfo — free, takes two days. Contact Andrew Minter at 919-707-8265 before filing.</div>
+            </div>
+            <div class="checklist-item">
+              <div class="checklist-box"></div>
+              <div>Ventilation installed and functioning — source-capture at mixing points, general dilution in production area</div>
+            </div>
+            <div class="checklist-item">
+              <div class="checklist-box"></div>
+              <div>Eyewash station installed and tested per ANSI Z358.1 — within 10 seconds of formaldehyde handling point</div>
+            </div>
+            <div class="checklist-item">
+              <div class="checklist-box"></div>
+              <div>Formaldehyde spill kit stocked on production floor — sodium bisulfite, absorbents, PPE, SOP laminated inside</div>
+            </div>
+            <div class="checklist-item">
+              <div class="checklist-box"></div>
+              <div>Hazardous waste accumulation containers labeled, in secondary containment tray, weekly inspection log posted</div>
+            </div>
+            <div class="checklist-item">
+              <div class="checklist-box"></div>
+              <div>SDS binder compiled for all chemicals — formaldehyde solution, neutralizer, any other hazardous materials on site</div>
+            </div>
+            <div class="checklist-item">
+              <div class="checklist-box"></div>
+              <div>PPE stocked: nitrile gloves, splash goggles, chemical-resistant apron, half-face respirator with OV/P100 cartridges</div>
+            </div>
+            <div class="checklist-item">
+              <div class="checklist-box"></div>
+              <div>NCDA&amp;CS confirmation call completed and documented — (984) 236-4820 — commercial feed law exemption confirmed in writing</div>
+            </div>
           </div>
-          <div class="stat-card">
-            <div class="stat-label">NC DOL OSH Consultative Services</div>
-            <div class="stat-value">(919) 807-2899</div>
-            <p class="stat-detail"><strong>Free, confidential.</strong> Advisory facility visit — no fines, no citations. Identifies compliance gaps and provides written punch list. Schedule Week 1–2.</p>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">NCDA&amp;CS Food &amp; Drug Protection</div>
-            <div class="stat-value">(984) 236-4820</div>
-            <p class="stat-detail">Commercial Feed Law confirmation call — 20 minutes eliminates the question permanently. Ask for written response.</p>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Buncombe County Fire Marshal</div>
-            <div class="stat-value">(828) 250-6620</div>
-            <p class="stat-detail">Free pre-consultation on chemical storage, ventilation, NFPA signage, and facility layout. Schedule before permits.</p>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">NC DOL Wage and Hour Bureau</div>
-            <div class="stat-value">1-800-625-2267</div>
-            <p class="stat-detail"><strong>Youth Employment Certificates</strong> (required before Easton's first day — NCGS § 95-25.5). Minor labor law, FLSA Hazardous Orders, NC Detrimental Occupations list. Free. Call before he starts.</p>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Buncombe County Permits &amp; Inspections</div>
-            <div class="stat-value">(828) 250-5360</div>
-            <p class="stat-detail">30 Valley Street, Asheville. Building, mechanical, and electrical permits. Change of Occupancy review intake.</p>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Asheville-Buncombe Air Quality Agency</div>
-            <div class="stat-value">(828) 250-6777</div>
-            <p class="stat-detail">Air quality permits and HAP reporting for formaldehyde emissions. Contact if ventilation exhaust exceeds thresholds.</p>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">OSHA Region 4 — Atlanta</div>
-            <div class="stat-value">404-562-2300</div>
-            <p class="stat-detail">Federal OSHA jurisdiction for North Carolina. <strong>29 CFR 1910.1048</strong> formaldehyde standard enforcement and compliance assistance.</p>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">EPA Region 4</div>
-            <div class="stat-value">800-241-1754</div>
-            <p class="stat-detail">Federal EPA. RCRA hazardous waste <strong>U122</strong> questions. NCDEQ administers NC state authority day-to-day.</p>
+          <div class="checklist-col">
+            <div class="checklist-head">Within first two weeks of production</div>
+            <div class="checklist-item">
+              <div class="checklist-box"></div>
+              <div>Written OSHA Formaldehyde Protection Program drafted — use 29 CFR 1910.1048 as direct template</div>
+            </div>
+            <div class="checklist-item">
+              <div class="checklist-box"></div>
+              <div>Written Hazard Communication Plan complete — chemical inventory, SDS locations, labeling procedures</div>
+            </div>
+            <div class="checklist-item">
+              <div class="checklist-box"></div>
+              <div>Written Emergency Action Plan complete — evacuation routes, assembly point, posted floor plan, emergency contacts</div>
+            </div>
+            <div class="checklist-item">
+              <div class="checklist-box"></div>
+              <div>Written Spill Response SOP complete and posted in production area</div>
+            </div>
+            <div class="checklist-item">
+              <div class="checklist-box"></div>
+              <div>Baseline occupational health physicals for all team members with potential formaldehyde exposure — $150–300/person</div>
+            </div>
+            <div class="checklist-item">
+              <div class="checklist-box"></div>
+              <div>Licensed hazardous waste hauler contracted — quarterly pickup schedule established</div>
+            </div>
+            <div class="checklist-item">
+              <div class="checklist-box"></div>
+              <div>All production team members trained — OSHA formaldehyde standard, spill response, PPE use — training documented with signatures and date</div>
+            </div>
           </div>
         </div>
       </div>
 
-      <h3>North Carolina State Agencies</h3>
-      <ul>
-        <li>NCDEQ Hazardous Waste Section: deq.nc.gov</li>
-        <li>NC Department of Revenue: ncdor.gov (sales tax)</li>
-        <li>NC Division of Employment Security: des.nc.gov (unemployment insurance)</li>
-      </ul>
+      <!-- A.6 -->
+      <h3>A.6 — The Financial Case for Moving Quickly</h3>
 
-      <h3>Professional Services Needed</h3>
-      <ul>
-        <li>NC licensed mechanical engineer (ventilation design)</li>
-        <li>Industrial hygienist (formaldehyde monitoring — search AIHA directory)</li>
-        <li>Occupational health provider (medical surveillance — search AAOHN directory)</li>
-        <li>Commercial insurance broker with light manufacturing experience</li>
-        <li>Licensed NC hazardous waste hauler (Wattbar Industries, Clean Harbors, Stericycle are major options)</li>
-      </ul>
-    </section>
+      <p>Every month of interim operations at the current facility is a month of carrying formaldehyde compliance overhead that disappears at a properly zoned and classified permanent facility — and a month of living with the zoning risk that sits above every other question in this document. The compliance build-out at a permanent EMP- or OU-zoned facility resolves the zoning risk permanently, allows proper permits to be pulled and inspections to be passed, and creates a foundation that doesn't require managing a risk register.</p>
 
-    <div class="ornament"><span class="ornament-mark">* * *</span></div>
+      <p>The cost envelope for permanent-facility compliance is identical to the interim-facility numbers above — the money gets spent either way. The difference is that at the permanent facility, the compliance investment creates a durable, fully permitted asset rather than a managed-risk interim situation.</p>
 
-    <!-- ===================================================
-         SECTION 16 — UNCERTAINTIES
-         =================================================== -->
-    <section id="uncertainties" class="section section-full" style="background:#ede2c5; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
-      <span class="section-num">Section 16</span>
-      <h2 class="section-title">What I'm Still Uncertain About</h2>
+      <p>The interim posture is defensible for a defined timeline. The timeline matters. The faster Don identifies and moves to a permanent, properly zoned facility, the shorter the window of accumulated interim risk — and the sooner the compliance infrastructure can be built to last.</p>
 
-      <p class="lead">Being direct about remaining questions — what isn't resolved and what resolves it.</p>
-
-      <ul>
-        <li><strong>Zoning / nonconforming use status</strong> — the most significant open question. Does the property have grandfathered nonconforming manufacturing status under Buncombe County Zoning? Does it transfer with acquisition? Resolved by the Month 1 call to Planning at (828) 250-4830, not by more research.</li>
-
-        <li><strong>Change of Occupancy review requirement</strong> depends on the building's previously-certified use. If the prior owner operated under Factory Industrial F-1 and their Certificate of Occupancy was current, we may have less scrutiny. If the building was previously a different use class, full review is likely. Confirm during the Planning call.</li>
-
-        <li><strong>NCDA&amp;CS Commercial Feed classification</strong> — the read is clear that fish bait isn't feed under <strong>NCGS § 106-284.33(4)</strong>, but a confirmation call to <strong>(984) 236-4820</strong> is trivially easy and eliminates all doubt.</li>
-
-        <li><strong>Interstate sales regulations</strong> — if we sell into states with more aggressive prepared-bait classification, we may need state-specific compliance. No state reviewed classifies prepared bait as feed, but there are 50 states. This is a Year 2+ question when expansion happens.</li>
-
-        <li><strong>Specific formaldehyde SDS and concentration</strong> for the inventory we're acquiring from the seller. Different concentrations change PPE requirements, ventilation sizing, and MAQ calculations. Pull SDS sheets as part of acquisition diligence — no cost.</li>
-      </ul>
-
-      <div class="callout">
-        <span class="callout-label">Resolution Path</span>
-        <p>Zoning: one free phone call. Change of Occupancy: confirmed during Planning call. Commercial Feed: one free phone call. Interstate sales: defer to Year 2. SDS sheets: pull during acquisition diligence at no cost.</p>
-        <p style="margin:0;">All open uncertainties have clear, affordable resolution paths. None are deal-breakers — but the zoning question must be answered first.</p>
-      </div>
-    </section>
-
-    <div class="ornament"><span class="ornament-mark">* * *</span></div>
-
-    <!-- ===================================================
-         SECTION 17 — BOTTOM LINE
-         =================================================== -->
-    <section id="bottom-line" class="section section-full" style="background:#e6d9bc; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
-      <span class="section-num">Section 17</span>
-      <h2 class="section-title">The Bottom Line</h2>
-
-      <p class="lead">Rusty's is a light manufacturing operation handling a hazardous chemical. The regulatory picture is clear — with one open question that takes absolute priority.</p>
-
-      <div class="bottom-line-grid">
-        <div class="bottom-line-card">
-          <span class="blc-label">One-Time Setup (Required Base)</span>
-          <div class="blc-value">$14,250 – $33,800</div>
-          <p class="blc-note">Required items only. With optional additions (FRP walls, EHS consultant): $17,750–$43,300.</p>
+      <div class="doc-meta-box">
+        <div>
+          <div class="doc-meta-box-label">Document Owner</div>
+          <div class="doc-meta-box-value">Joseph Skinner</div>
         </div>
-        <div class="bottom-line-card">
-          <span class="blc-label">Ongoing Annual Compliance</span>
-          <div class="blc-value">$7,300 – $17,500</div>
-          <p class="blc-note">Insurance, monitoring, waste disposal, medical surveillance, training. Built into the broader P&amp;L.</p>
+        <div>
+          <div class="doc-meta-box-label">Status</div>
+          <div class="doc-meta-box-value">For review and action</div>
+        </div>
+        <div style="grid-column:1/-1;">
+          <div class="doc-meta-box-label">Disclaimer</div>
+          <div class="doc-meta-box-value">Compliance roadmap, not legal advice. Primary sources cited throughout. Verify all items with the relevant agency or a qualified EHS consultant before acting on specific requirements. Regulations change.</div>
         </div>
       </div>
-
-      <h3>The Six Regulatory Realities</h3>
-      <ul>
-        <li><strong>Zoning</strong> — most important open question; must be resolved before more capital is committed. Call Planning (828) 250-4830.</li>
-        <li><strong>Worker safety</strong> (<strong>29 CFR 1910.1048</strong> OSHA formaldehyde standard) — serious and non-negotiable; mostly DIY with targeted contracted items (air monitoring, medical surveillance)</li>
-        <li><strong>Environmental compliance</strong> (EPA RCRA waste handling, <strong>40 CFR 261.33</strong>, code <strong>U122</strong>) — procedural and manageable</li>
-        <li><strong>Building code and occupancy classification</strong> — F-1 confirmed, standard construction requirements apply</li>
-        <li><strong>Product regulation</strong> — almost certainly none (not food, not feed, not a marine fisheries product)</li>
-        <li><strong>Youth employment (Easton)</strong> — straightforward once documented. Youth Employment Certificate before Day 1 (NC DOL 1-800-625-2267), written job description, zone enforcement. No gray areas — the framework is clear.</li>
-      </ul>
-
-      <div class="callout-critical" style="margin-top:32px;">
-        <span class="callout-label">The First Dollar to Spend — It's Free</span>
-        <p>The call to Buncombe County Planning at (828) 250-4830. Fifteen minutes. Determines whether the owned-building advantage — $18–24K/year in avoided rent — is real or at risk.</p>
-      </div>
-
-      <p>Second priority: NC DOL free consultation at <strong>(919) 807-2899</strong> — replaces most paid EHS consulting, no cost.</p>
-
-      <p>Third: Fire Marshal pre-consultation at <strong>(828) 250-6620</strong> (free) — specific guidance on chemical storage layout.</p>
-
-      <p>Fourth: Mechanical engineer for ventilation design ($1,500–$4,000) — the first real dollar spent, and the right one.</p>
-
-      <p>Between those four items — $1,500–$4,000 total in paid services — we eliminate the biggest open questions and cover the required contracted work.</p>
-
-      <hr class="divider" style="margin-top:40px;">
-
-      <p style="font-family:var(--font-mono); font-size:12px; color:var(--charcoal-mute); line-height:1.7;">
-        <strong>Document Owner:</strong> Joseph Skinner &nbsp;|&nbsp;
-        <strong>Status:</strong> For review and action &nbsp;|&nbsp;
-        <strong>Disclaimer:</strong> Compliance roadmap, not legal advice. Primary sources cited throughout. Before relying on any specific item, verify current requirements with the relevant agency or a qualified consultant. Regulations change.
-      </p>
     </section>
 
-    <!-- Footer nav -->
+    <!-- ═══════════════════════════════════════════════════
+         FOOTER NAV
+         ═══════════════════════════════════════════════════ -->
     <nav class="doc-footer">
       <a href="04-personnel.html" class="foot-nav-link">
         <span class="fn-dir">Previous</span>
         <span class="fn-title">Personnel</span>
       </a>
-      <a href="index.html" class="foot-nav-link next">
-        <span class="fn-dir">Back to</span>
-        <span class="fn-title">Home</span>
+      <a href="06-formaldehyde-free.html" class="foot-nav-link next">
+        <span class="fn-dir">Next</span>
+        <span class="fn-title">Formaldehyde-Free Initiative</span>
       </a>
     </nav>
 
