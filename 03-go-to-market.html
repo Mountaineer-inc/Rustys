@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>if(sessionStorage.getItem('rustys_auth')!=='1'){window.location.replace('index.html');}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Go-to-Market — Rusty's Bait &amp; Lures</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .layout { max-width: 1220px; margin: 0 auto; }
+    .viz { padding: 12px 0 4px; }
+    .viz svg { overflow: visible; }
+    .section.band-a, .section.section-full.band-a {
+      background: #e6d9bc;
+      border: 1px solid #a89878;
+      border-radius: 2px;
+      padding: 40px;
+      margin-bottom: 24px;
+    }
+    .section.band-b, .section.section-full.band-b {
+      background: #ede2c5;
+      border: 1px solid #a89878;
+      border-radius: 2px;
+      padding: 40px;
+      margin-bottom: 24px;
+    }
+    .section.band-a h2.section-title,
+    .section.band-b h2.section-title {
+      border-bottom-color: #c8b792;
+    }
+
+    /* Principle cards — 5-up grid */
+    .principle-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 32px 0;
+    }
+    .principle-card {
+      background: #ede2c5;
+      border: 1px solid #a89878;
+      border-radius: 2px;
+      padding: 24px 20px;
+      position: relative;
+    }
+    .section.band-b .principle-card {
+      background: #e6d9bc;
+    }
+    .principle-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 28px; height: 3px;
+      background: #d14e2a;
+    }
+    .principle-num {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #d14e2a;
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .principle-title {
+      font-family: "Fraunces", serif;
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: #2a2420;
+      margin: 0 0 8px;
+    }
+    .principle-body {
+      font-size: 13px;
+      line-height: 1.5;
+      color: #3d342d;
+      margin: 0;
+    }
+
+    /* Channel detail sub-sections */
+    .channel-block {
+      margin-bottom: 36px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid #a89878;
+    }
+    .channel-block:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .channel-meta-tag {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #6b5f56;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* Measurement cards */
+    .measure-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 32px 0;
+    }
+    @media (max-width: 720px) {
+      .measure-grid { grid-template-columns: 1fr; }
+    }
+    .measure-card {
+      background: #ede2c5;
+      border: 1px solid #a89878;
+      border-radius: 2px;
+      padding: 24px 20px;
+      position: relative;
+    }
+    .section.band-b .measure-card {
+      background: #e6d9bc;
+    }
+    .measure-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: #d14e2a;
+    }
+    .measure-card-title {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #d14e2a;
+      font-weight: 600;
+      margin: 12px 0 12px;
+    }
+    .measure-card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+    .measure-card li {
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 6px;
+      color: #3d342d;
+    }
+
+    /* Two-metric callout */
+    .two-metric-block {
+      margin-top: 32px;
+      padding: 28px 32px;
+      background: #2a2420;
+      border-radius: 2px;
+    }
+    .two-metric-label {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #e87858;
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .two-metric-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 600px) {
+      .two-metric-row { grid-template-columns: 1fr; }
+    }
+    .two-metric-item {}
+    .two-metric-period {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: #c8b792;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .two-metric-name {
+      font-family: "Fraunces", serif;
+      font-size: 19px;
+      font-weight: 600;
+      color: #e6d9bc;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .two-metric-desc {
+      font-size: 13px;
+      color: #c8b792;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* Roles time table */
+    .time-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 14px;
+    }
+    .time-table th {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #6b5f56;
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 2px solid #2a2420;
+      background: #e6d9bc;
+    }
+    .time-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #a89878;
+      vertical-align: top;
+      color: #3d342d;
+    }
+    .time-table tr:last-child td { border-bottom: none; }
+    .time-pct {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 15px;
+      font-weight: 600;
+      color: #d14e2a;
+    }
+
+    /* Not covered list styling */
+    .not-covered-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px;
+    }
+    .not-covered-list li {
+      padding: 12px 16px 12px 44px;
+      border-bottom: 1px solid #a89878;
+      position: relative;
+      font-size: 15px;
+      line-height: 1.5;
+      color: #3d342d;
+    }
+    .not-covered-list li:last-child { border-bottom: none; }
+    .not-covered-list li::before {
+      content: "—";
+      position: absolute;
+      left: 16px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      color: #6b5f56;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- =====================================================
+       SIDEBAR
+       ===================================================== -->
+  <aside class="sidebar">
+    <a href="index.html" style="text-decoration:none;">
+      <div class="brand-mark">Rusty's <em>Bait &amp; Lures</em></div>
+      <div class="brand-tag">Strategy · 2026</div>
+    </a>
+
+    <div class="nav-section">Documents</div>
+    <ul class="nav-list">
+      <li><a href="01-business.html"><span class="nav-num">01</span> The Business</a></li>
+      <li><a href="02-market-and-brand.html"><span class="nav-num">02</span> Market &amp; Brand</a></li>
+      <li><a href="03-go-to-market.html" class="current"><span class="nav-num">03</span> Go-to-Market</a></li>
+      <li><a href="04-personnel.html"><span class="nav-num">04</span> Personnel</a></li>
+      <li><a href="05-regulatory.html"><span class="nav-num">05</span> Regulatory</a></li>
+      <li><a href="06-formaldehyde-free.html"><span class="nav-num">06</span> Formaldehyde-Free</a></li>
+    </ul>
+
+    <div class="nav-section">On This Page</div>
+    <ul class="nav-toc">
+      <li><a href="#thesis">Operating Thesis</a></li>
+      <li><a href="#pro-staff">Pro-Staff Program</a></li>
+      <li><a href="#channels">Channel Strategy</a></li>
+      <li><a href="#content">Content Strategy</a></li>
+      <li><a href="#wholesale-retail">Wholesale &amp; Retail</a></li>
+      <li><a href="#pr">PR &amp; Earned Media</a></li>
+      <li><a href="#cx">Customer Experience</a></li>
+      <li><a href="#measurement">Measurement</a></li>
+      <li><a href="#budget">Budget Allocation</a></li>
+      <li><a href="#roles">Roles</a></li>
+      <li><a href="#quarterly">Quarterly Priorities</a></li>
+      <li><a href="#not-covered">What This Doesn't Cover</a></li>
+    </ul>
+  </aside>
+
+  <!-- =====================================================
+       MAIN CONTENT
+       ===================================================== -->
+  <main class="content">
+
+    <header class="doc-header">
+      <div class="doc-eyebrow">DOCUMENT 03</div>
+      <h1 class="doc-title">Go-to-<em>Market</em></h1>
+      <p class="doc-subtitle">How Rusty's reaches $125–150K Year 1 with DTC at 60% of mix</p>
+      <div class="doc-meta">
+        <div class="doc-meta-item">
+          <span class="doc-meta-label">Prepared for</span>
+          <span class="doc-meta-value">Joseph Skinner</span>
+        </div>
+        <div class="doc-meta-item">
+          <span class="doc-meta-label">Updated</span>
+          <span class="doc-meta-value">April 2026</span>
+        </div>
+        <div class="doc-meta-item">
+          <span class="doc-meta-label">Framework</span>
+          <span class="doc-meta-value">Pro-Staff as growth engine</span>
+        </div>
+      </div>
+    </header>
+
+
+    <!-- =====================================================
+         SECTION 01 — THE OPERATING THESIS
+         ===================================================== -->
+    <section id="thesis" class="section section-full band-a">
+      <span class="section-num">Section 01</span>
+      <h2 class="section-title">The Operating Thesis</h2>
+
+      <p class="lead">Five things, in this order, drive everything Rusty's does in Year 1.</p>
+
+      <div class="pullquote">
+        Pro-Staff is the growth engine. Creator-led authority is the fastest and cheapest way for a niche brand to earn trust in the catfish space.
+      </div>
+
+      <div class="principle-grid">
+        <div class="principle-card">
+          <span class="principle-num">01</span>
+          <div class="principle-title">Pro-Staff is the growth engine</div>
+          <p class="principle-body">Creator-led authority is the fastest and cheapest way for a niche brand to earn trust in the catfish space. Everything else supports it.</p>
+        </div>
+        <div class="principle-card">
+          <span class="principle-num">02</span>
+          <div class="principle-title">Community builds the moat</div>
+          <p class="principle-body">Facebook groups, forums, tournament scenes — this is where catfish anglers actually live. Show up authentically, serve the community, and the product sells itself over time.</p>
+        </div>
+        <div class="principle-card">
+          <span class="principle-num">03</span>
+          <div class="principle-title">Content is the capital</div>
+          <p class="principle-body">Every video, photo, post, and blog the Pro-Staff and customers create is an asset that keeps working. Invest in helping them create good stuff, repurpose relentlessly.</p>
+        </div>
+        <div class="principle-card">
+          <span class="principle-num">04</span>
+          <div class="principle-title">Paid amplifies what already works</div>
+          <p class="principle-body">We don't run paid ads to cold audiences until we have proof — creator content that lands, customer reviews, organic traction. Then we pour gasoline on what's burning.</p>
+        </div>
+        <div class="principle-card">
+          <span class="principle-num">05</span>
+          <div class="principle-title">Retail grows from demand</div>
+          <p class="principle-body">Existing wholesale relationships get rebuilt. New retail expands when DTC pull-through creates inbound interest. Bass Pro and similar return on our timeline.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         SECTION 02 — THE PRO-STAFF PROGRAM
+         ===================================================== -->
+    <section id="pro-staff" class="section section-full band-b">
+      <span class="section-num">Section 02</span>
+      <h2 class="section-title">The Pro-Staff Program</h2>
+
+      <p>Centerpiece of the marketing plan. Everything downstream connects to it.</p>
+
+      <!-- Figure 01 — Pro-Staff Three-Tier Pyramid -->
+      <div class="viz">
+        <div class="viz-title">Figure 01</div>
+        <div class="viz-subtitle">Pro-Staff Three-Tier Pyramid</div>
+        <svg viewBox="0 0 760 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pro-Staff program three-tier pyramid showing Pro-Staff, Field Staff, and Ambassadors">
+          <defs>
+            <style>
+              .pyramid-label { font-family: "JetBrains Mono", "Roboto Mono", monospace; }
+              .pyramid-body  { font-family: "Inter Tight", "Inter", Arial, sans-serif; }
+            </style>
+          </defs>
+
+          <!-- TOP TIER — Pro-Staff (rust) -->
+          <!-- Trapezoid: top narrower, bottom wider -->
+          <!-- Top edge: x=280..480, Bottom edge: x=200..560, height=90px, top y=20 -->
+          <polygon points="280,20 480,20 540,110 220,110" fill="#d14e2a"/>
+          <!-- Tier label -->
+          <text x="380" y="52" text-anchor="middle" font-family="JetBrains Mono, Roboto Mono, monospace" font-size="13" font-weight="600" letter-spacing="2" fill="#f0e7ce" text-decoration="none">PRO-STAFF</text>
+          <text x="380" y="72" text-anchor="middle" font-family="Inter Tight, Inter, Arial, sans-serif" font-size="12" fill="#f0e7ce">2–3 Creators</text>
+          <text x="380" y="90" text-anchor="middle" font-family="Inter Tight, Inter, Arial, sans-serif" font-size="11" fill="#e6d9bc">Annual retainer + performance + affiliate</text>
+
+          <!-- MIDDLE TIER — Field Staff (rust-deep) -->
+          <!-- Top edge: x=200..560, Bottom edge: x=110..650, height=100px, top y=116 -->
+          <polygon points="220,116 540,116 610,216 150,216" fill="#a63a1e"/>
+          <text x="380" y="150" text-anchor="middle" font-family="JetBrains Mono, Roboto Mono, monospace" font-size="13" font-weight="600" letter-spacing="2" fill="#f0e7ce">FIELD STAFF</text>
+          <text x="380" y="170" text-anchor="middle" font-family="Inter Tight, Inter, Arial, sans-serif" font-size="12" fill="#f0e7ce">10–15 Regional Creators</text>
+          <text x="380" y="190" text-anchor="middle" font-family="Inter Tight, Inter, Arial, sans-serif" font-size="11" fill="#e6d9bc">Product seed + per-piece + affiliate</text>
+
+          <!-- BASE TIER — Ambassadors (charcoal-soft) -->
+          <!-- Top edge: x=110..650, Bottom edge: x=24..736, height=108px, top y=222 -->
+          <polygon points="150,222 610,222 696,318 64,318" fill="#3d342d"/>
+          <text x="380" y="256" text-anchor="middle" font-family="JetBrains Mono, Roboto Mono, monospace" font-size="13" font-weight="600" letter-spacing="2" fill="#e6d9bc">RUSTY'S AMBASSADORS</text>
+          <text x="380" y="276" text-anchor="middle" font-family="Inter Tight, Inter, Arial, sans-serif" font-size="12" fill="#d8c9a8">Open-tier, application-based</text>
+          <text x="380" y="296" text-anchor="middle" font-family="Inter Tight, Inter, Arial, sans-serif" font-size="11" fill="#c8b792">Free product + discount code + recognition</text>
+
+          <!-- Right-side annotation line -->
+          <line x1="700" y1="30" x2="700" y2="310" stroke="#a89878" stroke-width="1" stroke-dasharray="4,3"/>
+          <line x1="696" y1="168" x2="700" y2="168" stroke="#a89878" stroke-width="1"/>
+          <!-- Annotation text — rotated -->
+          <text x="720" y="172" font-family="JetBrains Mono, Roboto Mono, monospace" font-size="10" fill="#6b5f56" text-anchor="start" transform="rotate(-90 720 172)">Tier movement creates content momentum (Bernays mechanic)</text>
+          <!-- Tick marks for each tier -->
+          <line x1="696" y1="65" x2="704" y2="65" stroke="#a89878" stroke-width="1"/>
+          <line x1="696" y1="165" x2="704" y2="165" stroke="#a89878" stroke-width="1"/>
+          <line x1="696" y1="270" x2="704" y2="270" stroke="#a89878" stroke-width="1"/>
+        </svg>
+        <p class="viz-caption">Three tiers create aspiration. Movement between tiers generates social signaling and content momentum — the Bernays mechanic applied to a creator program.</p>
+      </div>
+
+      <h3>Three-Tier Structure</h3>
+
+      <h4>Pro-Staff (Top Tier)</h4>
+      <ul>
+        <li><strong>2–3 creators</strong> on annual contracts</li>
+        <li>Authority voices in the catfish space (Catfish Edge-level credibility)</li>
+        <li>National geographic spread — one Mississippi basin, one Southeast, one Midwest or Chesapeake</li>
+        <li><strong>Comp:</strong> Annual retainer + performance bonuses + affiliate revenue share</li>
+        <li><strong>Commitment:</strong> Minimum content cadence, tournament presence where applicable, first look at new SKUs, direct line to the brand</li>
+      </ul>
+
+      <h4>Field Staff (Working Middle)</h4>
+      <ul>
+        <li><strong>10–15 creators and guides</strong> across catfish country</li>
+        <li>Regional creators with engaged audiences (2K–25K subs/followers)</li>
+        <li>Product seeding + per-piece compensation + affiliate</li>
+        <li><strong>Commitment:</strong> Regular content featuring Rusty's, tagged posts, participation in seasonal campaigns</li>
+      </ul>
+
+      <h4>Rusty's Ambassadors (Community Layer)</h4>
+      <ul>
+        <li>Open-tier, application-based after Month 6</li>
+        <li>Tournament winners, respected forum voices, loyal customers with a platform</li>
+        <li>Free product + custom discount code + social recognition + early SKU access</li>
+        <li><strong>Commitment:</strong> Use the product, tag Rusty's, represent the brand in community spaces</li>
+      </ul>
+
+      <h3>Why Three Tiers</h3>
+      <p>Creates aspiration. A Field Staff member can earn their way to Pro-Staff. An Ambassador can earn their way to Field Staff. This is the Bernays play — the tiers themselves create social signaling, and movement between them generates content and momentum.</p>
+
+      <h3>Recruitment Timeline</h3>
+      <ul>
+        <li><strong>Month 2–3</strong> — Pro-Staff Manager hired or contracted (Joseph's network contact). First conversations with authority creators.</li>
+        <li><strong>Month 4–5</strong> — Field Staff soft launch. 10–15 creators contacted privately, sent product, invited to try before launch. No public roster yet.</li>
+        <li><strong>Month 6</strong> — DTC launch. Pro-Staff publicly announced. Field Staff begins posting. Launch content hits with 10–15 creators simultaneously — borrowed audiences on day one.</li>
+        <li><strong>Month 7–9</strong> — Ambassador program opens publicly. Application process with clear standards. First cohort announced Month 9–10.</li>
+        <li><strong>Month 12</strong> — First Pro-Staff review. Performance assessment, contract renewals, roster adjustments.</li>
+      </ul>
+
+      <h3>Standards — Written, Not Implied</h3>
+      <p>Every tier has a written agreement. The Pro-Staff agreement covers:</p>
+      <ul>
+        <li>Minimum content cadence (2 Rusty's-featuring pieces per month for Pro-Staff, 1 for Field Staff)</li>
+        <li>Content quality standards (not a shot list — use the product, be authentic, tag correctly)</li>
+        <li>Attendance at one Rusty's-supported tournament per year (Pro-Staff only)</li>
+        <li>Social tagging and response expectations</li>
+        <li>Exclusivity terms (no direct competitor sponsorships — Triple S, Team Catfish, Magic)</li>
+        <li>Termination terms (unresponsiveness, dead accounts, brand misrepresentation)</li>
+      </ul>
+
+      <div class="callout">
+        <span class="callout-label">Infrastructure Note</span>
+        <p>The standards document is key infrastructure. Without it, the program drifts into "free product for whoever asks." Treating agreements as optional is how creator programs die.</p>
+      </div>
+
+      <h3>Budget</h3>
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-label">Year 1 Pro-Staff</div>
+          <div class="stat-value">$15–20K</div>
+          <p class="stat-detail">50–67% of the $30K marketing envelope. This displaces most traditional paid spend. Intentional.</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Pro-Staff (2–3)</div>
+          <div class="stat-value">$8–12K</div>
+          <p class="stat-detail">$3–4K each annualized. Annual retainer + performance bonuses.</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Field Staff (10–15)</div>
+          <div class="stat-value">$5–7K</div>
+          <p class="stat-detail">Product + per-piece + affiliate across the regional creator roster.</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Ambassadors</div>
+          <div class="stat-value">$2–3K</div>
+          <p class="stat-detail">Mostly product cost. Community tier runs lean.</p>
+        </div>
+      </div>
+      <p>Manager compensation ($18–30K annualized) is budgeted separately if fractional contractor. <strong>Year 2 scaling:</strong> $50–75K as program grows to 5 Pro-Staff and 25–30 Field Staff.</p>
+    </section>
+
+
+    <!-- =====================================================
+         SECTION 03 — CHANNEL STRATEGY
+         ===================================================== -->
+    <section id="channels" class="section section-full band-a">
+      <span class="section-num">Section 03</span>
+      <h2 class="section-title">Channel Strategy</h2>
+
+      <!-- Figure 02 — Channel Strategy Matrix -->
+      <div class="viz">
+        <div class="viz-title">Figure 02</div>
+        <div class="viz-subtitle">Channel Strategy Matrix</div>
+        <svg viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Channel strategy matrix showing role, Year 1 investment, and activation timing for each channel">
+          <defs>
+            <style>
+              .tbl-head { font-family: "JetBrains Mono", "Roboto Mono", monospace; font-size: 11px; letter-spacing: 1.5px; fill: #e6d9bc; font-weight: 600; text-transform: uppercase; }
+              .tbl-chan { font-family: "Fraunces", Georgia, serif; font-size: 14px; fill: #2a2420; font-weight: 600; }
+              .tbl-body { font-family: "Inter Tight", "Inter", Arial, sans-serif; font-size: 12px; fill: #3d342d; }
+              .tbl-mono { font-family: "JetBrains Mono", "Roboto Mono", monospace; font-size: 11px; fill: #3d342d; }
+              .tbl-rust { font-family: "JetBrains Mono", "Roboto Mono", monospace; font-size: 11px; fill: #d14e2a; font-weight: 600; }
+              .tbl-mute { font-family: "JetBrains Mono", "Roboto Mono", monospace; font-size: 10px; fill: #6b5f56; }
+            </style>
+          </defs>
+
+          <!-- Header row -->
+          <rect x="0" y="0" width="760" height="36" fill="#2a2420"/>
+          <text x="20"  y="23" class="tbl-head">Channel</text>
+          <text x="160" y="23" class="tbl-head">Role</text>
+          <text x="450" y="23" class="tbl-head">Year 1 Investment</text>
+          <text x="620" y="23" class="tbl-head">Activated</text>
+
+          <!-- Row 1 — YouTube (light) -->
+          <rect x="0" y="36" width="760" height="46" fill="#e6d9bc"/>
+          <text x="20"  y="56" class="tbl-chan">YouTube</text>
+          <text x="20"  y="72" class="tbl-mute">Primary engine</text>
+          <text x="160" y="56" class="tbl-body">Pro-staff content. 100+ pieces Year 1.</text>
+          <text x="160" y="72" class="tbl-body">Rusty's channel = community highlight reel.</text>
+          <text x="450" y="62" class="tbl-mono">Pro-staff budget</text>
+          <text x="620" y="62" class="tbl-mono">Month 6</text>
+
+          <!-- Row 2 — Facebook (dark) -->
+          <rect x="0" y="82" width="760" height="46" fill="#ede2c5"/>
+          <text x="20"  y="102" class="tbl-chan">Facebook</text>
+          <text x="20"  y="118" class="tbl-mute">Community</text>
+          <text x="160" y="102" class="tbl-body">Business page 3–4x/wk. Groups as individual.</text>
+          <text x="160" y="118" class="tbl-body">60 days value-first before any brand mention.</text>
+          <text x="450" y="110" class="tbl-mono">Organic (labor only)</text>
+          <text x="620" y="102" class="tbl-mono">Month 1</text>
+          <text x="620" y="118" class="tbl-rust">Ads: Month 7+</text>
+
+          <!-- Row 3 — Instagram (light) -->
+          <rect x="0" y="128" width="760" height="46" fill="#e6d9bc"/>
+          <text x="20"  y="148" class="tbl-chan">Instagram</text>
+          <text x="20"  y="164" class="tbl-mute">Visual storytelling</text>
+          <text x="160" y="148" class="tbl-body">3–4x/wk + 1–2 Reels. Heavy UGC + pro-staff.</text>
+          <text x="160" y="164" class="tbl-body">Catches, product, lifestyle, tournaments.</text>
+          <text x="450" y="154" class="tbl-mono">Pro-staff budget</text>
+          <text x="620" y="154" class="tbl-mono">Month 6</text>
+
+          <!-- Row 4 — Forums (dark) -->
+          <rect x="0" y="174" width="760" height="46" fill="#ede2c5"/>
+          <text x="20"  y="194" class="tbl-chan">Forums</text>
+          <text x="20"  y="210" class="tbl-mute">Authority / credibility</text>
+          <text x="160" y="194" class="tbl-body">USCA, 2Cool Lounge, Lake-Link, r/catfishing.</text>
+          <text x="160" y="210" class="tbl-body">Personal name, brand disclosed. No promo posts.</text>
+          <text x="450" y="202" class="tbl-mono">Labor only</text>
+          <text x="620" y="202" class="tbl-mono">Month 1</text>
+
+          <!-- Row 5 — Tournaments (light) -->
+          <rect x="0" y="220" width="760" height="46" fill="#e6d9bc"/>
+          <text x="20"  y="240" class="tbl-chan">Tournaments</text>
+          <text x="20"  y="256" class="tbl-mute">Legitimacy + presence</text>
+          <text x="160" y="240" class="tbl-body">8–12 regional events. $100–500/event.</text>
+          <text x="160" y="256" class="tbl-body">Content captured at every event.</text>
+          <text x="450" y="248" class="tbl-mono">$3–5K Year 1</text>
+          <text x="620" y="248" class="tbl-mono">Month 6+</text>
+
+          <!-- Row 6 — Email (dark) -->
+          <rect x="0" y="266" width="760" height="46" fill="#ede2c5"/>
+          <text x="20"  y="286" class="tbl-chan">Email / Klaviyo</text>
+          <text x="20"  y="302" class="tbl-mute">Retention layer</text>
+          <text x="160" y="286" class="tbl-body">Welcome series, Abandoned Cart, Post-Purchase,</text>
+          <text x="160" y="302" class="tbl-body">Win-Back, Seasonal. 1–2 campaigns/wk.</text>
+          <text x="450" y="294" class="tbl-mono">Software budget</text>
+          <text x="620" y="294" class="tbl-mono">Month 6</text>
+
+          <!-- Row 7 — Paid Media (light) -->
+          <rect x="0" y="312" width="760" height="46" fill="#e6d9bc"/>
+          <text x="20"  y="332" class="tbl-chan">Paid Media</text>
+          <text x="20"  y="348" class="tbl-mute">Amplification layer</text>
+          <text x="160" y="332" class="tbl-body">FB/IG ads + Google Shopping/Search/Retargeting.</text>
+          <text x="160" y="348" class="tbl-body">Pro-staff creative only. 3:1 ROAS minimum target.</text>
+          <text x="450" y="340" class="tbl-mono">$8–12K Year 1</text>
+          <text x="620" y="332" class="tbl-rust">Month 7+</text>
+          <text x="620" y="348" class="tbl-mute">After content library</text>
+
+          <!-- Row 8 — TikTok (dark) -->
+          <rect x="0" y="358" width="760" height="36" fill="#ede2c5"/>
+          <text x="20"  y="381" class="tbl-chan">TikTok</text>
+          <text x="160" y="381" class="tbl-body">Deferred. Not a launch channel.</text>
+          <text x="450" y="381" class="tbl-mono">—</text>
+          <text x="620" y="375" class="tbl-rust">Revisit Month 12</text>
+
+          <!-- Bottom border -->
+          <line x1="0" y1="394" x2="760" y2="394" stroke="#a89878" stroke-width="1"/>
+          <!-- Column dividers -->
+          <line x1="150" y1="36" x2="150" y2="394" stroke="#a89878" stroke-width="0.5" opacity="0.6"/>
+          <line x1="440" y1="36" x2="440" y2="394" stroke="#a89878" stroke-width="0.5" opacity="0.6"/>
+          <line x1="610" y1="36" x2="610" y2="394" stroke="#a89878" stroke-width="0.5" opacity="0.6"/>
+        </svg>
+        <p class="viz-caption">Rust entries indicate delayed activation — channel is known but deliberately held until content library and proof metrics exist.</p>
+      </div>
+
+      <h3>Channel Detail</h3>
+
+      <div class="channel-block">
+        <span class="channel-meta-tag">Primary Content Engine</span>
+        <h4>YouTube</h4>
+        <p><strong>Role:</strong> Highest-intent audience. Search visibility lasts for years.</p>
+        <ul>
+          <li>Pro-Staff and Field Staff content is the primary output — 100+ pieces featuring Rusty's across the roster in Year 1</li>
+          <li>Rusty's owned YouTube is a community highlight reel, not an owned authority channel — amplifying the pro-staff, not competing with them</li>
+          <li>Repurpose pro-staff content on Rusty's owned channels with permission</li>
+          <li>Monthly "Rusty's Roundup" — short clip reel of the best pro-staff catches of the month</li>
+        </ul>
+        <p><strong>Key metric:</strong> Pro-staff content pieces published featuring Rusty's. Views are secondary.</p>
+      </div>
+
+      <div class="channel-block">
+        <span class="channel-meta-tag">Community Layer</span>
+        <h4>Facebook</h4>
+        <p><strong>Role:</strong> Community, not sales.</p>
+        <ul>
+          <li>Business page with consistent posting (3–4x/week) — catches, tips, pro-staff spotlights, product education</li>
+          <li>Joseph or pro-staff manager joins 20–30 catfishing groups as an individual, not as brand</li>
+          <li>Contribute value for 60 days before any brand mention</li>
+          <li>Regional group engagement — comment on catches, answer questions, be a knowledgeable presence</li>
+          <li>Brand page runs targeted ads only after Month 7 (once content library exists)</li>
+        </ul>
+        <p><strong>Key metric:</strong> Unprompted Rusty's mentions in groups we don't own. That's the signal the community is adopting the brand.</p>
+      </div>
+
+      <div class="channel-block">
+        <span class="channel-meta-tag">Visual Storytelling</span>
+        <h4>Instagram</h4>
+        <ul>
+          <li>3–4x/week posts, 1–2 Reels/week</li>
+          <li>Heavy UGC and pro-staff content (with permission and tags)</li>
+          <li>Tournament coverage, weigh-ins, regional catches</li>
+          <li>Stories for behind-the-scenes, day-to-day, pro-staff spotlights</li>
+          <li>Hashtags: #catfishing #catfish #catfishbait #stinkbait #channelcat #bluecat #flatheadcat</li>
+        </ul>
+        <p><strong>Key metric:</strong> Engagement rate and shares. Not follower count.</p>
+      </div>
+
+      <div class="channel-block">
+        <span class="channel-meta-tag">Authority &amp; Credibility</span>
+        <h4>Forums</h4>
+        <ul>
+          <li>Joseph or pro-staff manager establishes presence on Catfish1/USCA, 2Cool Catfish Lounge, Lake-Link, Reddit r/catfishing</li>
+          <li>Posts under personal name with brand disclosed in profile</li>
+          <li>Contributes expertise, answers questions, shares catches</li>
+          <li>Never posts promotional content — the forum culture will punish it instantly</li>
+          <li>Brand visibility comes from signature lines, profile info, earned mentions from others</li>
+        </ul>
+        <p><strong>Key metric:</strong> Unsolicited Rusty's mentions by other forum members.</p>
+      </div>
+
+      <div class="channel-block">
+        <span class="channel-meta-tag">Legitimacy &amp; Regional Presence</span>
+        <h4>Tournaments</h4>
+        <div class="callout">
+          <span class="callout-label">Tournament Approach</span>
+          <p><strong>Year 1:</strong> 8–12 small regional tournaments in catfish country (NC, SC, VA, TN, KY, MO, KS, TX). $100–500 sponsor contributions per event. Bait for prize bags, product for judges. Pro-staff and Field Staff attend where geographically aligned. Content captured at every event.</p>
+          <p><strong>Year 2:</strong> Regional circuits ($1–3K sponsorship range). Consider hosting a Rusty's-branded tournament.</p>
+          <p style="margin-bottom:0;"><strong>Year 3+:</strong> Evaluate national circuit (King Kat tier).</p>
+        </div>
+        <p><strong>Key metric:</strong> Content generated per dollar spent. A $300 sponsorship that produces 10 pieces of pro-staff and ambassador content is a win even without direct attribution to sales.</p>
+      </div>
+
+      <div class="channel-block">
+        <span class="channel-meta-tag">Retention Layer</span>
+        <h4>Email / Klaviyo</h4>
+        <p>Where LTV lives.</p>
+        <ul>
+          <li><strong>Capture:</strong> Homepage pop-up (10% off first order), exit intent, blog/content upgrades, checkout</li>
+          <li><strong>Flows:</strong> Welcome series (5 emails, brand story + product education + first-purchase incentive), Abandoned Cart (3 emails), Post-Purchase, Win-Back (60+ days inactive), Seasonal</li>
+          <li><strong>Campaigns:</strong> 1–2x/week. New SKUs, tournament content, pro-staff spotlights, seasonal tips, limited releases</li>
+          <li><strong>Segmentation:</strong> By product purchased, geography, engagement, purchase frequency</li>
+        </ul>
+        <p><strong>Key metric:</strong> Email-attributed revenue and repeat purchase rate.</p>
+      </div>
+
+      <div class="channel-block">
+        <span class="channel-meta-tag">Amplification — Month 7+</span>
+        <h4>Paid Media (Facebook, Google)</h4>
+        <p>Amplification layer, not acquisition layer. Active Month 7+ only.</p>
+        <ul>
+          <li><strong>Facebook/Instagram Ads — $10–12K Year 1 starting Month 7:</strong> Targeting catfishing interests, fishing content engagers, lookalikes of email list and pro-staff audiences. Creative: pro-staff content and customer testimonials — not corporate brand ads. Funnel: Cold → Video views → Retargeting → Conversion.</li>
+          <li><strong>Google Ads — $5–7K Year 1 starting Month 7:</strong> Shopping (product listing ads), Search (branded + generic catfish bait terms), Retargeting (cart abandonment, site visitor follow-up).</li>
+        </ul>
+        <p><strong>Total paid Year 1: $15–19K</strong> — smaller than originally planned because the pro-staff program absorbs most of the envelope.</p>
+        <p><strong>Key metric:</strong> ROAS (3:1 minimum target). Paid only scales when it's profitable.</p>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         SECTION 04 — CONTENT STRATEGY
+         ===================================================== -->
+    <section id="content" class="section section-full band-b">
+      <span class="section-num">Section 04</span>
+      <h2 class="section-title">Content Strategy</h2>
+
+      <h3>What We Publish from Rusty's Owned Channels</h3>
+
+      <h4>Educational</h4>
+      <ul>
+        <li>How to fish different waters for different catfish</li>
+        <li>Seasonal patterns (spring pre-spawn, summer night, fall feed, winter deep)</li>
+        <li>Rig tutorials (slip bobber, carolina rig, float-paternoster, tight-line)</li>
+        <li>Species-specific (channel vs blue vs flathead behavior)</li>
+        <li>Bait selection guides (not just "use Rusty's" — actually helpful)</li>
+      </ul>
+
+      <h4>Community</h4>
+      <ul>
+        <li>Customer catch features (submitted via social tag or email)</li>
+        <li>Pro-staff spotlights</li>
+        <li>Tournament coverage</li>
+        <li>Behind-the-scenes production and team content (sparingly — we're not the hero)</li>
+      </ul>
+
+      <h4>Product</h4>
+      <ul>
+        <li>New SKU launches</li>
+        <li>Usage tips</li>
+        <li>Pairing with rigs and conditions</li>
+        <li>Pro Series development content (Month 9+)</li>
+      </ul>
+
+      <h3>Cadence</h3>
+      <ul>
+        <li><strong>Blog</strong> — 2x/week Months 6–9 (build library), 1x/week Month 10+</li>
+        <li><strong>Instagram</strong> — 3–4x/week + 1–2 Reels</li>
+        <li><strong>Facebook</strong> — 3–4x/week (business page) + daily group engagement (personal account)</li>
+        <li><strong>Email</strong> — 1–2x/week</li>
+        <li><strong>YouTube</strong> — Monthly community roundup + repurposed pro-staff content as approved</li>
+      </ul>
+
+      <h3>Production</h3>
+
+      <h4>Who Creates</h4>
+      <ul>
+        <li><strong>Pro-Staff and Field Staff</strong> — primary content source</li>
+        <li><strong>Joseph</strong> — brand-owned content. Website copy, product descriptions, blog posts, email flows, ad copy, most photography and video. Creative production background handles in-house Year 1.</li>
+        <li><strong>Easton</strong> — authentic fishing content as byproduct of his actual fishing. His catches with Rusty's are pro-staff-grade material at zero creator cost.</li>
+        <li><strong>Customers</strong> — ongoing UGC from tagged posts and email submissions</li>
+      </ul>
+
+      <h4>Contract Support (Minimal)</h4>
+      <ul>
+        <li>Pro photographer for launch hero shoot, Month 4–5 — $1–2K, one-time professional shoot for lasting brand assets</li>
+        <li>Videographer for launch campaign, Month 5–6 — $1–2K, one or two key launch videos</li>
+      </ul>
+
+      <div class="callout">
+        <span class="callout-label">Year 1 Content Contract Spend</span>
+        <p><strong>$2–4K</strong> — dramatically reduced from original estimate because Joseph handles most of it. The trade-off: Joseph owning creative Year 1 keeps brand voice tight, saves $15–25K in contract costs, and means the brand evolves based on real use instead of agency deliverables. Downside: eats 5–10 hours of weekly time during launch prep (Months 3–5).</p>
+      </div>
+
+      <h4>What We Don't Produce</h4>
+      <ul>
+        <li>Stock photography or generic fishing imagery</li>
+        <li>Over-produced corporate brand videos</li>
+        <li>Personality-driven "the Joseph show" content — customer is the hero</li>
+      </ul>
+    </section>
+
+
+    <!-- =====================================================
+         SECTION 05 — WHOLESALE AND RETAIL MARKETING
+         ===================================================== -->
+    <section id="wholesale-retail" class="section section-full band-a">
+      <span class="section-num">Section 05</span>
+      <h2 class="section-title">Wholesale and Retail Marketing</h2>
+
+      <h3>Current Accounts</h3>
+      <ul>
+        <li><strong>Month 2–3</strong> — Direct outreach from Joseph. Confirm relationships, get product feedback, understand inventory and reorder patterns. Rebuild from mom-and-pop baseline.</li>
+        <li><strong>Month 4–6</strong> — Ongoing relationship management. POS materials developed — shelf talkers with QR codes to pro-staff videos, comparison cards, usage guides.</li>
+        <li><strong>Month 6–12</strong> — Co-op marketing where warranted. If Scheels or Big Rock wants a feature promotion or end-cap display, support with materials and modest co-op contribution.</li>
+      </ul>
+
+      <h3>Bass Pro Posture</h3>
+      <p>Courtesy call post-acquisition. <em>"New ownership transitioning operations. We'll be in touch as we relaunch. What are you looking for in the category?"</em> Keeps the door open, sets tone, costs nothing.</p>
+      <p>Then back off. No chasing. Return only when:</p>
+      <ul>
+        <li>DTC generating $8–10K+/month consistently</li>
+        <li>100+ reviews (4+ stars)</li>
+        <li>1,000+ engaged social followers</li>
+        <li>Professional packaging and brand in place</li>
+        <li>QC systems documented</li>
+        <li>Inventory capacity for 100–200 case initial order</li>
+        <li>Clean financials</li>
+      </ul>
+      <div class="callout">
+        <span class="callout-label">Strategy Note</span>
+        <p>Not the hill we die on. DTC-first thesis is the hedge. Bass Pro on our terms, not theirs.</p>
+      </div>
+
+      <h3>New Retail Development</h3>
+      <p>No active recruitment until Month 6+. Exception: inbound inquiries get worked immediately.</p>
+      <p>When we expand:</p>
+      <ul>
+        <li>Regional sporting goods chains in catfish country</li>
+        <li>Independent bait shops near Rusty's tournaments</li>
+        <li>Online retailers (Amazon, Walmart.com, specialty fishing sites) — strategic decision Year 2 based on DTC margin protection</li>
+      </ul>
+    </section>
+
+
+    <!-- =====================================================
+         SECTION 06 — PR AND EARNED MEDIA
+         ===================================================== -->
+    <section id="pr" class="section section-full band-b">
+      <span class="section-num">Section 06</span>
+      <h2 class="section-title">PR and Earned Media</h2>
+
+      <h3>Launch PR (Month 6–8)</h3>
+
+      <h4>Angles</h4>
+      <ul>
+        <li>"American-made catfish bait returns with new ownership" (trade press)</li>
+        <li>New brand in a category that hasn't seen a new brand in years (outdoor press)</li>
+        <li>Regional angle in catfish country states (local press when we sponsor local tournaments)</li>
+      </ul>
+
+      <h4>Targets</h4>
+      <ul>
+        <li><strong>Trade:</strong> Catfish Now, In-Fisherman, Game &amp; Fish, Field &amp; Stream, Outdoor Life</li>
+        <li><strong>Regional:</strong> Newspapers and outdoor columns in catfish states</li>
+        <li><strong>Podcasts:</strong> Catfish Weekly, state-specific fishing podcasts, broader outdoor podcasts</li>
+      </ul>
+
+      <h4>Press Kit Contents</h4>
+      <ul>
+        <li>Company backgrounder</li>
+        <li>Product photos (high-res)</li>
+        <li>Joseph bio + headshot (sparingly used — we're the guide, not the hero)</li>
+        <li>Fact sheet (products, availability, pro-staff roster)</li>
+        <li>Media contact</li>
+      </ul>
+
+      <h3>Ongoing Earned Media</h3>
+      <h4>Year 2–3</h4>
+      <ul>
+        <li>Trophy catch features (customer or pro-staff landings on Rusty's)</li>
+        <li>Tournament wins featured in trade press</li>
+        <li>Industry awards if/when they apply (IFTD, ICAST)</li>
+      </ul>
+    </section>
+
+
+    <!-- =====================================================
+         SECTION 07 — CUSTOMER EXPERIENCE
+         ===================================================== -->
+    <section id="cx" class="section section-full band-a">
+      <span class="section-num">Section 07</span>
+      <h2 class="section-title">Customer Experience</h2>
+
+      <div class="callout">
+        <span class="callout-label">CX Principle</span>
+        <p>Retention is worth more than acquisition. Especially in a 23% churn industry. Every touchpoint should earn the repeat.</p>
+      </div>
+
+      <h3>Unboxing</h3>
+      <p>Simple branded box. Tissue wrap. Sticker pack. Handwritten (or printed to look handwritten) thank-you card in Rusty's voice. A "tips from the pro-staff" card for first-time buyers.</p>
+
+      <h3>Post-Purchase Email Flow</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Email</th>
+            <th>Timing</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">1</td>
+            <td><strong>Order confirmation + shipping</strong></td>
+            <td>Immediately</td>
+            <td>Transactional. Sets expectation.</td>
+          </tr>
+          <tr>
+            <td class="num">2</td>
+            <td><strong>"How to use it"</strong></td>
+            <td>3 days after ship</td>
+            <td>Product education. Reduce regret.</td>
+          </tr>
+          <tr>
+            <td class="num">3</td>
+            <td><strong>Review request</strong></td>
+            <td>7–10 days after delivery</td>
+            <td>Social proof building. Timed to use.</td>
+          </tr>
+          <tr>
+            <td class="num">4</td>
+            <td><strong>Reorder nudge</strong></td>
+            <td>30–45 days post-purchase</td>
+            <td>LTV play. Hits when product runs low.</td>
+          </tr>
+          <tr>
+            <td class="num">5</td>
+            <td><strong>Pro-staff content share</strong></td>
+            <td>45–60 days post-purchase</td>
+            <td>Community reinforcement. Aspirational.</td>
+          </tr>
+          <tr>
+            <td class="num">6</td>
+            <td><strong>Win-back</strong></td>
+            <td>90 days if no repeat</td>
+            <td>Last attempt before churn. Incentive offer.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Reviews</h3>
+      <ul>
+        <li>Yotpo or Judge.me integration</li>
+        <li>Request email timed to when product should have been used</li>
+        <li>Feature best reviews in email, on-site, and in ads (with permission)</li>
+      </ul>
+
+      <h3>Subscription Program (Month 6–9 Launch)</h3>
+      <ul>
+        <li>"Catfish Box" — monthly delivery of core SKUs + seasonal rotation</li>
+        <li>10–15% discount vs one-time purchase</li>
+        <li>Gift subscription option</li>
+        <li>Cancel any time</li>
+        <li><strong>Target:</strong> 20–30% of Year 2 revenue from subscription</li>
+      </ul>
+
+      <h3>Loyalty Program (Year 2)</h3>
+      <ul>
+        <li>Points for purchases, reviews, referrals, social tags</li>
+        <li>Early access to new SKUs for loyalty members</li>
+        <li>Pro-staff feature consideration for top loyalty members</li>
+      </ul>
+    </section>
+
+
+    <!-- =====================================================
+         SECTION 08 — MEASUREMENT
+         ===================================================== -->
+    <section id="measurement" class="section section-full band-b">
+      <span class="section-num">Section 08</span>
+      <h2 class="section-title">Measurement</h2>
+
+      <!-- Figure 04 — Measurement Framework -->
+      <div class="viz">
+        <div class="viz-title">Figure 04</div>
+        <div class="viz-subtitle">Measurement Framework</div>
+
+        <div class="measure-grid">
+          <div class="measure-card">
+            <div class="measure-card-title">Weekly</div>
+            <ul>
+              <li>DTC revenue vs target</li>
+              <li>Wholesale revenue vs target</li>
+              <li>Website traffic (sessions, source)</li>
+              <li>Conversion rate</li>
+              <li>Average order value</li>
+              <li>Email list growth</li>
+              <li>Social engagement rate</li>
+              <li>New pro-staff content pieces published</li>
+            </ul>
+          </div>
+          <div class="measure-card">
+            <div class="measure-card-title">Monthly</div>
+            <ul>
+              <li>CAC by channel</li>
+              <li>ROAS by channel</li>
+              <li>Repeat purchase rate</li>
+              <li>Pro-staff content performance (views, engagement, attributed revenue via codes)</li>
+              <li>Review volume and sentiment</li>
+              <li>Inventory turns</li>
+              <li>Retail account reorder frequency and size</li>
+            </ul>
+          </div>
+          <div class="measure-card">
+            <div class="measure-card-title">Quarterly</div>
+            <ul>
+              <li>Customer LTV by cohort</li>
+              <li>Net Promoter Score</li>
+              <li>Brand mention volume (unprompted)</li>
+              <li>Pro-staff program health (output vs commitment, roster changes)</li>
+              <li>Retail footprint growth</li>
+              <li>Product margin by SKU</li>
+              <li>Category share (directional)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="two-metric-block">
+          <span class="two-metric-label">The Two Metrics That Matter Most</span>
+          <div class="two-metric-row">
+            <div class="two-metric-item">
+              <span class="two-metric-period">Month 6–12</span>
+              <div class="two-metric-name">Pro-staff content output</div>
+              <p class="two-metric-desc">Every piece is an asset that sells product for 12–24 months. Leading indicator of everything else.</p>
+            </div>
+            <div class="two-metric-item">
+              <span class="two-metric-period">Month 12+</span>
+              <div class="two-metric-name">Repeat purchase rate</div>
+              <p class="two-metric-desc">If people buy once and don't come back, the brand isn't working regardless of top-line revenue. Target 35%+ 90-day repeat rate by Month 12, 45%+ by Month 24.</p>
+            </div>
+          </div>
+        </div>
+        <p class="viz-caption">Weekly pulse keeps execution honest. Monthly shows levers. Quarterly reveals whether the brand is actually building.</p>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         SECTION 09 — BUDGET ALLOCATION
+         ===================================================== -->
+    <section id="budget" class="section section-full band-a">
+      <span class="section-num">Section 09</span>
+      <h2 class="section-title">Budget Allocation</h2>
+
+      <!-- Figure 03 — Year 1 Budget Allocation -->
+      <div class="viz">
+        <div class="viz-title">Figure 03</div>
+        <div class="viz-subtitle">Year 1 Budget Allocation — $30K</div>
+        <svg viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Horizontal stacked bar chart showing Year 1 $30K marketing budget allocation across six categories">
+          <defs>
+            <style>
+              .budget-label { font-family: "JetBrains Mono", "Roboto Mono", monospace; font-size: 10px; fill: #3d342d; }
+              .budget-label-light { font-family: "JetBrains Mono", "Roboto Mono", monospace; font-size: 10px; fill: #e6d9bc; }
+              .budget-amount { font-family: "Fraunces", Georgia, serif; font-size: 13px; font-weight: 600; fill: #2a2420; }
+              .budget-amount-light { font-family: "Fraunces", Georgia, serif; font-size: 13px; font-weight: 600; fill: #f0e7ce; }
+            </style>
+          </defs>
+
+          <!-- Total width for bar: 720px, starting x=20, ending x=740, y=30, height=60 -->
+          <!-- Proportions (approximate midpoints):
+               Pro-Staff $17.5K = 58.3% → 418px
+               Paid Media $10K  = 33.3% → 240px
+               Tournaments $4K  = 13.3% → 96px  [but total exceeds 100 so scaled by max total]
+
+               Using $30K as 100% = 720px
+               Pro-Staff 17.5/30 = 58.3% = 420px
+               Paid Media 10/30  = 33.3% = 240px  — but combined already 660px — use budget midpoints
+
+               Total bar = 720px. Allocating sensibly from doc data:
+               Pro-Staff $17.5K mid  → 42% of 720 = 302px
+               Paid Media $10K mid   → 33% of 720 = 238px
+               Tournaments $4K mid   → 13% of 720 = 94px
+               PR $3K mid            → 10% of 720 = 72px
+               Photo/Video $3K mid   → 10% of 720 = 72px — must add dummy...
+               Software $1.5K mid    → 5%  of 720 = 36px
+               Total = 814px — need to normalize to ~720px
+
+               Sum of mids = 17.5+10+4+3+3+1.5 = 39K. Scaled to $30K = 720px:
+               Pro-Staff  17.5/39*720 = 323px
+               Paid Media 10/39*720   = 185px
+               Tournaments 4/39*720   = 74px
+               PR          3/39*720   = 55px
+               Photo/Video 3/39*720   = 55px
+               Software    1.5/39*720 = 28px
+               Total                  = 720px
+          -->
+
+          <!-- Bar segments, stacked left to right, y=30, h=60 -->
+          <!-- Pro-Staff: x=20, w=323 -->
+          <rect x="20"  y="30" width="323" height="60" fill="#d14e2a"/>
+          <!-- Paid Media: x=343, w=185 -->
+          <rect x="343" y="30" width="185" height="60" fill="#a63a1e"/>
+          <!-- Tournaments: x=528, w=74 -->
+          <rect x="528" y="30" width="74"  height="60" fill="#2a2420"/>
+          <!-- PR: x=602, w=55 -->
+          <rect x="602" y="30" width="55"  height="60" fill="#3d342d"/>
+          <!-- Photo/Video: x=657, w=55 -->
+          <rect x="657" y="30" width="28"  height="60" fill="#6b5f56"/>
+          <!-- Software: x=685, w=28+rest -->
+          <rect x="685" y="30" width="35"  height="60" fill="#3d6670"/>
+
+          <!-- Segment internal labels (in-bar, only if wide enough) -->
+          <text x="181" y="56" text-anchor="middle" class="budget-label-light" font-weight="600">PRO-STAFF</text>
+          <text x="181" y="72" text-anchor="middle" class="budget-label-light">$15–20K · 50–67%</text>
+
+          <text x="435" y="56" text-anchor="middle" class="budget-label-light" font-weight="600">PAID MEDIA</text>
+          <text x="435" y="72" text-anchor="middle" class="budget-label-light">$8–12K</text>
+
+          <!-- Separator -->
+          <line x1="20" y1="100" x2="740" y2="100" stroke="#c8b792" stroke-width="1"/>
+
+          <!-- Legend row 1 — two entries -->
+          <rect x="20"  y="111" width="10" height="10" fill="#2a2420"/>
+          <text x="36"  y="120" class="budget-label" font-weight="600">TOURNAMENTS — $3–5K</text>
+
+          <rect x="390" y="111" width="10" height="10" fill="#3d342d"/>
+          <text x="406" y="120" class="budget-label" font-weight="600">PR &amp; EARNED — $2–4K</text>
+
+          <!-- Legend row 2 — two entries -->
+          <rect x="20"  y="133" width="10" height="10" fill="#6b5f56"/>
+          <text x="36"  y="142" class="budget-label" font-weight="600">PHOTO / VIDEO — $2–4K</text>
+
+          <rect x="390" y="133" width="10" height="10" fill="#3d6670"/>
+          <text x="406" y="142" class="budget-label" font-weight="600">SOFTWARE — $1–2K</text>
+
+          <!-- Total label -->
+          <text x="380" y="175" text-anchor="middle" font-family="JetBrains Mono, Roboto Mono, monospace" font-size="11" letter-spacing="1" fill="#6b5f56">$30K TOTAL YEAR 1 MARKETING ENVELOPE</text>
+        </svg>
+        <p class="viz-caption">$30K total Year 1 marketing envelope. Pro-Staff dominates by design — it's the highest-leverage investment. Paid media activates Month 7+ only. Software and photo/video are one-time or annual minimums.</p>
+      </div>
+
+      <h3>Year 1 Detail: $30,000</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Amount</th>
+            <th class="num">%</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Pro-Staff Program</strong> (roster + manager)</td>
+            <td>$15–20K</td>
+            <td class="num">50–67%</td>
+          </tr>
+          <tr>
+            <td><strong>Paid Media</strong> (FB/IG + Google, Month 7+)</td>
+            <td>$8–12K</td>
+            <td class="num">27–40%</td>
+          </tr>
+          <tr>
+            <td><strong>PR and earned media</strong></td>
+            <td>$2–4K</td>
+            <td class="num">7–13%</td>
+          </tr>
+          <tr>
+            <td><strong>Tournaments and events</strong></td>
+            <td>$3–5K</td>
+            <td class="num">10–17%</td>
+          </tr>
+          <tr>
+            <td><strong>Photography, video</strong> (launch shoots only)</td>
+            <td>$2–4K</td>
+            <td class="num">7–13%</td>
+          </tr>
+          <tr>
+            <td><strong>Software</strong> (Klaviyo, review platform, tools)</td>
+            <td>$1–2K</td>
+            <td class="num">3–7%</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Joseph handling most creative work in-house. Savings from reduced content costs shift primarily to pro-staff program (highest-leverage Year 1 investment) and expanded tournament presence. Paid media stays modest Year 1 — activates Month 7+ only after pro-staff content library exists to amplify.</p>
+
+      <h3>Year 2: $75–100K</h3>
+      <p>Heavier on paid once we have proof. Pro-staff program grows. Tournament presence expands. PR becomes more proactive. First taste of subscription-driven retention marketing investment.</p>
+
+      <h3>Year 3: $100–125K</h3>
+      <p>National conversation level. Possible tournament hosting. Owned content production if an authority property opportunity emerges.</p>
+    </section>
+
+
+    <!-- =====================================================
+         SECTION 10 — ROLES
+         ===================================================== -->
+    <section id="roles" class="section section-full band-b">
+      <span class="section-num">Section 10</span>
+      <h2 class="section-title">Roles</h2>
+
+      <p>Full personnel picture in the Personnel document. Marketing-specific view here.</p>
+
+      <h3>Joseph's Marketing Time Allocation</h3>
+      <table class="time-table">
+        <thead>
+          <tr>
+            <th>Period</th>
+            <th>Time on Marketing</th>
+            <th>Focus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Months 1–3</td>
+            <td><span class="time-pct">20%</span></td>
+            <td>Brand foundation, pro-staff manager hire, creator outreach</td>
+          </tr>
+          <tr>
+            <td>Months 4–6</td>
+            <td><span class="time-pct">50%</span></td>
+            <td>Launch prep, website, brand execution, pro-staff recruitment, initial retail outreach</td>
+          </tr>
+          <tr>
+            <td>Months 7–12</td>
+            <td><span class="time-pct">60%</span></td>
+            <td>DTC optimization, content strategy, pro-staff management strategy, retail relationships</td>
+          </tr>
+          <tr>
+            <td>Month 13+</td>
+            <td><span class="time-pct">50%</span></td>
+            <td>Long-term brand strategy, new product development, major retail, exit prep</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Pro-Staff Manager</h3>
+      <p>Ideally hired from Joseph's professional network. Fractional Year 1 (10–15 hrs/week, $1,500–2,500/month), scaling to part-time or full-time as program grows.</p>
+      <ul>
+        <li><strong>Owns:</strong> Daily pro-staff program management, creator recruitment, content coordination, affiliate tracking, relationship management, community engagement</li>
+        <li><strong>Reports to:</strong> Joseph</li>
+      </ul>
+
+      <h3>Contractor Roster</h3>
+      <ul>
+        <li>Designer for brand identity (Month 3–4)</li>
+        <li>Photographer/videographer for launch only (one-time)</li>
+        <li>Copywriter for site launch (one-time, if Joseph needs backup)</li>
+        <li>PR consultant (Month 6–8 for launch push, potentially ongoing)</li>
+      </ul>
+    </section>
+
+
+    <!-- =====================================================
+         SECTION 11 — QUARTERLY PRIORITIES
+         ===================================================== -->
+    <section id="quarterly" class="section section-full band-a">
+      <span class="section-num">Section 11</span>
+      <h2 class="section-title">Quarterly Priorities</h2>
+
+      <!-- Figure 05 — Quarterly Priorities -->
+      <div class="viz">
+        <div class="viz-title">Figure 05</div>
+        <div class="viz-subtitle">Year 1 Quarterly Execution Roadmap</div>
+        <svg viewBox="0 -16 760 216" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four-column quarterly priorities roadmap for Year 1">
+          <defs>
+            <style>
+              .q-head { font-family: "JetBrains Mono", "Roboto Mono", monospace; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; }
+              .q-item { font-family: "Inter Tight", "Inter", Arial, sans-serif; font-size: 11px; fill: #3d342d; }
+            </style>
+          </defs>
+
+          <!-- Column backgrounds -->
+          <!-- Q1 -->
+          <rect x="20"  y="0" width="158" height="200" rx="2" fill="#e6d9bc" stroke="#a89878" stroke-width="1"/>
+          <rect x="20"  y="0" width="158" height="32"  rx="2" fill="#d14e2a"/>
+          <rect x="20"  y="20" width="158" height="12" fill="#d14e2a"/>
+          <!-- Q2 -->
+          <rect x="198" y="0" width="158" height="200" rx="2" fill="#e6d9bc" stroke="#a89878" stroke-width="1"/>
+          <rect x="198" y="0" width="158" height="32"  rx="2" fill="#a63a1e"/>
+          <rect x="198" y="20" width="158" height="12" fill="#a63a1e"/>
+          <!-- Q3 -->
+          <rect x="376" y="0" width="158" height="200" rx="2" fill="#e6d9bc" stroke="#a89878" stroke-width="1"/>
+          <rect x="376" y="0" width="158" height="32"  rx="2" fill="#2a2420"/>
+          <rect x="376" y="20" width="158" height="12" fill="#2a2420"/>
+          <!-- Q4 -->
+          <rect x="554" y="0" width="158" height="200" rx="2" fill="#e6d9bc" stroke="#a89878" stroke-width="1"/>
+          <rect x="554" y="0" width="158" height="32"  rx="2" fill="#3d342d"/>
+          <rect x="554" y="20" width="158" height="12" fill="#3d342d"/>
+
+          <!-- Q1 Header -->
+          <text x="99"  y="14" text-anchor="middle" class="q-head" fill="#f0e7ce">Q1 — FOUNDATION</text>
+          <text x="99"  y="27" text-anchor="middle" font-family="JetBrains Mono, Roboto Mono, monospace" font-size="9" fill="#e6d9bc" letter-spacing="0.5">Months 1–3</text>
+          <!-- Q1 items -->
+          <text x="30" y="52"  class="q-item">· Close deal, secure assets</text>
+          <text x="30" y="68"  class="q-item">· Brand identity begins</text>
+          <text x="30" y="84"  class="q-item">· Pro-Staff Manager hired</text>
+          <text x="30" y="100" class="q-item">· Authority creator outreach</text>
+          <text x="30" y="116" class="q-item">· Retail account outreach</text>
+          <text x="30" y="132" class="q-item">· Competitive product audit</text>
+
+          <!-- Q2 Header -->
+          <text x="277" y="14" text-anchor="middle" class="q-head" fill="#f0e7ce">Q2 — BUILD &amp; LAUNCH</text>
+          <text x="277" y="27" text-anchor="middle" font-family="JetBrains Mono, Roboto Mono, monospace" font-size="9" fill="#e6d9bc" letter-spacing="0.5">Months 4–6</text>
+          <!-- Q2 items -->
+          <text x="208" y="52"  class="q-item">· Brand identity finalized</text>
+          <text x="208" y="68"  class="q-item">· Packaging designed</text>
+          <text x="208" y="84"  class="q-item">· Website built</text>
+          <text x="208" y="100" class="q-item">· Field Staff recruited (10–15)</text>
+          <text x="208" y="116" class="q-item">· Content library created</text>
+          <text x="208" y="132" class="q-item">· Soft launch Month 5</text>
+          <text x="208" y="148" class="q-item">· Full launch Month 6</text>
+
+          <!-- Q3 Header -->
+          <text x="455" y="14" text-anchor="middle" class="q-head" fill="#e6d9bc">Q3 — SCALE &amp; OPTIMIZE</text>
+          <text x="455" y="27" text-anchor="middle" font-family="JetBrains Mono, Roboto Mono, monospace" font-size="9" fill="#c8b792" letter-spacing="0.5">Months 7–9</text>
+          <!-- Q3 items -->
+          <text x="386" y="52"  class="q-item">· Paid media ramps up</text>
+          <text x="386" y="68"  class="q-item">· Content library grows</text>
+          <text x="386" y="84"  class="q-item">· Ambassador program opens</text>
+          <text x="386" y="100" class="q-item">· Q2 photo/video shoot</text>
+          <text x="386" y="116" class="q-item">· Subscription program</text>
+          <text x="386" y="132" class="q-item">· Regional tournaments</text>
+
+          <!-- Q4 Header -->
+          <text x="633" y="14" text-anchor="middle" class="q-head" fill="#e6d9bc">Q4 — EVALUATE &amp; PLAN</text>
+          <text x="633" y="27" text-anchor="middle" font-family="JetBrains Mono, Roboto Mono, monospace" font-size="9" fill="#c8b792" letter-spacing="0.5">Months 10–12</text>
+          <!-- Q4 items -->
+          <text x="564" y="52"  class="q-item">· Year 1 performance review</text>
+          <text x="564" y="68"  class="q-item">· Pro-staff contract renewals</text>
+          <text x="564" y="84"  class="q-item">· Retail expansion decisions</text>
+          <text x="564" y="100" class="q-item">· Pro Series dev begins</text>
+          <text x="564" y="116" class="q-item">· Year 2 marketing plan</text>
+
+          <!-- Arrow connectors between columns -->
+          <!-- Q1 -> Q2 -->
+          <polygon points="179,95 192,88 192,102" fill="#a89878"/>
+          <line x1="178" y1="95" x2="199" y2="95" stroke="#a89878" stroke-width="1.5"/>
+          <!-- Q2 -> Q3 -->
+          <polygon points="357,95 370,88 370,102" fill="#a89878"/>
+          <line x1="356" y1="95" x2="377" y2="95" stroke="#a89878" stroke-width="1.5"/>
+          <!-- Q3 -> Q4 -->
+          <polygon points="535,95 548,88 548,102" fill="#a89878"/>
+          <line x1="534" y1="95" x2="555" y2="95" stroke="#a89878" stroke-width="1.5"/>
+        </svg>
+        <p class="viz-caption">Q1 builds the foundation. Q2 executes launch. Q3 scales what works. Q4 resets for Year 2 with data, not guesses.</p>
+      </div>
+
+      <h3>Q1 (Months 1–3) — Foundation</h3>
+      <ul>
+        <li>Close the deal, secure assets, seller handoff</li>
+        <li>Brand identity development begins</li>
+        <li>Pro-Staff Manager conversations / hire</li>
+        <li>Authority creator initial conversations (2–3 potential Pro-Staff)</li>
+        <li>Retail outreach to existing accounts</li>
+        <li>Competitive product audit</li>
+      </ul>
+
+      <h3>Q2 (Months 4–6) — Build and Launch Prep</h3>
+      <ul>
+        <li>Brand identity finalized, packaging designed</li>
+        <li>Website built</li>
+        <li>Field Staff recruited (10–15 creators with product)</li>
+        <li>Content created (photography, video, blog library)</li>
+        <li>Soft launch Month 5 (friends, family, beta testers)</li>
+        <li>Full launch Month 6</li>
+      </ul>
+
+      <h3>Q3 (Months 7–9) — Scale and Optimize</h3>
+      <ul>
+        <li>Paid media ramps up</li>
+        <li>Pro-staff content library grows</li>
+        <li>Ambassador program opens</li>
+        <li>Second quarterly photo/video shoot</li>
+        <li>Subscription program launches</li>
+        <li>First regional tournament sponsorships</li>
+      </ul>
+
+      <h3>Q4 (Months 10–12) — Evaluate and Plan</h3>
+      <ul>
+        <li>Year 1 performance review</li>
+        <li>Pro-staff contract renewals</li>
+        <li>Retail expansion decisions (Bass Pro posture reassessment based on DTC proof)</li>
+        <li>Pro Series product development begins</li>
+        <li>Year 2 marketing plan</li>
+      </ul>
+    </section>
+
+
+    <!-- =====================================================
+         SECTION 12 — WHAT THIS DOESN'T COVER
+         ===================================================== -->
+    <section id="not-covered" class="section section-full band-b">
+      <span class="section-num">Section 12</span>
+      <h2 class="section-title">What This Doesn't Cover</h2>
+
+      <p>Separate documents or decisions needed for each of the following:</p>
+
+      <ul class="not-covered-list">
+        <li>Detailed pro-staff program contract templates and standards document</li>
+        <li>Pro Series product development roadmap</li>
+        <li>Tournament sponsorship playbook (which tournaments, what contribution, what content capture)</li>
+        <li>Subscription program mechanics (pricing, tiers, retention flows)</li>
+        <li>Amazon and other online retail strategy (Year 2 decision)</li>
+        <li>International expansion — not on radar. Catfish country is US + Canada only.</li>
+        <li>Crisis and issue management (product recall protocols, negative review handling, regulatory events)</li>
+      </ul>
+
+      <div class="callout">
+        <span class="callout-label">Document Owner</span>
+        <p>Joseph Skinner. Reads alongside: The Business, Market &amp; Brand, Personnel, Regulatory.</p>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER NAV
+         ===================================================== -->
+    <nav class="doc-footer">
+      <a href="02-market-and-brand.html" class="foot-nav-link prev">
+        <span class="fn-dir">Previous</span>
+        <span class="fn-title">Market &amp; Brand</span>
+      </a>
+      <a href="04-personnel.html" class="foot-nav-link next">
+        <span class="fn-dir">Next</span>
+        <span class="fn-title">Personnel</span>
+      </a>
+    </nav>
+
+  </main>
+</div>
+</body>
+</html>

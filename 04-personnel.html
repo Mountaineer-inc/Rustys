@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>if(sessionStorage.getItem('rustys_auth')!=='1'){window.location.replace('index.html');}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personnel &amp; Team — Rusty's Bait &amp; Lures</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .layout { max-width: 1220px; margin: 0 auto; }
+    .viz { padding: 12px 0 4px; }
+    .viz svg { overflow: visible; }
+    .trigger-val {
+      color: var(--rust);
+      font-weight: 600;
+    }
+    .hiring-card {
+      background: var(--kraft-light);
+      border: 1px solid var(--kraft-line);
+      border-radius: 2px;
+      padding: 20px 24px;
+      margin-bottom: 12px;
+    }
+    .hiring-card-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rust);
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .hiring-card-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+    .hiring-card p {
+      margin: 4px 0 0;
+      font-size: 14px;
+      color: var(--charcoal-soft);
+    }
+    .phase-header {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--charcoal-mute);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .dev-table td:first-child {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--rust-deep);
+      white-space: nowrap;
+    }
+    .callout-teal {
+      background: var(--kraft-light);
+      border-left: 4px solid var(--teal);
+      padding: 24px 28px;
+      margin: 32px 0;
+      border-radius: 2px;
+    }
+    .callout-teal .callout-label {
+      color: var(--teal);
+    }
+    .callout-teal p:last-child { margin-bottom: 0; }
+    .two-col-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 32px;
+    }
+    @media (max-width: 600px) {
+      .two-col-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+
+  <aside class="sidebar">
+    <a href="index.html" style="text-decoration:none;">
+      <div class="brand-mark">Rusty's <em>Bait &amp; Lures</em></div>
+      <div class="brand-tag">Strategy · 2026</div>
+    </a>
+
+    <div class="nav-section">Documents</div>
+    <ul class="nav-list">
+      <li><a href="01-business.html"><span class="nav-num">01</span> The Business</a></li>
+      <li><a href="02-market-and-brand.html"><span class="nav-num">02</span> Market &amp; Brand</a></li>
+      <li><a href="03-go-to-market.html"><span class="nav-num">03</span> Go-to-Market</a></li>
+      <li><a href="04-personnel.html" class="current"><span class="nav-num">04</span> Personnel</a></li>
+      <li><a href="05-regulatory.html"><span class="nav-num">05</span> Regulatory</a></li>
+      <li><a href="06-formaldehyde-free.html"><span class="nav-num">06</span> Formaldehyde-Free</a></li>
+    </ul>
+
+    <div class="nav-section">On This Page</div>
+    <ul class="nav-toc">
+      <li><a href="#principle">Operating Principle</a></li>
+      <li><a href="#team-map">Team Map — Year 1</a></li>
+      <li><a href="#joseph">Joseph — President</a></li>
+      <li><a href="#prod-lead">Operations Manager</a></li>
+      <li><a href="#prostaff-mgr">Pro-Staff Manager</a></li>
+      <li><a href="#easton">Easton — Part-Time</a></li>
+      <li><a href="#pt-help">Part-Time Production Help</a></li>
+      <li><a href="#creative">Creative &amp; Content Work</a></li>
+      <li><a href="#hiring-roadmap">Hiring Roadmap</a></li>
+      <li><a href="#labor-rollup">Year 1 Labor Roll-Up</a></li>
+      <li><a href="#yr2-3">Year 2 and Year 3 Labor</a></li>
+      <li><a href="#easton-dev">Easton's Development Path</a></li>
+      <li><a href="#hiring-principles">Hiring Principles</a></li>
+      <li><a href="#open-items">Open Items</a></li>
+    </ul>
+  </aside>
+
+  <main class="content">
+
+    <!-- ======================================================
+         DOCUMENT HEADER
+         ====================================================== -->
+    <header class="doc-header">
+      <div class="doc-eyebrow">DOCUMENT 04</div>
+      <h1 class="doc-title"><em>Personnel</em> &amp; Team</h1>
+      <p class="doc-subtitle">Who does what, how much time, how much cost, when</p>
+      <div class="doc-meta">
+        <div class="doc-meta-item">
+          <span class="doc-meta-label">Prepared for</span>
+          <span class="doc-meta-value">Joseph Skinner</span>
+        </div>
+        <div class="doc-meta-item">
+          <span class="doc-meta-label">Updated</span>
+          <span class="doc-meta-value">April 2026</span>
+        </div>
+        <div class="doc-meta-item">
+          <span class="doc-meta-label">Team Size Y1</span>
+          <span class="doc-meta-value">4 roles</span>
+        </div>
+      </div>
+    </header>
+
+
+    <!-- ======================================================
+         SECTION 1 — OPERATING PRINCIPLE
+         ====================================================== -->
+    <section id="principle" class="section section-full" style="background:#e6d9bc; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Operating Principle</h2>
+
+      <p>The previous ownership stalled at $52K because one person can only do so much. We are not making that mistake. But we are also not making the opposite mistake — hiring a full team before revenue supports it and watching Year 1 bleed out.</p>
+
+      <div class="pullquote">Hire for the work that exists, with a clear trigger for the work that's coming.</div>
+
+      <p>Every role has a reason it exists <em>now</em> and a performance trigger for when it scales. No "nice to have" roles in Year 1.</p>
+
+      <div class="callout">
+        <span class="callout-label">The Math We're Protecting</span>
+        <p>Joseph's comp comes from Don's payroll across construction businesses — not from Rusty's P&amp;L. That keeps Year 1 labor lean: Joseph runs production hands-on through Month 8 (target). A part-time contractor supports production throughout. The Operations Manager comes on board Month 9&ndash;10 when process is stable and documented. Pro-Staff Manager (fractional) and Easton round out the year. Total labor cost to Rusty's P&amp;L: ~$67&ndash;93K.</p>
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         SECTION 2 — TEAM MAP
+         ====================================================== -->
+    <section id="team-map" class="section section-full" style="background:#ede2c5; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
+      <span class="section-num">02</span>
+      <h2 class="section-title">The Team Map (Year 1)</h2>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Weekly Hours</th>
+            <th>Annual Cost</th>
+            <th>When</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>President (Joseph)</strong></td>
+            <td>Full-time on Don's payroll</td>
+            <td>20–30 hrs on Rusty's</td>
+            <td class="num">$0 to Rusty's P&amp;L</td>
+            <td>Day 1</td>
+          </tr>
+          <tr>
+            <td><strong>Operations Manager</strong></td>
+            <td>Full-time W2</td>
+            <td>40</td>
+            <td class="num">$75–85K ann. (~$29–36K Y1)</td>
+            <td>Month 9–10</td>
+          </tr>
+          <tr>
+            <td><strong>Pro-Staff Manager</strong></td>
+            <td>Fractional contractor</td>
+            <td>10–15</td>
+            <td class="num">$18–30K</td>
+            <td>Month 2–3</td>
+          </tr>
+          <tr>
+            <td><strong>Easton</strong></td>
+            <td>Part-time W2</td>
+            <td>10–15 school / 25–30 summer</td>
+            <td class="num">~$10–14K</td>
+            <td>Day 1</td>
+          </tr>
+          <tr>
+            <td><strong>Part-time Production Contractor</strong></td>
+            <td>Contractor (Months 1–8)</td>
+            <td>10–25</td>
+            <td class="num">$10–13K</td>
+            <td>Month 1–8</td>
+          </tr>
+          <tr class="total">
+            <td><strong>Core Team Cost</strong></td>
+            <td></td>
+            <td></td>
+            <td class="num"><strong>~$67–93K Year 1</strong></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Plus a trimmed contract roster: pro photographer for launch shoot, videographer for launch campaign, PR consultant, specialist designer ad hoc. Joseph handles design, website build, copywriting, and ongoing photography/video in-house Year 1.</p>
+
+      <!-- Figure 01 — Org Evolution -->
+      <div class="viz" style="max-width:100%;">
+        <div class="viz-title">Figure 01</div>
+        <div class="viz-subtitle">Org Evolution — Year 1 → Year 2 → Year 3</div>
+        <svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" aria-label="Organizational chart showing team structure evolution across Year 1, Year 2, and Year 3">
+          <defs>
+            <style>
+              .svg-mono { font-family: "JetBrains Mono", "Roboto Mono", monospace; }
+              .svg-body { font-family: "Inter Tight", "Inter", Arial, sans-serif; }
+            </style>
+          </defs>
+
+          <!-- ===== YEAR 1 COLUMN ===== -->
+          <!-- Header -->
+          <text x="120" y="22" text-anchor="middle" class="svg-mono" font-size="11" letter-spacing="3" fill="#6b5f56" font-weight="600">YEAR 1</text>
+
+          <!-- Joseph box -->
+          <rect x="40" y="32" width="160" height="44" rx="2" fill="#d14e2a"/>
+          <text x="120" y="52" text-anchor="middle" class="svg-body" font-size="10" letter-spacing="1" fill="#f0e7ce" font-weight="600">PRESIDENT</text>
+          <text x="120" y="67" text-anchor="middle" class="svg-body" font-size="13" fill="#f0e7ce" font-weight="600">Joseph</text>
+
+          <!-- connector line down from Joseph -->
+          <line x1="120" y1="76" x2="120" y2="100" stroke="#a89878" stroke-width="1.5"/>
+          <!-- horizontal branch -->
+          <line x1="50" y1="100" x2="190" y2="100" stroke="#a89878" stroke-width="1.5"/>
+
+          <!-- Operations Manager -->
+          <line x1="50" y1="100" x2="50" y2="116" stroke="#a89878" stroke-width="1.5"/>
+          <rect x="22" y="116" width="106" height="44" rx="2" fill="#2a2420"/>
+          <text x="75" y="136" text-anchor="middle" class="svg-body" font-size="10" fill="#d8c9a8">Ops</text>
+          <text x="75" y="150" text-anchor="middle" class="svg-body" font-size="10" fill="#d8c9a8">Manager</text>
+
+          <!-- Pro-Staff Mgr -->
+          <line x1="120" y1="100" x2="120" y2="116" stroke="#a89878" stroke-width="1.5"/>
+          <rect x="88" y="116" width="106" height="44" rx="2" fill="#2a2420"/>
+          <text x="141" y="136" text-anchor="middle" class="svg-body" font-size="10" fill="#d8c9a8">Pro-Staff</text>
+          <text x="141" y="150" text-anchor="middle" class="svg-body" font-size="10" fill="#d8c9a8">Manager</text>
+          <text x="141" y="175" text-anchor="middle" class="svg-mono" font-size="9" fill="#d14e2a" letter-spacing="1">FRACTIONAL</text>
+
+          <!-- Easton -->
+          <line x1="190" y1="100" x2="190" y2="116" stroke="#a89878" stroke-width="1.5"/>
+          <rect x="163" y="116" width="80" height="44" rx="2" fill="#3d342d"/>
+          <text x="203" y="136" text-anchor="middle" class="svg-body" font-size="12" fill="#d8c9a8" font-weight="600">Easton</text>
+          <text x="203" y="150" text-anchor="middle" class="svg-body" font-size="10" fill="#d8c9a8">Part-time</text>
+          <text x="203" y="175" text-anchor="middle" class="svg-mono" font-size="9" fill="#c8b792" letter-spacing="1">PART-TIME</text>
+
+          <!-- ===== YEAR 2 COLUMN ===== -->
+          <text x="390" y="22" text-anchor="middle" class="svg-mono" font-size="11" letter-spacing="3" fill="#6b5f56" font-weight="600">YEAR 2</text>
+
+          <rect x="310" y="32" width="160" height="44" rx="2" fill="#d14e2a"/>
+          <text x="390" y="52" text-anchor="middle" class="svg-body" font-size="10" letter-spacing="1" fill="#f0e7ce" font-weight="600">PRESIDENT</text>
+          <text x="390" y="67" text-anchor="middle" class="svg-body" font-size="13" fill="#f0e7ce" font-weight="600">Joseph</text>
+
+          <line x1="390" y1="76" x2="390" y2="100" stroke="#a89878" stroke-width="1.5"/>
+          <line x1="310" y1="100" x2="470" y2="100" stroke="#a89878" stroke-width="1.5"/>
+
+          <!-- Operations Manager Y2 -->
+          <line x1="320" y1="100" x2="320" y2="116" stroke="#a89878" stroke-width="1.5"/>
+          <rect x="292" y="116" width="110" height="40" rx="2" fill="#2a2420"/>
+          <text x="347" y="133" text-anchor="middle" class="svg-body" font-size="10" fill="#d8c9a8">Ops</text>
+          <text x="347" y="147" text-anchor="middle" class="svg-body" font-size="10" fill="#d8c9a8">Manager</text>
+
+          <!-- Prod Associate #1 (NEW) -->
+          <line x1="347" y1="156" x2="347" y2="170" stroke="#a89878" stroke-width="1.5"/>
+          <rect x="292" y="170" width="110" height="40" rx="2" fill="#a63a1e"/>
+          <text x="347" y="188" text-anchor="middle" class="svg-body" font-size="9.5" fill="#f0e7ce">Prod. Associate</text>
+          <text x="347" y="202" text-anchor="middle" class="svg-body" font-size="9.5" fill="#f0e7ce">#1</text>
+          <rect x="395" y="172" width="28" height="14" rx="1" fill="#d14e2a"/>
+          <text x="409" y="183" text-anchor="middle" class="svg-mono" font-size="8" fill="#f0e7ce" font-weight="600">NEW</text>
+
+          <!-- Pro-Staff Mgr Y2 -->
+          <line x1="390" y1="100" x2="390" y2="116" stroke="#a89878" stroke-width="1.5"/>
+          <rect x="353" y="116" width="106" height="40" rx="2" fill="#2a2420"/>
+          <text x="406" y="133" text-anchor="middle" class="svg-body" font-size="10" fill="#d8c9a8">Pro-Staff</text>
+          <text x="406" y="147" text-anchor="middle" class="svg-body" font-size="10" fill="#d8c9a8">Manager</text>
+
+          <!-- Easton Y2 (less prominent) -->
+          <line x1="462" y1="100" x2="462" y2="116" stroke="#a89878" stroke-width="1.5"/>
+          <rect x="428" y="116" width="82" height="40" rx="2" fill="#6b5f56"/>
+          <text x="469" y="133" text-anchor="middle" class="svg-body" font-size="12" fill="#d8c9a8" font-weight="600">Easton</text>
+          <text x="469" y="147" text-anchor="middle" class="svg-body" font-size="9" fill="#c8b792">→ College</text>
+
+          <!-- ===== YEAR 3 COLUMN ===== -->
+          <text x="640" y="22" text-anchor="middle" class="svg-mono" font-size="11" letter-spacing="3" fill="#6b5f56" font-weight="600">YEAR 3</text>
+
+          <rect x="560" y="32" width="160" height="44" rx="2" fill="#d14e2a"/>
+          <text x="640" y="52" text-anchor="middle" class="svg-body" font-size="10" letter-spacing="1" fill="#f0e7ce" font-weight="600">PRESIDENT</text>
+          <text x="640" y="67" text-anchor="middle" class="svg-body" font-size="13" fill="#f0e7ce" font-weight="600">Joseph</text>
+
+          <line x1="640" y1="76" x2="640" y2="100" stroke="#a89878" stroke-width="1.5"/>
+          <line x1="565" y1="100" x2="720" y2="100" stroke="#a89878" stroke-width="1.5"/>
+
+          <!-- Ops Manager (promoted) -->
+          <line x1="575" y1="100" x2="575" y2="116" stroke="#a89878" stroke-width="1.5"/>
+          <rect x="540" y="116" width="118" height="40" rx="2" fill="none" stroke="#2a2420" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <text x="599" y="133" text-anchor="middle" class="svg-body" font-size="10" fill="#2a2420" font-weight="600">Ops Manager</text>
+          <text x="599" y="147" text-anchor="middle" class="svg-mono" font-size="8" fill="#d14e2a" letter-spacing="1">PROMOTED</text>
+
+          <!-- 2–3 Prod Associates Y3 -->
+          <line x1="575" y1="156" x2="575" y2="170" stroke="#a89878" stroke-width="1.5"/>
+          <rect x="540" y="170" width="118" height="40" rx="2" fill="#3d342d"/>
+          <text x="599" y="188" text-anchor="middle" class="svg-body" font-size="10" fill="#d8c9a8">2–3 Production</text>
+          <text x="599" y="202" text-anchor="middle" class="svg-body" font-size="10" fill="#d8c9a8">Associates</text>
+
+          <!-- Pro-Staff Mgr Y3 -->
+          <line x1="650" y1="100" x2="650" y2="116" stroke="#a89878" stroke-width="1.5"/>
+          <rect x="610" y="116" width="112" height="40" rx="2" fill="#2a2420"/>
+          <text x="666" y="133" text-anchor="middle" class="svg-body" font-size="10" fill="#d8c9a8">Pro-Staff</text>
+          <text x="666" y="147" text-anchor="middle" class="svg-body" font-size="10" fill="#d8c9a8">Mgr (W2)</text>
+
+          <!-- Content Manager (possible) -->
+          <line x1="714" y1="100" x2="714" y2="116" stroke="#a89878" stroke-width="1" stroke-dasharray="4,3"/>
+          <rect x="680" y="116" width="72" height="40" rx="2" fill="none" stroke="#a63a1e" stroke-width="1" stroke-dasharray="5,3"/>
+          <text x="716" y="131" text-anchor="middle" class="svg-body" font-size="9" fill="#a63a1e">Content</text>
+          <text x="716" y="144" text-anchor="middle" class="svg-body" font-size="9" fill="#a63a1e">Manager</text>
+          <text x="716" y="168" text-anchor="middle" class="svg-mono" font-size="8" fill="#a63a1e" letter-spacing="1">POSSIBLE</text>
+
+          <!-- Column dividers -->
+          <line x1="255" y1="15" x2="255" y2="240" stroke="#a89878" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="510" y1="15" x2="510" y2="240" stroke="#a89878" stroke-width="1" stroke-dasharray="4,4"/>
+        </svg>
+        <p class="viz-caption">Reporting lines show direct management within each year. Dashed outlines indicate roles not yet filled or promoted. "POSSIBLE" denotes optional Year 3 addition dependent on program scale.</p>
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================
+         SECTION 3 — JOSEPH
+         ====================================================== -->
+    <section id="joseph" class="section section-full" style="background:#e6d9bc; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Joseph — President</h2>
+
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-label">Hours / Week</div>
+          <div class="stat-value">20–30</div>
+          <p class="stat-detail">Variable by season and phase. Plan works at 20, not just 30.</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Cost to P&amp;L</div>
+          <div class="stat-value">$0</div>
+          <p class="stat-detail">Compensated by Don's construction payroll. Not a Rusty's line item.</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <span class="callout-label">Comp Structure</span>
+        <p>Joseph is paid on Don's construction payroll — not a line item on Rusty's P&amp;L. This materially changes Year 1 labor economics. The business carries full executive leadership at zero incremental cost to the operating budget.</p>
+      </div>
+
+      <div class="ornament"><span class="ornament-mark">&#9670;</span></div>
+
+      <h3>Phased Production Role</h3>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>Joseph's Production Involvement</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Months 1&ndash;4</strong><br /><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#6b5f56;">Setup / Build</span></td>
+            <td>Fully hands-on in production. Learning every process, catching every failure mode, writing the SOPs. This is not a "stay out of the weeds" phase — it is deliberately in the weeds. No one else is documenting how this product actually gets made.</td>
+          </tr>
+          <tr>
+            <td><strong>Months 5&ndash;8</strong><br /><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#6b5f56;">Transition Target</span></td>
+            <td>Joseph begins stepping back from production in areas where the process is stable and documented. <strong>Target, not guarantee</strong> — pace set by how well SOPs hold without direct oversight. Brand, marketing, and DTC launch work run in parallel. Part-time contractor fills production hours as Joseph steps back.</td>
+          </tr>
+          <tr>
+            <td><strong>Months 9&ndash;10</strong><br /><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#6b5f56;">OM Onboard</span></td>
+            <td>Operations Manager starts. Shadow period — Joseph available for questions and QC sign-off but not running production. OM takes increasing ownership through Month 10.</td>
+          </tr>
+          <tr>
+            <td><strong>Month 11+</strong><br /><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#6b5f56;">Strategic</span></td>
+            <td>Joseph fully out of daily production. Brand, marketing, wholesale, financials, and exit positioning. OM owns the building.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>What Joseph Owns</h3>
+      <div class="two-col-list">
+        <ul>
+          <li>Brand strategy and creative direction</li>
+          <li>All marketing execution and oversight</li>
+          <li>Vendor and supplier relationships</li>
+          <li>Retail partnerships and wholesale account management</li>
+          <li>Pro-Staff Manager oversight and program strategy</li>
+        </ul>
+        <ul>
+          <li>Hiring decisions</li>
+          <li>P&amp;L ownership</li>
+          <li>Easton's mentorship and development</li>
+          <li>Don reporting</li>
+          <li>SOP documentation (Months 1&ndash;4)</li>
+        </ul>
+      </div>
+
+      <h3>What Joseph Owns Day-to-Day by Phase</h3>
+      <ul>
+        <li><strong>Months 1&ndash;4:</strong> Production (fully), regulatory compliance setup, supplier relationships, brand strategy, SOP writing</li>
+        <li><strong>Months 5&ndash;8:</strong> Brand execution, DTC launch, marketing — production decreasing as SOPs stabilize</li>
+        <li><strong>Month 9+:</strong> Strategic only — marketing scale, wholesale, financials, exit prep</li>
+      </ul>
+
+      <h3>What Joseph Hands Off</h3>
+      <ul>
+        <li>Hands-on production &mdash; to Operations Manager, Month 9&ndash;10</li>
+        <li>Daily fulfillment operations &mdash; to Operations Manager, Month 9&ndash;10</li>
+        <li>Daily pro-staff administration &mdash; Pro-Staff Manager handles from Month 2&ndash;3</li>
+        <li>Customer service ticket response &mdash; Operations Manager handles from Month 9&ndash;10</li>
+        <li>Inventory counting and receiving &mdash; Operations Manager handles from Month 9&ndash;10</li>
+      </ul>
+
+    </section>
+
+
+    <!-- ======================================================
+         SECTION 4 — OPERATIONS MANAGER
+         ====================================================== -->
+    <section id="prod-lead" class="section section-full" style="background:#ede2c5; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Production &amp; Operations Manager</h2>
+
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-label">Status</div>
+          <div class="stat-value" style="font-size:22px;">Full-time W2</div>
+          <p class="stat-detail">Reports directly to Joseph.</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Search Begins</div>
+          <div class="stat-value" style="font-size:22px;">Mo. 6&ndash;7</div>
+          <p class="stat-detail">Open market posting. Start target: Month 9&ndash;10.</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Compensation</div>
+          <div class="stat-value" style="font-size:22px;">$75–85K</div>
+          <p class="stat-detail">Annualized base. ~$29&ndash;36K cost to Y1 P&amp;L (3.5 months).</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Start / Shadow</div>
+          <div class="stat-value" style="font-size:22px;">Mo. 9&ndash;10</div>
+          <p class="stat-detail">Shadow period with Joseph. Full ownership Month 11.</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <span class="callout-label">Why Month 9&ndash;10 and Not Month 3</span>
+        <p>The original plan had this hire in Month 3. That was wrong. Handing production to someone new in Month 3 means handing them a process that isn't fully documented, that Joseph hasn't deeply learned, and that no one has run at real volume yet. The right sequence is: Joseph builds the process and documents it (Months 1&ndash;8), then hands it to someone qualified enough to own it outright. That person starts in Month 9&ndash;10 with a real SOP library and a working production process, not a pile of unknowns.</p>
+      </div>
+
+      <div class="ornament"><span class="ornament-mark">&#9670;</span></div>
+
+      <h3>What the Role Owns</h3>
+      <ul>
+        <li>Daily production — mixing, formulating, batching, QC</li>
+        <li>Packaging and fulfillment — orders out the door</li>
+        <li>Inventory management and reorder triggers</li>
+        <li>Equipment operation and maintenance</li>
+        <li>Compliance oversight — formaldehyde handling, NC food manufacturing standards</li>
+        <li>Safety and SOP execution</li>
+        <li>Supervision of Easton during production hours (Year 1)</li>
+        <li>Supervision of Production Associates as team scales (Year 2+)</li>
+      </ul>
+
+      <h3>This Is Not an Entry-Level Role</h3>
+      <p>The comp reflects the scope. Someone at $75&ndash;85K annualized is expected to own the operations function with minimal hand-holding — not to be trained on what "production management" means. They take the SOPs Joseph wrote and run them. They identify where the SOPs are wrong and fix them. They manage Easton, later manage associates. They are the person who makes the building work when Joseph isn't in it.</p>
+      <p>Paying $50&ndash;60K gets a production worker who needs a manager. Paying $75&ndash;85K gets the manager. At Year 1 volumes, we need the manager — not another set of hands.</p>
+
+      <h3>Compensation Structure</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>Base</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Year 1 (Months 9&ndash;12)</strong></td>
+            <td class="num">$75&ndash;85K ann.</td>
+            <td>~$29&ndash;36K cost to Y1 P&amp;L at 3.5 months</td>
+          </tr>
+          <tr>
+            <td><strong>Year 2</strong></td>
+            <td class="num">$75&ndash;85K + bonus</td>
+            <td>Volume and quality bonuses per working draft below</td>
+          </tr>
+          <tr>
+            <td><strong>Year 3 / Exit</strong></td>
+            <td class="num">$80&ndash;95K + transaction bonus</td>
+            <td>If business exits: 1&ndash;2% of sale price as transaction bonus. Retains through closing.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Bonus Structure (Working Draft)</h3>
+      <ul>
+        <li><strong>Volume:</strong> Bonus when monthly unit output hits a consistent threshold</li>
+        <li><strong>Quality:</strong> Tied to customer complaint rate and QC metrics</li>
+        <li><strong>Growth:</strong> When role expands to managing a team of 2&ndash;4 associates, base moves to $80&ndash;95K</li>
+        <li><strong>Transaction bonus:</strong> 1&ndash;2% of sale price upon business exit. Reflects the contribution an operations owner makes to business value and keeps the right person in place through closing.</li>
+      </ul>
+
+      <h3>Candidate Profile</h3>
+      <ul>
+        <li>Food manufacturing or industrial production background &mdash; 3&ndash;7 years</li>
+        <li>Has managed a production function before, not just worked in one</li>
+        <li>Detail-oriented, safety-conscious, comfortable with compliance documentation</li>
+        <li>Comfortable with physical work and a variable task list</li>
+        <li>Growth-oriented &mdash; sees this as a functional ownership role, not a job</li>
+        <li>Stable enough in life to stick around 2&ndash;3 years through an exit event</li>
+      </ul>
+
+      <h3>Search Strategy</h3>
+      <p>Open market. Search begins Month 6&ndash;7 to allow adequate lead time for Month 9&ndash;10 start. This role is not built around any individual currently in the picture — the spec is written for the best available candidate.</p>
+
+      <div class="callout">
+        <span class="callout-label">Year 2&ndash;3 Expansion</span>
+        <p>Year 2: OM takes full ownership of production, fulfillment, and Easton replacement hires. Likely managing 1 Production Associate. Base moves to $80&ndash;95K range at that team size.<br /><br />Year 3: Operations running independently of Joseph. OM is effectively the COO-equivalent for an exit-ready business. Transaction bonus terms (1&ndash;2% of sale price) create alignment between OM incentives and ownership's exit goals.</p>
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         SECTION 5 — PRO-STAFF MANAGER
+         ====================================================== -->
+    <section id="prostaff-mgr" class="section section-full" style="background:#e6d9bc; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Pro-Staff Manager</h2>
+
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-label">Status Y1</div>
+          <div class="stat-value" style="font-size:18px;">Fractional</div>
+          <p class="stat-detail">Contractor with path to part-time W2 if program scales.</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Weekly Hours</div>
+          <div class="stat-value">10–15</div>
+          <p class="stat-detail">Scales with program growth.</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Compensation</div>
+          <div class="stat-value" style="font-size:18px;">$1.5–2.5K/mo</div>
+          <p class="stat-detail">$18–30K annualized depending on scope.</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Hire Timing</div>
+          <div class="stat-value" style="font-size:22px;">Mo. 2–3</div>
+          <p class="stat-detail">Conversations Month 2–3. Ideal start Month 3–4.</p>
+        </div>
+      </div>
+
+      <h3>The Candidate</h3>
+      <p>There's a known candidate from Joseph's professional network who managed pro-staff and field staff work at a prior outdoor brand, did it well, and has expressed openness to side work in this space. Joseph has an upcoming call to confirm interest, scope, and terms.</p>
+      <p><strong>Primary plan:</strong> He comes on fractionally. Known quantity, known playbook, hits the ground running. Savings: Joseph doesn't spend 3 months interviewing and ramping someone new.</p>
+      <p><strong>Backup plan:</strong> If he's not available or terms don't work, Joseph absorbs the function for Months 1–6, then hires fresh in Q3. Delays full pro-staff activation by one quarter — not fatal.</p>
+
+      <div class="ornament"><span class="ornament-mark">&#9670;</span></div>
+
+      <h3>What the Role Owns</h3>
+      <ul>
+        <li>Pro-Staff and Field Staff recruitment, vetting, and relationship management</li>
+        <li>Contract administration and compliance tracking (content cadence, tagging, tournament attendance)</li>
+        <li>Content coordination and approvals</li>
+        <li>Affiliate program management — codes, attribution, payouts</li>
+        <li>Ambassador program (Month 6+)</li>
+        <li>Community engagement in Facebook groups and forums</li>
+        <li>Tournament sponsorship coordination where pro-staff are involved</li>
+        <li>Monthly reporting on program performance</li>
+      </ul>
+
+      <h3>What the Role Does Not Own</h3>
+      <ul>
+        <li>Final creative direction — Joseph's call</li>
+        <li>Contract approvals above a set dollar threshold — Joseph approves</li>
+        <li>Brand voice or messaging strategy — Joseph's call</li>
+      </ul>
+
+      <div class="callout">
+        <span class="callout-label">Scaling Trigger</span>
+        <p>If by Month 12 the program has grown to 30+ active creators and the administrative load exceeds fractional hours, the role moves to part-time W2 at $35–45K, potentially toward full-time by Year 2.</p>
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         SECTION 6 — EASTON
+         ====================================================== -->
+    <section id="easton" class="section section-full" style="background:#ede2c5; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Easton — Part-Time</h2>
+
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-label">Status</div>
+          <div class="stat-value" style="font-size:18px;">Part-time W2</div>
+          <p class="stat-detail">Starts Day 1. Reports to Joseph for mentorship, Ops Manager (Month 9+) for daily work supervision.</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Hours</div>
+          <div class="stat-value" style="font-size:18px;">10–30</div>
+          <p class="stat-detail">10–15 school year / 25–30 summer.</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Wage</div>
+          <div class="stat-value" style="font-size:18px;">$15–16/hr</div>
+          <p class="stat-detail">High end of NC part-time market for his age and work type. Don to confirm.</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Annual Cost</div>
+          <div class="stat-value" style="font-size:18px;">$10–14K</div>
+          <p class="stat-detail">Depending on school year vs. summer mix.</p>
+        </div>
+      </div>
+
+      <h3>What Easton Actually Does</h3>
+
+      <div class="callout">
+        <span class="callout-label">Months 5&ndash;8 — Expanded Scope</span>
+        <p>As DTC volume ramps and Joseph begins transitioning out of daily production, Easton's role expands in kind. More fulfillment volume means more time on packing and shipping. More inventory throughput means more FIFO rotation, receiving, and counting. More admin as the business gets busier means more order processing and data entry. All of this stays within Zone A — no new regulated tasks, no expansion into production responsibility. The scope grows, the legal framework stays the same.</p>
+      </div>
+
+      <h4>Production and Fulfillment (Primary)</h4>
+      <ul>
+        <li>Batch production assistance under Lead/OM supervision</li>
+        <li>Packaging and labeling</li>
+        <li>Order fulfillment — pack, label, ship</li>
+        <li>Inventory counting and receiving</li>
+        <li>Facility organization and cleanup</li>
+      </ul>
+
+      <h4>Content Capture (Secondary — High Value)</h4>
+      <ul>
+        <li>He loves to fish and is an avid outdoorsman. This is gold.</li>
+        <li>Fishing trips with Rusty's product become authentic content — not forced, not promotional</li>
+        <li>Photo and video capture at the water — catches, rigging, on-the-bank usage</li>
+        <li>Social media content contribution with oversight for brand voice</li>
+        <li>Field testing new formulations and providing feedback as a real target-demo user</li>
+      </ul>
+
+      <div class="callout-teal">
+        <span class="callout-label">Why This Works</span>
+        <p>Paying market rate changes the relationship from "owner's kid hanging around" to "employee with accountability and a development path." He has to show up on time, do the work, take feedback like any other employee. That's the real lesson in how a business actually runs.</p>
+        <p>A 16-year-old avid outdoorsman posting real catch content with Rusty's is exactly the kind of authentic audience-facing material the brand strategy calls for. Zero creator acquisition cost. Real audience perspective in product feedback.</p>
+      </div>
+
+      <h3>Legal Employment Framework — Zone A Only</h3>
+
+      <p>Easton's scope is governed by <strong>NC Wage and Hour Act (NCGS § 95-25.5)</strong>, <strong>FLSA Hazardous Orders</strong>, the <strong>NC Detrimental Occupations list</strong>, and <strong>OSHA 29 CFR 1910.1048</strong> (the formaldehyde standard). Because formaldehyde is present in the facility, his employment is more restricted than a typical 16-year-old retail or warehouse job. The framework is clear — it just requires documentation and zone discipline.</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:20px 0 24px;">
+        <div style="background:var(--kraft-light); border-left:4px solid #3d6670; padding:18px 20px; border-radius:2px;">
+          <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:#3d6670; font-weight:700; margin-bottom:10px;">Zone A — What He Does</div>
+          <ul style="font-size:13px; margin:0; padding-left:16px; line-height:1.8; color:var(--charcoal);">
+            <li>Office, admin, order processing</li>
+            <li>Packaging and labeling (sealed goods)</li>
+            <li>Inventory, FIFO rotation (dry goods)</li>
+            <li>Content capture — photo/video</li>
+            <li>Social media and marketing support</li>
+            <li>Product field testing (fishing trips)</li>
+            <li>Facility org and cleanup (non-production areas)</li>
+          </ul>
+        </div>
+        <div style="background:#fff8f5; border-left:4px solid var(--rust); padding:18px 20px; border-radius:2px;">
+          <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--rust); font-weight:700; margin-bottom:10px;">Zone B — Firm Prohibitions</div>
+          <ul style="font-size:13px; margin:0; padding-left:16px; line-height:1.8; color:var(--charcoal);">
+            <li>Formaldehyde handling — no exceptions</li>
+            <li>Active production zone at ≥0.5 ppm</li>
+            <li>Forklift / Komatsu FG25C operation</li>
+            <li>Any respirator-required tasks</li>
+            <li>Confined space entry</li>
+            <li>Batch production responsibility</li>
+          </ul>
+        </div>
+      </div>
+
+      <p style="font-size:13px; color:var(--charcoal-soft);">A <strong>Youth Employment Certificate</strong> must be obtained from NC DOL (1-800-625-2267) before his first day — required by NCGS § 95-25.5. A written job description documenting his scope and restrictions must be signed before work begins. <strong>Operations Manager is responsible for zone enforcement</strong> — this is not Easton's job to manage.</p>
+
+      <div class="callout">
+        <span class="callout-label">Full Framework</span>
+        <p style="margin:0;">Complete legal citations, zone definitions, documentation checklist, and prohibited tasks with citations: see <a href="05-regulatory.html#youth-employment"><strong>Regulatory Doc — Section 04: Youth Employment</strong></a>.</p>
+      </div>
+
+      <h3>What Easton Does Not Do</h3>
+      <ul>
+        <li>Formaldehyde handling — OSHA 29 CFR 1910.1048 / NC Detrimental Occupations, no exceptions</li>
+        <li>Forklift or powered industrial vehicle operation — FLSA Hazardous Order #7, no exceptions under 18</li>
+        <li>Any task requiring a respirator — NC Detrimental Occupation #9</li>
+        <li>Active production zone when formaldehyde operations are running — OSHA 29 CFR 1910.1048 Action Level (0.5 ppm)</li>
+        <li>Supplier negotiations or contract decisions</li>
+        <li>Any money decisions — purchasing, AR, payroll</li>
+        <li>Difficult customer situations or complaint handling</li>
+        <li>Hiring involvement — can observe, not participate</li>
+      </ul>
+
+      <h3>College Consideration</h3>
+      <p>Easton heads to college in roughly 2 years. The plan accounts for him being far less available starting late Year 2. He is not the hire we build around. He is a genuinely useful set of hands now and a development investment for Don.</p>
+    </section>
+
+
+    <!-- ======================================================
+         SECTION 7 — PART-TIME PRODUCTION HELP
+         ====================================================== -->
+    <section id="pt-help" class="section section-full" style="background:#e6d9bc; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Part-Time Production Contractor</h2>
+
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-label">Duration</div>
+          <div class="stat-value" style="font-size:18px;">Mo. 1–8</div>
+          <p class="stat-detail">Fixed end-date communicated at hire. Phases out when OM starts Month 9&ndash;10.</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Hours / Week</div>
+          <div class="stat-value" style="font-size:18px;">10–25</div>
+          <p class="stat-detail">Lighter Months 1&ndash;4. Flexes up Months 5&ndash;8 as Joseph steps back from production.</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Rate</div>
+          <div class="stat-value" style="font-size:18px;">$15–18/hr</div>
+          <p class="stat-detail">~$600–1,800/month depending on hours and phase.</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Total Cost</div>
+          <div class="stat-value" style="font-size:18px;">$10–13K</div>
+          <p class="stat-detail">Across 8 months. See payroll path note below.</p>
+        </div>
+      </div>
+
+      <p>Production support for the full Joseph-in-production phase. Covers capacity so Joseph is never the sole set of hands — especially during Months 5&ndash;8 when Joseph is running DTC launch work alongside production and actively stepping back from repetitive tasks where the process is stable.</p>
+
+      <div class="callout-teal">
+        <span class="callout-label">Preferred Payroll Path — Don's Construction Company</span>
+        <p>The preferred arrangement is for the contractor to be employed by Don's construction company and billed to Rusty's as a service, rather than Rusty's carrying a direct W2 or 1099. This keeps the Rusty's P&amp;L line item at the lower end of the range and simplifies Rusty's employer obligations for a temporary role. If this path is available, it is the default.</p>
+        <p><strong>Fallback:</strong> Open hire on Rusty's P&amp;L as a 1099 contractor. Either way, the role has a defined end-date communicated at hire — Month 8 target, with potential for earlier exit if OM is ready sooner.</p>
+      </div>
+
+      <h3>What the Contractor Does</h3>
+      <ul>
+        <li>Batch production assistance under Joseph's direct supervision (Months 1&ndash;4)</li>
+        <li>Packaging, labeling, and order fulfillment</li>
+        <li>Inventory counting and receiving</li>
+        <li>Facility organization and cleanup</li>
+        <li>Increasing production ownership as Joseph steps back (Months 5&ndash;8), always under Joseph's oversight</li>
+      </ul>
+
+      <h3>What the Contractor Does Not Do</h3>
+      <ul>
+        <li>Formaldehyde formulation decisions — Joseph owns those through Month 8</li>
+        <li>Unsupervised production of any batch involving regulated chemicals</li>
+        <li>Any task requiring a respirator without completing OSHA-required formaldehyde training first — see Regulatory doc</li>
+      </ul>
+
+      <div class="callout">
+        <span class="callout-label">OSHA Training Requirement</span>
+        <p>Regardless of payroll arrangement, any contractor with potential formaldehyde exposure must complete OSHA 29 CFR 1910.1048 formaldehyde training before beginning production work. Employer-of-record does not change the training obligation. NC DOL OSH Consultative Services (919-807-2899) can provide this at no cost.</p>
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         SECTION 8 — CREATIVE & CONTENT WORK
+         ====================================================== -->
+    <section id="creative" class="section section-full" style="background:#ede2c5; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
+      <span class="section-num">08</span>
+      <h2 class="section-title">Creative &amp; Content Work</h2>
+
+      <p>Joseph is handling the majority of design, photography, development, and copywriting in-house during Year 1. This is a meaningful cost avoidance — roughly <strong>$25–35K of contract work absorbed</strong> into his existing time commitment.</p>
+
+      <h3>What Joseph Owns In-House</h3>
+      <ul>
+        <li><strong>Brand identity direction and execution</strong> — logo development, visual system, brand guidelines. May still engage a contract illustrator for specific assets if the work exceeds his tools.</li>
+        <li><strong>Website build</strong> — Shopify store configuration, theme customization, product pages, basic store setup.</li>
+        <li><strong>Copywriting</strong> — site copy, product descriptions, email flows, blog posts, ad copy.</li>
+        <li><strong>Photography</strong> — product and lifestyle using existing equipment or iPhone 15 Pro. Product shots, behind-the-scenes, in-use content with Easton fishing.</li>
+        <li><strong>Video (basic)</strong> — short-form content for social, simple product videos, ad creative.</li>
+      </ul>
+
+      <h3>What Still Needs Contract Support</h3>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>When</th>
+            <th>Cost</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Pro photographer</strong></td>
+            <td>Month 4–5</td>
+            <td class="num">$1–2K</td>
+            <td>Hero product photography for website and packaging. One-time professional shoot for lasting brand assets.</td>
+          </tr>
+          <tr>
+            <td><strong>Videographer</strong></td>
+            <td>Month 5–6</td>
+            <td class="num">$1–2K</td>
+            <td>One or two key launch videos. After launch, Joseph + pro-staff handle ongoing video.</td>
+          </tr>
+          <tr>
+            <td><strong>PR consultant</strong></td>
+            <td>Month 6–8</td>
+            <td class="num">$2–4K</td>
+            <td>Launch PR push. Joseph can write pitches but doesn't have the media relationships a consultant brings.</td>
+          </tr>
+          <tr>
+            <td><strong>Specialist designer</strong></td>
+            <td>Year 1 ad hoc</td>
+            <td class="num">$2–3K</td>
+            <td>Packaging illustration, custom mark work, anything outside Joseph's tool set.</td>
+          </tr>
+          <tr class="total">
+            <td><strong>Total contract roster Year 1</strong></td>
+            <td></td>
+            <td class="num"><strong>~$6–11K</strong></td>
+            <td>Down from original $26–40K estimate.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Trade-Off Awareness</h3>
+      <ul>
+        <li><strong>Time.</strong> If 8–10 of Joseph's 20–30 hours go to design and website work in Months 3–5, something else gets shorted — likely strategic brand work, pro-staff program development, or retail relationships.</li>
+        <li><strong>Quality ceiling.</strong> A specialist designer or photographer might produce work 20–30% better in ways customers perceive. The question is whether that incremental quality drives enough revenue to justify $15–25K in Year 1 contract costs. Probably not at this scale.</li>
+        <li><strong>When to hand it off.</strong> Year 2–3, when the business can sustain $30–40K/year in contract creative work without hurting P&amp;L, execution moves to contractors or a hire. The marker is revenue, not preference.</li>
+      </ul>
+
+      <div class="callout">
+        <span class="callout-label">The Upside</span>
+        <p>Joseph owning creative through launch means the brand voice is consistent, tightly held, and not filtered through third parties who don't know the audience. The $15–25K in savings either goes to profit (better exit position), gets redeployed to the pro-staff program or paid media, or offsets the higher Operations Manager salary.</p>
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         SECTION 9 — HIRING ROADMAP
+         ====================================================== -->
+    <section id="hiring-roadmap" class="section section-full" style="background:#e6d9bc; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
+      <span class="section-num">09</span>
+      <h2 class="section-title">Hiring Roadmap</h2>
+
+      <h3>Year 1</h3>
+
+      <div class="hiring-card">
+        <span class="hiring-card-label">Month 1</span>
+        <div class="hiring-card-title">Joseph starts. Easton starts. Part-time production contractor hired (preferred: Don's payroll).</div>
+      </div>
+
+      <div class="hiring-card">
+        <span class="hiring-card-label">Month 2–3</span>
+        <div class="hiring-card-title">Pro-Staff Manager conversations begin. SOP documentation underway. Joseph hands-on in production.</div>
+      </div>
+
+      <div class="hiring-card">
+        <span class="hiring-card-label">Month 5–6</span>
+        <div class="hiring-card-title">Soft launch Month 5. DTC launch Month 6. Core operating team: Joseph (production + brand), Pro-Staff Manager (fractional), Easton, contractor.</div>
+      </div>
+
+      <div class="hiring-card">
+        <span class="hiring-card-label">Month 6–7</span>
+        <div class="hiring-card-title">Begin Operations Manager search. Open market. Target start Month 9–10.</div>
+      </div>
+
+      <div class="hiring-card" style="border-left: 3px solid var(--rust);">
+        <span class="hiring-card-label" style="color: var(--rust);">Month 9–10 — Operations Manager Starts</span>
+        <div class="hiring-card-title">OM shadow period begins. Contractor phases out as OM comes up to speed. Joseph transitions out of production. Month 11: Joseph fully strategic.</div>
+      </div>
+
+      <div class="hiring-card">
+        <span class="hiring-card-label">Month 12</span>
+        <div class="hiring-card-title">Year 1 performance review. Contract renewals, compensation adjustments, role evaluations. Pro-Staff Manager evaluated for scope increase. OM established in full ownership of operations.</div>
+      </div>
+
+      <div class="ornament"><span class="ornament-mark">&#9670;</span></div>
+
+      <h3>Year 2</h3>
+
+      <div class="hiring-card" style="border-left: 3px solid var(--rust);">
+        <span class="hiring-card-label" style="color: var(--rust);">Month 12–14 — Trigger: 200+ orders/month for 2 months</span>
+        <div class="hiring-card-title">Production Associate #1 hired at $30–35K full-time. Reports to Operations Manager. Capacity: team handles 500–800 orders/month.</div>
+      </div>
+
+      <div class="hiring-card" style="border-left: 3px solid var(--rust);">
+        <span class="hiring-card-label" style="color: var(--rust);">Month 14–16 — Trigger: 400+ orders/month sustained</span>
+        <div class="hiring-card-title">Production Associate #2 hired at $30–35K. Ops Manager now managing a small team.</div>
+      </div>
+
+      <div class="hiring-card">
+        <span class="hiring-card-label">Month 18–24</span>
+        <div class="hiring-card-title">Pro-Staff Manager likely to part-time W2 at $35–45K if program warrants.</div>
+        <p>Year 2 team size: 5–6 people (Joseph, Ops Manager, 2–3 Associates, Pro-Staff Manager, Easton if still available).</p>
+      </div>
+
+      <div class="ornament"><span class="ornament-mark">&#9670;</span></div>
+
+      <h3>Year 3</h3>
+      <p>Team stabilizes at 5–7 people. Ops Manager fully owns production. Pro-Staff program running mature. Joseph is strategic, working on growth and exit prep.</p>
+      <p><strong>Possible additions Year 3:</strong></p>
+      <ul>
+        <li>Community/Content Manager at $40–50K if pro-staff manager role splits</li>
+        <li>Part-time admin/finance if bookkeeping volume warrants — $15–25K</li>
+      </ul>
+
+      <!-- Figure 04 — Hiring Trigger Table -->
+      <div class="viz">
+        <div class="viz-title">Figure 04</div>
+        <div class="viz-subtitle">Hiring Trigger Table</div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Trigger</th>
+              <th>Expected Timing</th>
+              <th>Role Scope</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Operations Manager</strong></td>
+              <td><span class="trigger-val">Process stable and documented; Joseph ready to hand off</span></td>
+              <td>Month 9–10</td>
+              <td>Full operational ownership of production, fulfillment, compliance, inventory</td>
+            </tr>
+            <tr>
+              <td><strong>Pro-Staff Manager (fractional)</strong></td>
+              <td><span class="trigger-val">Launch requires active creator program</span></td>
+              <td>Month 2–3</td>
+              <td>Recruit, manage, and report on all pro-staff and ambassador relationships</td>
+            </tr>
+            <tr>
+              <td><strong>Production Associate #1</strong></td>
+              <td><span class="trigger-val">200+ orders/month for 2 consecutive months</span></td>
+              <td>Month 12–14</td>
+              <td>Production and fulfillment support under Operations Manager supervision</td>
+            </tr>
+            <tr>
+              <td><strong>Production Associate #2</strong></td>
+              <td><span class="trigger-val">400+ orders/month sustained</span></td>
+              <td>Month 14–16</td>
+              <td>Second production line support; team now handles 800+ orders/month</td>
+            </tr>
+            <tr>
+              <td><strong>Pro-Staff Mgr to W2</strong></td>
+              <td><span class="trigger-val">30+ active creators, load exceeds fractional</span></td>
+              <td>Month 12–18</td>
+              <td>Part-time W2 at $35–45K with path to full-time Year 2</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="viz-caption">Trigger column values are decision points — not calendar dates. No trigger fires, no hire moves.</p>
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         SECTION 10 — YEAR 1 LABOR COST ROLL-UP
+         ====================================================== -->
+    <section id="labor-rollup" class="section section-full" style="background:#ede2c5; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
+      <span class="section-num">10</span>
+      <h2 class="section-title">Year 1 Labor Cost Roll-Up</h2>
+
+      <!-- Figure 03 — Year 1 Labor Roll-Up Table -->
+      <div class="viz">
+        <div class="viz-title">Figure 03</div>
+        <div class="viz-subtitle">Year 1 Labor Cost Roll-Up — Base Case (Realistic)</div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Notes</th>
+              <th class="num">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Joseph</strong></td>
+              <td>Covered by Don's construction payroll</td>
+              <td class="num">$0</td>
+            </tr>
+            <tr>
+              <td><strong>Operations Manager</strong></td>
+              <td>Months 9–12, ~3.5 months ($75–85K annualized)</td>
+              <td class="num">$29–36K</td>
+            </tr>
+            <tr>
+              <td><strong>Pro-Staff Manager</strong></td>
+              <td>Months 3–12, fractional 10 months</td>
+              <td class="num">$15–25K</td>
+            </tr>
+            <tr>
+              <td><strong>Easton</strong></td>
+              <td>12 months, mixed hours</td>
+              <td class="num">$10–14K</td>
+            </tr>
+            <tr>
+              <td><strong>Part-time production contractor</strong></td>
+              <td>Months 1–8 (preferred: Don's payroll)</td>
+              <td class="num">$10–13K</td>
+            </tr>
+            <tr>
+              <td><strong>Production Associate #1</strong></td>
+              <td>Month 12–14 trigger — likely Year 2</td>
+              <td class="num">$0 Y1</td>
+            </tr>
+            <tr class="total">
+              <td><strong>Total Year 1 Labor</strong></td>
+              <td></td>
+              <td class="num"><strong>$64–88K</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>This sits inside the Year 1 operating budget from the financial model. Against $125–150K revenue at 70% gross margin ($88–105K gross profit), labor is the biggest cost. When we add the $30K marketing envelope, utilities, insurance, software, supplies ($20–25K combined), we land near break-even to &minus;$10K. Tight but survivable — which is what Don signed up for. The later OM start date and longer contractor window shift the cost structure meaningfully from the original plan.</p>
+
+      <h3>P&amp;L Protective Moves</h3>
+      <ul>
+        <li>If revenue comes in at the low end ($125K), delay Production Associate #1 to Month 12 instead of Month 10 — saves roughly $5K</li>
+        <li>If Pro-Staff Manager can't negotiate to the lower end ($1,500/month), work at $2,000/month with clear performance triggers</li>
+        <li>Easton's summer hours are flexible — if the business is strapped for cash, his hours can flex down without drama</li>
+      </ul>
+    </section>
+
+
+    <!-- ======================================================
+         SECTION 11 — YEAR 2 AND YEAR 3 LABOR
+         ====================================================== -->
+    <section id="yr2-3" class="section section-full" style="background:#e6d9bc; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
+      <span class="section-num">11</span>
+      <h2 class="section-title">Year 2 and Year 3 Labor</h2>
+
+      <h3>Year 2 (Estimated $225–275K Revenue)</h3>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Line Item</th>
+            <th class="num">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Joseph</strong> — still Don's payroll</td>
+            <td class="num">$0</td>
+          </tr>
+          <tr>
+            <td><strong>Operations Manager</strong> — full year, with raise</td>
+            <td class="num">$55–65K</td>
+          </tr>
+          <tr>
+            <td><strong>Pro-Staff Manager</strong> — transitioning to part-time W2</td>
+            <td class="num">$30–40K</td>
+          </tr>
+          <tr>
+            <td><strong>Production Associate #1</strong> — full year</td>
+            <td class="num">$32–38K</td>
+          </tr>
+          <tr>
+            <td><strong>Production Associate #2</strong> — partial year, Month 14–24</td>
+            <td class="num">$25–30K</td>
+          </tr>
+          <tr>
+            <td><strong>Easton</strong> — partial availability, heading to college late Year 2</td>
+            <td class="num">$6–10K</td>
+          </tr>
+          <tr class="total">
+            <td><strong>Total Year 2 Labor</strong></td>
+            <td class="num"><strong>$148–183K</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Against $225–275K revenue at 70% margin ($158–193K gross profit), labor is manageable. Year 2 nets $30–65K profit as projected.</p>
+
+      <div class="ornament"><span class="ornament-mark">&#9670;</span></div>
+
+      <h3>Year 3 (Estimated $325–400K Revenue)</h3>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Line Item</th>
+            <th class="num">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Joseph</strong> — $0 or potential comp split consideration</td>
+            <td class="num">$0</td>
+          </tr>
+          <tr>
+            <td><strong>Operations Manager</strong> — promoted Lead</td>
+            <td class="num">$65–75K</td>
+          </tr>
+          <tr>
+            <td><strong>Pro-Staff Manager</strong> — part-time or full-time</td>
+            <td class="num">$40–55K</td>
+          </tr>
+          <tr>
+            <td><strong>Production Associates</strong> — 2–3</td>
+            <td class="num">$60–100K</td>
+          </tr>
+          <tr>
+            <td><strong>Easton</strong> — variable, minimal</td>
+            <td class="num">variable</td>
+          </tr>
+          <tr class="total">
+            <td><strong>Total Year 3 Labor</strong></td>
+            <td class="num"><strong>$165–230K</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Year 3 SDE range of $150–220K holds if we manage labor to the middle of this range. The Ops Manager promotion and the pro-staff manager scaling are the two biggest cost increases, but both are triggered by revenue performance, not calendar.</p>
+    </section>
+
+
+    <!-- ======================================================
+         SECTION 12 — EASTON'S DEVELOPMENT PATH
+         ====================================================== -->
+    <section id="easton-dev" class="section section-full" style="background:#ede2c5; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
+      <span class="section-num">12</span>
+      <h2 class="section-title">Easton's Development Path</h2>
+
+      <p>Don's ask is that Easton learns how to run a business by working inside one. That only happens if there's a structure, not just tasks.</p>
+
+      <h3>Weekly Cadence</h3>
+      <ul>
+        <li>Production and fulfillment work — primary job</li>
+        <li>Wednesday 30-minute 1-on-1 with Joseph — not a task check-in. A business education check-in: what did you observe, what questions came up, what would you do differently.</li>
+      </ul>
+
+      <h3>Monthly Rotation Schedule</h3>
+
+      <table class="data-table dev-table">
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Rotation Focus</th>
+            <th>Assigned Book</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Month 1</td>
+            <td>Production — processes, equipment, QC standards</td>
+            <td><em>The E-Myth Revisited</em> — Gerber</td>
+          </tr>
+          <tr>
+            <td>Month 2</td>
+            <td>Fulfillment and inventory management</td>
+            <td><em>Good to Great</em> — Collins</td>
+          </tr>
+          <tr>
+            <td>Month 3</td>
+            <td>Shadow supplier conversations — observer role</td>
+            <td><em>Start With Why</em> — Sinek</td>
+          </tr>
+          <tr>
+            <td>Month 4</td>
+            <td>Marketing planning session — participant</td>
+            <td><em>Building a StoryBrand</em> — Miller</td>
+          </tr>
+          <tr>
+            <td>Month 5</td>
+            <td>Retail conversation shadow — observer</td>
+            <td><em>Built to Sell</em> — Warrillow</td>
+          </tr>
+          <tr>
+            <td>Month 6</td>
+            <td>Financial review sit-in — full P&amp;L walkthrough</td>
+            <td><em>How to Win Friends and Influence People</em> — Carnegie</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Quarterly</h3>
+      <ul>
+        <li>Written reflection from Easton: what he's learned, what's clicked, what hasn't, where he wants more exposure</li>
+        <li>Joseph–Easton–Don sit-down (30 min) to review progress and adjust</li>
+      </ul>
+
+      <div class="ornament"><span class="ornament-mark">&#9670;</span></div>
+
+      <h3>Year 1 Goal</h3>
+      <p>Easton finishes Year 1 understanding the full business cycle: how product is made, how it's sold, how customers are acquired, how the money works, how decisions get made. Not expert in any of it. Literate in all of it.</p>
+
+      <h3>Year 2 Goal</h3>
+      <p>Easton starts contributing to decisions, not just executing on them. Proposes a marketing initiative. Runs a small project — a tournament booth activation or a content campaign. Makes a vendor call under supervision. Begins to develop professional judgment, not just work output.</p>
+
+      <div class="callout-teal">
+        <span class="callout-label">What Easton Is Not</span>
+        <p>Not the heir apparent getting groomed for succession. Not a special employee who gets away with less. Not a shadow. He's a part-time employee who happens to be the owner's son, getting genuine business education as a byproduct of doing real work with real accountability. If he shows interest and capability over 2–3 years, Don makes decisions about his future from an informed position. If he's more interested in something else by then, that's fine too — he leaves with a foundation that's useful regardless.</p>
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         SECTION 13 — HIRING PRINCIPLES
+         ====================================================== -->
+    <section id="hiring-principles" class="section section-full" style="background:#e6d9bc; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
+      <span class="section-num">13</span>
+      <h2 class="section-title">Hiring Principles</h2>
+
+      <p>Things to remember every time we're about to add someone.</p>
+
+      <h4>1. Hire for the work that exists, not the work you hope will exist.</h4>
+      <p>Trigger-based hiring. Volume must come before the hire, not after.</p>
+
+      <h4>2. The first hire in a function defines the function.</h4>
+      <p>Operations Manager's quality determines whether we can scale to 500+ orders or stall at 100. Pro-Staff Manager's quality determines whether the creator program becomes the growth engine or an expensive list of dead accounts. Hire slow, fire fast.</p>
+
+      <h4>3. Pay for the work, not the title.</h4>
+      <p>$50–60K Operations Manager is expensive relative to $40K, but cheap relative to rehiring in Month 8 because $40K got us someone who can't grow with us.</p>
+
+      <h4>4. Contracts over full-time until proven.</h4>
+      <div class="callout">
+        <span class="callout-label">Principle</span>
+        <p>Pro-Staff Manager stays fractional until the volume forces the conversation. Same for any future specialist roles — content, community, ecommerce. Prove the need before the commitment.</p>
+      </div>
+
+      <h4>5. Don't solve short-term problems with long-term hires.</h4>
+      <p>Temporary production help stays temporary. One-off project work stays contractor. A busy month is not a hiring signal.</p>
+
+      <h4>6. The Rusty's team is small on purpose.</h4>
+      <p>Lean is the strategy. A 6-person team running a $325–400K business with $150–220K SDE is what makes the exit attractive. Bloat kills the multiple.</p>
+    </section>
+
+
+    <!-- ======================================================
+         SECTION 14 — OPEN ITEMS
+         ====================================================== -->
+    <section id="open-items" class="section section-full" style="background:#ede2c5; border:1px solid #a89878; border-radius:2px; padding:40px; margin-bottom:24px;">
+      <span class="section-num">14</span>
+      <h2 class="section-title">Open Items</h2>
+
+      <ul>
+        <li>Joseph's call with the pro-staff candidate from his professional network — confirm interest, scope, comp range</li>
+        <li>Don to weigh in on Easton's proposed comp ($15–16/hour)</li>
+        <li>Operations Manager job posting and candidate pipeline (Month 2 start)</li>
+        <li>Part-time contractor sourcing for Month 1 bridge — local NC, temp agency or network referral</li>
+        <li>Bonus structure specifics for Operations Manager — volume/quality thresholds to define with first 90 days of actual data</li>
+        <li>Benefits picture — does Don's standard benefits package apply to Rusty's employees, or is this a separate structure?</li>
+      </ul>
+    </section>
+
+
+    <!-- ======================================================
+         FOOTER NAV
+         ====================================================== -->
+    <footer class="doc-footer">
+      <a href="03-go-to-market.html" class="foot-nav-link prev">
+        <span class="fn-dir">Previous</span>
+        <span class="fn-title">Go-to-Market</span>
+      </a>
+      <a href="05-regulatory.html" class="foot-nav-link next">
+        <span class="fn-dir">Next</span>
+        <span class="fn-title">Regulatory</span>
+      </a>
+    </footer>
+
+  </main>
+</div>
+</body>
+</html>

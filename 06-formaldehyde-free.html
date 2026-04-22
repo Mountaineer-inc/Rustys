@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>if(sessionStorage.getItem('rustys_auth')!=='1'){window.location.replace('index.html');}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formaldehyde-Free Initiative — Rusty's Bait &amp; Lures</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .layout { max-width: 1220px; margin: 0 auto; }
+    .viz { padding: 12px 0 4px; }
+    .viz svg { overflow: visible; }
+
+    /* Section banding */
+    .section.band-a { background: var(--kraft-light); border: 1px solid var(--kraft-line); border-radius: 2px; padding: 40px; margin-bottom: 24px; }
+    .section.band-b { background: var(--paper); border: 1px solid var(--kraft-line); border-radius: 2px; padding: 40px; margin-bottom: 24px; }
+    .section.band-a h2.section-title, .section.band-b h2.section-title { border-bottom-color: var(--kraft-deep); }
+
+    /* Candidate cards */
+    .candidate-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
+    .candidate-card { padding: 24px 28px; border-radius: 2px; border: 1px solid var(--kraft-line); background: var(--kraft-light); }
+    .candidate-card-teal { background: #e8f0f2; border: 1px solid rgba(61,102,112,0.3); border-left: 4px solid var(--teal); }
+    .candidate-card-rust { background: var(--kraft-light); border: 1px solid var(--kraft-line); border-left: 4px solid var(--rust); }
+    .candidate-name { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--charcoal); margin: 0 0 6px; }
+    .candidate-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; display: inline-block; padding: 2px 7px; border-radius: 2px; margin-bottom: 10px; }
+    .candidate-label-pres { background: var(--rust); color: white; }
+    .candidate-label-supp { background: var(--teal); color: white; }
+    .candidate-label-gray { background: var(--charcoal-mute); color: white; }
+    .candidate-function { font-size: 13px; color: var(--charcoal-mute); margin-bottom: 8px; font-family: var(--font-mono); letter-spacing: 0.04em; }
+    .candidate-assess { font-size: 13px; font-style: italic; color: var(--charcoal-soft); border-top: 1px solid var(--kraft-line); padding-top: 8px; margin-top: 8px; }
+
+    /* System stack */
+    .stack-layer { display: grid; grid-template-columns: 80px 1fr; gap: 16px; align-items: start; padding: 16px 0; border-bottom: 1px solid var(--kraft-line); }
+    .stack-layer:last-child { border-bottom: none; }
+    .stack-layer-num { width: 48px; height: 48px; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 22px; font-weight: 600; color: white; flex-shrink: 0; }
+    .stack-layer-rust { background: var(--rust); }
+    .stack-layer-teal { background: var(--teal); }
+    .stack-layer-char { background: var(--charcoal-soft); }
+    .stack-layer-dark { background: var(--charcoal); }
+    .stack-layer-title { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--charcoal); margin: 0 0 4px; }
+    .stack-layer-body { font-size: 14px; color: var(--charcoal-soft); line-height: 1.5; }
+
+    /* Savings stat row */
+    .savings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 32px 0; }
+
+    /* Path forward flow */
+    .path-flow { margin: 32px 0; }
+    .path-step { display: grid; grid-template-columns: 56px 1fr; gap: 16px; align-items: start; margin-bottom: 4px; }
+    .path-step-num { width: 42px; height: 42px; background: var(--rust); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 18px; font-weight: 600; color: white; flex-shrink: 0; }
+    .path-step-body { background: var(--kraft-light); border: 1px solid var(--kraft-line); border-radius: 2px; padding: 18px 22px; }
+    .path-step-title { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--charcoal); margin: 0 0 6px; }
+    .path-step-meta { display: flex; gap: 16px; flex-wrap: wrap; }
+    .path-step-timing { font-family: var(--font-mono); font-size: 12px; color: var(--rust-deep); font-weight: 600; }
+    .path-step-cost { font-family: var(--font-mono); font-size: 12px; color: var(--charcoal-mute); }
+    .path-connector { height: 20px; margin-left: 21px; width: 2px; background: var(--kraft-line); }
+
+    /* Callout variants */
+    .callout-teal { background: var(--kraft-light); border-left: 4px solid #3d6670; padding: 24px 28px; margin: 32px 0; border-radius: 2px; }
+    .callout-teal .callout-label { color: #3d6670; }
+
+    /* Success cards */
+    .success-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 32px 0; }
+    .success-card { padding: 28px 32px; border-radius: 2px; background: var(--kraft-light); border: 1px solid var(--kraft-line); }
+    .success-card-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); font-weight: 600; margin-bottom: 12px; display: block; }
+    .success-card-title { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--charcoal); margin: 0 0 12px; }
+
+    /* Two-function split */
+    .function-split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0; }
+    .function-panel { padding: 28px 32px; border-radius: 2px; }
+    .function-panel-left { background: var(--kraft-light); border: 1px solid var(--kraft-line); border-top: 4px solid var(--rust); }
+    .function-panel-right { background: var(--charcoal-soft); border: 1px solid var(--charcoal); border-top: 4px solid var(--teal); }
+    .function-panel-right p, .function-panel-right li { color: var(--kraft-light); }
+    .function-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; margin-bottom: 10px; display: block; }
+    .function-label-rust { color: var(--rust); }
+    .function-label-teal { color: #7bbac4; }
+    .function-title { font-family: var(--font-display); font-size: 22px; font-weight: 600; margin: 0 0 12px; }
+    .function-panel-left .function-title { color: var(--charcoal); }
+    .function-panel-right .function-title { color: var(--kraft-pale); }
+
+    /* Required table */
+    .data-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
+    .data-table th { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--charcoal-mute); padding: 10px 16px; border-bottom: 2px solid var(--charcoal); background: var(--kraft-light); text-align: left; }
+    .data-table td { padding: 12px 16px; border-bottom: 1px solid var(--kraft-line); vertical-align: top; line-height: 1.5; }
+    .data-table tr:last-child td { border-bottom: none; }
+  </style>
+</head>
+<body>
+<div class="layout">
+
+  <aside class="sidebar">
+    <a href="index.html" style="text-decoration:none;">
+      <div class="brand-mark">Rusty's <em>Bait &amp; Lures</em></div>
+      <div class="brand-tag">Strategy · 2026</div>
+    </a>
+
+    <div class="nav-section">Documents</div>
+    <ul class="nav-list">
+      <li><a href="01-business.html"><span class="nav-num">01</span> The Business</a></li>
+      <li><a href="02-market-and-brand.html"><span class="nav-num">02</span> Market &amp; Brand</a></li>
+      <li><a href="03-go-to-market.html"><span class="nav-num">03</span> Go-to-Market</a></li>
+      <li><a href="04-personnel.html"><span class="nav-num">04</span> Personnel</a></li>
+      <li><a href="05-regulatory.html"><span class="nav-num">05</span> Regulatory</a></li>
+      <li><a href="06-formaldehyde-free.html" class="current"><span class="nav-num">06</span> Formaldehyde-Free</a></li>
+    </ul>
+
+    <div class="nav-section">On This Page</div>
+    <ul class="nav-toc">
+      <li><a href="#why">Why This Document Exists</a></li>
+      <li><a href="#exec-summary">Executive Summary</a></li>
+      <li><a href="#chemistry">What Formaldehyde Is Doing</a></li>
+      <li><a href="#candidates">Replacement Candidates</a></li>
+      <li><a href="#system">Proposed Replacement System</a></li>
+      <li><a href="#unknowns">The Unknowns</a></li>
+      <li><a href="#eliminates">What Reformulation Eliminates</a></li>
+      <li><a href="#path-forward">Path Forward</a></li>
+      <li><a href="#timeline">Timeline</a></li>
+      <li><a href="#success">What Success Looks Like</a></li>
+    </ul>
+  </aside>
+
+  <main class="content">
+
+    <header class="doc-header">
+      <div class="doc-eyebrow">Document 06</div>
+      <h1 class="doc-title">Formaldehyde-Free <em>Initiative</em></h1>
+      <p class="doc-subtitle">The parallel track to remove the single largest source of operational friction</p>
+      <div class="doc-meta">
+        <div class="doc-meta-item">
+          <span class="doc-meta-label">Prepared for</span>
+          <span class="doc-meta-value">Joseph Skinner, President</span>
+        </div>
+        <div class="doc-meta-item">
+          <span class="doc-meta-label">Updated</span>
+          <span class="doc-meta-value">April 2026</span>
+        </div>
+        <div class="doc-meta-item">
+          <span class="doc-meta-label">Status</span>
+          <span class="doc-meta-value">Framework document — pre-consultant</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- =====================================================
+         SECTION 01 — WHY THIS DOCUMENT EXISTS
+         ===================================================== -->
+    <section id="why" class="section section-full band-a">
+      <span class="section-num">Section 01</span>
+      <h2 class="section-title">Why This Document Exists</h2>
+
+      <p>Formaldehyde is the right ingredient for what Rusty's makes right now. It preserves, it firms, it extends shelf life without refrigeration — and the existing recipes are built around it. That is not in dispute.</p>
+
+      <p>But formaldehyde is also the single largest source of operational friction in the business:</p>
+
+      <ul style="line-height:1.9; font-size:15px; color:var(--charcoal-soft); padding-left:20px;">
+        <li>It triggers OSHA's full formaldehyde standard (29 CFR 1910.1048)</li>
+        <li>It classifies all waste streams as federally hazardous (EPA code U122)</li>
+        <li>It risks building occupancy reclassification to Group H (High Hazard)</li>
+        <li>It requires ongoing air monitoring, medical surveillance, and hazardous waste disposal</li>
+        <li>It creates real tail risk for Don, Joseph, and anyone working in the production space</li>
+      </ul>
+
+      <blockquote class="pullquote">Remove formaldehyde and nearly every item on that list disappears.</blockquote>
+
+      <p>The $7,300–$17,500 in annual compliance overhead drops to primarily insurance. The interim facility risk profile collapses. The written programs, the monitoring, the hauler contracts, the medical exams — gone.</p>
+
+      <p>There is also a market argument. Formaldehyde-free bait is a differentiation story that lands with health-conscious anglers, opens conversations with retail buyers who are increasingly sensitive to hazardous ingredients in product formulations, and supports a premium positioning that aligns with where the brand is headed.</p>
+
+      <p>This is worth pursuing seriously. This document maps what that pursuit looks like.</p>
+    </section>
+
+    <!-- =====================================================
+         SECTION 02 — EXECUTIVE SUMMARY
+         ===================================================== -->
+    <section id="exec-summary" class="section section-full band-b">
+      <span class="section-num">Section 02</span>
+      <h2 class="section-title">Executive Summary</h2>
+
+      <div class="callout">
+        <span class="callout-label">The Chemistry Challenge</span>
+        <p>One ingredient does two things. No single substitute replicates both. The solution is a multi-component system.</p>
+      </div>
+
+      <p>Formaldehyde in Rusty's formulas performs two distinct functions:</p>
+
+      <ol style="line-height:1.9; font-size:15px; color:var(--charcoal-soft); padding-left:20px; margin:20px 0;">
+        <li><strong>Preservation</strong> — broad-spectrum antimicrobial that prevents bacterial decomposition of blood, liver, and cheese at room temperature, enabling shelf stability without refrigeration</li>
+        <li><strong>Texture/firmness</strong> — protein crosslinking that gives sponge and dip bait the right consistency to hold on a hook or in a bait holder</li>
+      </ol>
+
+      <p>No single ingredient replicates both functions simultaneously. A formaldehyde-free formula will require a multi-component system — likely two to four ingredients working together — plus possible process changes.</p>
+
+      <p>This is achievable. The science exists. Comparable preservation challenges have been solved in food manufacturing and industrial processing. The question is whether the reformulated product performs equivalently in the water and holds up through distribution and shelf life at Rusty's scale.</p>
+
+      <p>The path forward requires a qualified food science or bait formulation consultant to translate the framework in this document into tested, validated recipes.</p>
+    </section>
+
+    <!-- =====================================================
+         SECTION 03 — WHAT FORMALDEHYDE IS ACTUALLY DOING
+         ===================================================== -->
+    <section id="chemistry" class="section section-full band-a">
+      <span class="section-num">Section 03</span>
+      <h2 class="section-title">What Formaldehyde Is Actually Doing</h2>
+
+      <p>Before mapping replacements, it is worth being precise about the chemistry.</p>
+
+      <!-- FIGURE 01 — THE TWO FUNCTIONS OF FORMALDEHYDE -->
+      <div class="viz">
+        <div class="viz-title">Figure 01</div>
+        <div class="viz-subtitle">The Two Functions of Formaldehyde</div>
+
+        <div class="function-split">
+          <div class="function-panel function-panel-left">
+            <span class="function-label function-label-rust">Preservation Function</span>
+            <h3 class="function-title">Antimicrobial</h3>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin-bottom:16px;">Formaldehyde is a reducing aldehyde. Its antimicrobial action works by denaturing proteins in bacterial cell walls — effective against a broad spectrum of organisms. Effective at very low concentrations, continues working over time, handles bacteria, mold, and yeast simultaneously.</p>
+            <p style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--charcoal-mute); margin:0 0 8px; font-weight:600;">Three Spoilage Vectors Addressed</p>
+            <ul style="font-size:13px; color:var(--charcoal-soft); line-height:1.8; padding-left:18px; margin:0;">
+              <li><strong>Bacterial decomposition</strong> — primary</li>
+              <li><strong>Oxidative rancidity</strong> — fats</li>
+              <li><strong>Mold and yeast growth</strong> — surface-level</li>
+            </ul>
+          </div>
+          <div class="function-panel function-panel-right">
+            <span class="function-label function-label-teal">Texture Function</span>
+            <h3 class="function-title">Protein Crosslinking</h3>
+            <p style="font-size:14px; line-height:1.6; margin-bottom:16px;">Formaldehyde crosslinks proteins at the molecular level — bonding them together to create the firm, rubbery consistency that holds on a hook. This is the same chemistry used in embalming and tissue preservation.</p>
+            <div style="background:rgba(0,0,0,0.2); border-radius:2px; padding:14px 18px; margin-top:16px;">
+              <p style="font-size:13px; font-style:italic; margin:0; line-height:1.6;">Replacing the antimicrobial function and replacing the crosslinking function are separate problems requiring separate solutions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>3.1 — Preservation Function</h3>
+      <p>At the concentrations used in bait formulation, formaldehyde creates a hostile environment for microbial life without requiring refrigeration. The ingredient is doing the work that would otherwise require either cold storage (supply chain complexity) or alternative preservative chemistry. Blood-based and liver-based baits are especially vulnerable to rapid microbial decomposition — the protein load is high, and at room temperature the spoilage window without preservation is measured in hours, not weeks.</p>
+      <p>This is the harder of the two problems to replace. Broad-spectrum antimicrobial coverage at high protein load, at room temperature, across a shelf life of 12+ months — this requires deliberate formulation chemistry, not a single drop-in substitute.</p>
+
+      <h3>3.2 — Texture/Firmness Function</h3>
+      <p>The crosslinking effect gives sponge bait its characteristic firm-but-porous texture and keeps dip bait at the viscosity anglers expect. This function is also critical to hook-hold performance — if the bait doesn't grip, the value proposition fails regardless of how well it catches in the water.</p>
+      <p>The good news: protein crosslinking is a solved problem in food manufacturing. The same challenge — getting proteins to bind without formaldehyde — has been addressed through enzymatic and thermal processes that produce commercially reliable results. This is the more tractable of the two problems.</p>
+    </section>
+
+    <!-- =====================================================
+         SECTION 04 — REPLACEMENT CANDIDATES
+         ===================================================== -->
+    <section id="candidates" class="section section-full band-b">
+      <span class="section-num">Section 04</span>
+      <h2 class="section-title">Replacement Candidates</h2>
+
+      <p>What follows is a structured review of the leading candidates for each function. These are not final recommendations — that work requires laboratory testing with Rusty's specific protein matrix. This is the framework that a formulation consultant will use as a starting point.</p>
+
+      <!-- FIGURE 02A — PRESERVATION CANDIDATES -->
+      <div class="viz">
+        <div class="viz-title">Figure 02</div>
+        <div class="viz-subtitle">Preservation Candidates</div>
+
+        <h3 style="font-family:var(--font-display); font-size:18px; color:var(--charcoal); margin:0 0 20px;">Preservation Candidates</h3>
+
+        <div class="candidate-grid">
+
+          <div class="candidate-card candidate-card-rust">
+            <p class="candidate-name">High-Concentration Salt (Sodium Chloride)</p>
+            <span class="candidate-label candidate-label-pres">Primary Candidate</span>
+            <p class="candidate-function">Function: Water activity (Aw) reduction</p>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:0 0 8px;">Salt works through water activity reduction rather than direct antimicrobial action. By lowering the available water in the formula below the threshold where bacteria, mold, and yeast can reproduce, high-salt formulas achieve shelf stability without refrigeration. This is how jerky, cured meats, and salt fish have been preserved for centuries. Target Aw ≤ 0.85 stops most spoilage organisms; ≤ 0.80 is more robust. The challenge: getting a catfish bait formula to that Aw without unacceptable texture or scent profile changes requires testing.</p>
+            <p class="candidate-assess">High potential. Low cost. Zero regulatory burden. Needs water activity analysis of current formulas to determine whether salt alone can achieve the required Aw or whether supporting chemistry is needed.</p>
+          </div>
+
+          <div class="candidate-card candidate-card-rust">
+            <p class="candidate-name">Sodium / Potassium Metabisulfite</p>
+            <span class="candidate-label candidate-label-pres">Strong Candidate</span>
+            <p class="candidate-function">Function: Antimicrobial + antioxidant</p>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:0 0 8px;">Metabisulfite releases sulfur dioxide in solution, which is both antimicrobial and antioxidant. Used extensively in food preservation — wine, dried fruit, processed seafood. The antioxidant action directly addresses rancidity in blood and fat-containing formulas, which is a secondary spoilage vector that formaldehyde also controls. Food-safe, inexpensive, well-characterized. Some sensitivity concerns (sulfite allergies) that are non-issues for bait applications.</p>
+            <p class="candidate-assess">Strong candidate as part of a combination system. Cheap, well-understood, food-safe. Addresses both microbial and oxidative spoilage pathways.</p>
+          </div>
+
+          <div class="candidate-card candidate-card-rust">
+            <p class="candidate-name">Sodium Benzoate + Potassium Sorbate</p>
+            <span class="candidate-label candidate-label-gray">Supporting Player</span>
+            <p class="candidate-function">Function: Yeast / mold / bacteria inhibition (pH-dependent)</p>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:0 0 8px;">The workhorse combination in food preservation. Sodium benzoate is effective primarily against yeasts and bacteria in acidic conditions (pH &lt; 4.5). Potassium sorbate targets mold and yeast across a broader pH range. Used together, they provide complementary coverage. At the higher pH levels typical in protein-heavy formulas, their efficacy drops — which is why they probably cannot stand alone in this application but work well in combination with salt and metabisulfite.</p>
+            <p class="candidate-assess">Good supporting player. Probably not sufficient as the sole antimicrobial at this protein load, but adds real coverage in a layered system. Well-proven in food applications. Low cost.</p>
+          </div>
+
+          <div class="candidate-card candidate-card-rust">
+            <p class="candidate-name">Propionic Acid / Calcium Propionate</p>
+            <span class="candidate-label candidate-label-gray">Supporting Role</span>
+            <p class="candidate-function">Function: Mold inhibition</p>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:0 0 8px;">Propionate preservatives are the standard mold inhibitor in commercial baked goods. Calcium propionate is GRAS (Generally Recognized as Safe) and well-understood. Mold growth is a surface-level spoilage vector in Rusty's products — particularly in sponge bait where surface area is higher. Including a propionate in the system adds targeted coverage for this specific failure mode.</p>
+            <p class="candidate-assess">Supporting role in a multi-component system. Unlikely to be the primary preservative but addresses a specific spoilage vector at low cost.</p>
+          </div>
+
+          <div class="candidate-card candidate-card-rust" style="grid-column: span 2;">
+            <p class="candidate-name">Citric Acid (Acidification)</p>
+            <span class="candidate-label candidate-label-pres">Combination Candidate</span>
+            <p class="candidate-function">Function: pH reduction — creates inhospitable environment for microorganisms</p>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:0 0 8px;">Lowering pH below the threshold where most spoilage organisms survive (generally pH &lt; 4.0–4.5) is a primary food preservation strategy — it's the basis of pickling and fermentation. Citric acid can achieve this and has the added benefit of acting as a chelating agent, binding metal ions that could otherwise catalyze rancidity. In a high-protein bait formula, strong acidification may affect scent profile and texture in ways that need testing. Some blood-based formulas are already moderately acidic, which could work in favor of this approach. The challenge is palatability — catfish attractants rely on specific volatile compounds that can be suppressed by strong acidification.</p>
+            <p class="candidate-assess">Potentially powerful in combination with other preservatives, particularly sodium benzoate (which is most effective at low pH). Harder to execute alone in a high-protein formula without testing. Scent impact is the primary unknown.</p>
+          </div>
+
+        </div><!-- end preservation candidate-grid -->
+
+        <!-- FIGURE 02B — TEXTURE CANDIDATES -->
+        <h3 style="font-family:var(--font-display); font-size:18px; color:var(--charcoal); margin:32px 0 20px;">Texture / Firmness Candidates</h3>
+
+        <div class="candidate-grid">
+
+          <div class="candidate-card candidate-card-teal" style="grid-column: span 2; border-left-width: 6px;">
+            <p class="candidate-name">Transglutaminase ("Meat Glue")</p>
+            <span class="candidate-label candidate-label-supp">Primary — Texture</span>
+            <p class="candidate-function">Function: Enzymatic protein crosslinking</p>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:0 0 8px;">Transglutaminase (TG) is a naturally occurring enzyme that catalyzes covalent bonds between glutamine and lysine residues in proteins — exactly what formaldehyde does, through a completely different mechanism. It is widely used in food manufacturing to bind protein pieces, improve texture, and create firm, cohesive structures in meat, fish, and dairy applications. The enzyme is commercially available in standardized preparations (Activa series from Ajinomoto is the most widely used food-grade product). Temperature and pH affect activity: optimal activity typically at 50–55°C and pH 5–8, with inactivation above 70°C. This means it can be activated during a mild heat-treatment step and then inactivated (fixed) when the product reaches the inactivation threshold — creating a one-time crosslinking event similar to formaldehyde's effect.</p>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:0 0 8px;">The key difference from formaldehyde: TG requires a heat-treatment activation step (approximately 50–55°C for 30–60 minutes post-mixing) and does not provide antimicrobial activity. Preservation must be handled by the separate preservation layer of the system.</p>
+            <p class="candidate-assess">Most promising texture alternative. Requires process change (mild heat-treatment step). Well-established in food manufacturing. Needs testing with Rusty's specific protein matrix — blood, liver, and cheese have different protein profiles than standard meat applications. Contact: Ajinomoto (activa@ajinomoto.com), ingredient application scientists can provide formulation guidance.</p>
+          </div>
+
+          <div class="candidate-card candidate-card-teal">
+            <p class="candidate-name">Higher Guar Gum Concentration</p>
+            <span class="candidate-label candidate-label-supp">Supporting</span>
+            <p class="candidate-function">Function: Viscosity and structure (hydrocolloid)</p>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:0 0 8px;">Guar gum is already present in Rusty's formulas — it's the existing thickener. Increasing concentration can improve texture and add body to dip bait. As a hydrocolloid, it works by absorbing water and creating a gel structure rather than through protein crosslinking, so the mechanism is different from formaldehyde and TG. High-concentration guar alone may not replicate the firm, rubbery texture of formaldehyde-crosslinked protein, but it contributes to the overall texture system and reduces water activity slightly (supporting the preservation layer).</p>
+            <p class="candidate-assess">Good supporting ingredient. Probably not sufficient alone for sponge bait texture. Works well in combination with transglutaminase and mild heat treatment. Low cost, already on hand.</p>
+          </div>
+
+          <div class="candidate-card candidate-card-teal">
+            <p class="candidate-name">Modified Starch</p>
+            <span class="candidate-label candidate-label-supp">Supporting</span>
+            <p class="candidate-function">Function: Body and structure</p>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:0 0 8px;">Modified food starches (cross-linked, stabilized, or acetylated) provide body and structure in processed food products and can contribute to texture in bait formulas. They are inexpensive, food-safe, and available from multiple suppliers. Their contribution is primarily to "body" — filling out the matrix and contributing to overall texture — rather than the firm crosslinked protein structure formaldehyde creates.</p>
+            <p class="candidate-assess">Supporting ingredient. Worth including in formula testing as part of a texture system alongside transglutaminase and guar gum. May improve consistency and help with water-holding properties.</p>
+          </div>
+
+          <div class="candidate-card candidate-card-teal" style="grid-column: span 2;">
+            <p class="candidate-name">Heat Treatment / Partial Cooking</p>
+            <span class="candidate-label candidate-label-gray">Process Change</span>
+            <p class="candidate-function">Function: Protein denaturation and crosslinking via thermal processing</p>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:0 0 8px;">Heat denatures proteins and causes them to aggregate and crosslink — the same mechanism as cooking. A mild heat-treatment step post-mixing (60–70°C for 30–60 minutes) can create protein crosslinking that produces a firm, consistent texture. This step also provides partial pasteurization, reducing initial microbial load before packaging and creating a safer starting point for the preservation chemistry to maintain over shelf life.</p>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:0 0 8px;">The primary concern is scent profile: catfish baits rely on volatile attractant compounds — ammonia, sulfur compounds, fatty acids — that are produced by controlled decomposition and are part of the characteristic smell. Heat treatment may suppress some of these volatiles. Testing is required to determine whether the scent impact is acceptable or whether the attractant profile needs to be re-engineered post-heat treatment.</p>
+            <p class="candidate-assess">High potential when combined with transglutaminase — the heat step both activates TG and provides partial pasteurization. Process change required. Scent impact is the primary unknown and must be tested with field results.</p>
+          </div>
+
+        </div><!-- end texture candidate-grid -->
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SECTION 05 — PROPOSED REPLACEMENT SYSTEM
+         ===================================================== -->
+    <section id="system" class="section section-full band-a">
+      <span class="section-num">Section 05</span>
+      <h2 class="section-title">Proposed Replacement System</h2>
+
+      <p>Based on the chemistry above, a formaldehyde-free system worth testing looks like this:</p>
+
+      <!-- FIGURE 03 — SYSTEM STACK -->
+      <div class="viz">
+        <div class="viz-title">Figure 03</div>
+        <div class="viz-subtitle">Proposed Replacement System Stack</div>
+
+        <div style="margin:28px 0; border: 1px solid var(--kraft-line); border-radius:2px; overflow:hidden;">
+
+          <div class="stack-layer" style="padding:20px 24px; background:rgba(209,78,42,0.06);">
+            <div>
+              <div class="stack-layer-num stack-layer-rust">1</div>
+            </div>
+            <div>
+              <p class="stack-layer-title">Primary Preservation Layer</p>
+              <div class="stack-layer-body">
+                <ul style="padding-left:18px; margin:0; line-height:1.8;">
+                  <li><strong>High salt concentration</strong> — target water activity (Aw) ≤ 0.85 through sodium chloride. The foundation of the preservation system.</li>
+                  <li><strong>Potassium sorbate + sodium benzoate in combination</strong> — broad-spectrum antimicrobial coverage across bacteria, yeast, and mold. Synergistic when used together.</li>
+                  <li><strong>Sodium metabisulfite</strong> — antimicrobial plus antioxidant action, directly addressing rancidity in blood and fat-containing formulas.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="stack-layer" style="padding:20px 24px; background:rgba(61,102,112,0.06);">
+            <div>
+              <div class="stack-layer-num stack-layer-teal">2</div>
+            </div>
+            <div>
+              <p class="stack-layer-title">Texture Layer</p>
+              <div class="stack-layer-body">
+                <ul style="padding-left:18px; margin:0; line-height:1.8;">
+                  <li><strong>Transglutaminase</strong> — primary protein crosslinker, activated through mild heat-treatment step (see Layer 3). Creates the firm, rubbery texture that holds on a hook.</li>
+                  <li><strong>Guar gum</strong> at current or slightly elevated concentration — supporting structure, improved viscosity in dip bait formulas.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="stack-layer" style="padding:20px 24px; background:rgba(61,52,45,0.06);">
+            <div>
+              <div class="stack-layer-num stack-layer-char">3</div>
+            </div>
+            <div>
+              <p class="stack-layer-title">Process Change</p>
+              <div class="stack-layer-body">
+                <p style="margin:0 0 8px;">Mild heat-treatment step (60–70°C, 30–60 minutes) post-mixing and pre-vacuum sealing.</p>
+                <ul style="padding-left:18px; margin:0; line-height:1.8;">
+                  <li>Activates transglutaminase for crosslinking (optimal TG activity at 50–55°C)</li>
+                  <li>Partially pasteurizes the mix, reducing initial microbial load</li>
+                  <li>Inactivates TG at temperatures above 70°C, fixing the crosslinked texture</li>
+                  <li>Creates a safer starting state for preservation chemistry to maintain over shelf life</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="stack-layer" style="padding:20px 24px; background:rgba(42,36,32,0.06);">
+            <div>
+              <div class="stack-layer-num stack-layer-dark">4</div>
+            </div>
+            <div>
+              <p class="stack-layer-title">Packaging Layer</p>
+              <div class="stack-layer-body">
+                <ul style="padding-left:18px; margin:0; line-height:1.8;">
+                  <li><strong>Vacuum sealing</strong> (already in place) — eliminates oxygen as a spoilage driver for both microbial growth and oxidative rancidity</li>
+                  <li><strong>Oxygen-scavenging sachets</strong> inside vacuum packages — additional layer for products where residual oxygen is a concern, particularly sponge bait with high surface area</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <p>This system is multi-layered, uses only food-safe ingredients, and addresses both the antimicrobial and texture challenges with established technology. No single component is doing all the work — that's intentional. Redundancy in preservation is how shelf stability is achieved reliably.</p>
+
+      <div class="callout">
+        <span class="callout-label">Why Layered Preservation</span>
+        <p>When formaldehyde is removed, no single replacement ingredient has the same breadth of action. A layered system — salt reducing Aw, sulfite providing antimicrobial and antioxidant action, benzoate/sorbate covering yeast and bacteria, packaging removing oxygen — creates overlapping coverage where each layer addresses failure modes the others don't. This is how commercial food preservation works. It is more complex than a single ingredient but produces more reliable shelf stability.</p>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SECTION 06 — THE UNKNOWNS
+         ===================================================== -->
+    <section id="unknowns" class="section section-full band-b">
+      <span class="section-num">Section 06</span>
+      <h2 class="section-title">The Unknowns</h2>
+
+      <p>Being honest about what cannot be resolved without testing:</p>
+
+      <div class="callout" style="margin-top:28px;">
+        <span class="callout-label">Water Activity of Current Formulas</span>
+        <p>This is the fundamental variable for shelf stability. Without knowing the Aw of Rusty's existing formulas, we cannot know whether salt alone can get there or whether additional preservation layers are required. A food scientist can measure this in an afternoon. This is the first test that should happen — it tells us whether the preservation challenge is easy (existing Aw is already close to the target) or hard (significant reformulation required to hit target Aw).</p>
+      </div>
+
+      <div class="callout" style="margin-top:16px;">
+        <span class="callout-label">Scent Profile Impact</span>
+        <p>Formaldehyde changes the scent release dynamics of the bait. Some anglers believe formaldehyde-preserved baits are actually less attractive than fresh because it suppresses volatile compounds. Others swear by the preservation. Heat treatment may also affect volatile scent compounds — the high-temperature step post-mixing may drive off some of the ammonia and sulfur volatiles that catfish respond to. This can only be resolved by field testing reformulated batches against the originals. Blind field tests with pro-staff on actual water are the only reliable measure.</p>
+      </div>
+
+      <div class="callout" style="margin-top:16px;">
+        <span class="callout-label">Hook-Hold and Bait-Holder Performance</span>
+        <p>Transglutaminase-crosslinked protein may behave differently from formaldehyde-crosslinked protein under water and mechanical handling. The texture feel, the way it tears, the way it holds under current — these may or may not match the existing product. This needs physical testing under actual fishing conditions: hooks, bait holders, submersion in water at the temperatures anglers fish. A reformulation that passes bench testing still needs water testing before it replaces the existing formula in production.</p>
+      </div>
+
+      <div class="callout" style="margin-top:16px;">
+        <span class="callout-label">Cost Delta</span>
+        <p>Transglutaminase is more expensive than formaldehyde. At small batch volumes the per-unit cost differential matters. The heat-treatment step adds process time and energy cost. These need to be calculated against the annual compliance savings — which are substantial ($2,500–7,500/year) — and the one-time capital savings at facility build-out (potentially $10,000–30,000+). The economics likely favor reformulation at current scale, but this needs to be verified with real ingredient costs and process time estimates before the go/no-go decision.</p>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SECTION 07 — WHAT REFORMULATION ELIMINATES
+         ===================================================== -->
+    <section id="eliminates" class="section section-full band-a">
+      <span class="section-num">Section 07</span>
+      <h2 class="section-title">What Reformulation Eliminates</h2>
+
+      <p>This is the financial case stated plainly.</p>
+
+      <!-- FIGURE 04 — REFORMULATION SAVINGS -->
+      <div class="viz">
+        <div class="viz-title">Figure 04</div>
+        <div class="viz-subtitle">Reformulation Savings — What Goes Away</div>
+      </div>
+
+      <div class="savings-grid">
+        <div class="stat-card">
+          <div class="stat-label">Annual Compliance Savings</div>
+          <div class="stat-value">$2,500–7,500<span style="font-size:18px;">/yr</span></div>
+          <p class="stat-detail">Conservative estimate. Monitoring + disposal + medical surveillance. Actual figure depends on current hauler contract and monitoring frequency.</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Capital Savings at Build-Out</div>
+          <div class="stat-value">$10,000–30,000+</div>
+          <p class="stat-detail">Reduced ventilation requirements. Group H occupancy risk eliminated. Standard industrial ventilation only — not chemical-specific engineering.</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Regulatory Layers Eliminated</div>
+          <div class="stat-value" style="font-size:22px; line-height:1.3;">OSHA + RCRA + Group H</div>
+          <p class="stat-detail">29 CFR 1910.1048 entirely gone. 40 CFR 261.33 hazardous waste eliminated. Group H building risk removed.</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Brand Differentiator</div>
+          <div class="stat-value" style="font-size:20px; line-height:1.3;">Formaldehyde-Free</div>
+          <p class="stat-detail">Growing market segment. Retail buyer differentiation. Premium positioning support. Competitor formulas largely unchanged since the 1980s.</p>
+        </div>
+      </div>
+
+      <h3>Regulatory Costs That Go Away</h3>
+
+      <ul style="line-height:2; font-size:15px; color:var(--charcoal-soft); padding-left:20px; margin:20px 0;">
+        <li><strong>OSHA 29 CFR 1910.1048 formaldehyde standard</strong> — entirely eliminated</li>
+        <li><strong>EPA RCRA U122 hazardous waste classification</strong> — eliminated</li>
+        <li>Annual air monitoring: <strong>$800–2,000/year</strong> — gone</li>
+        <li>Medical surveillance: <strong>$400–1,000/year</strong> — gone</li>
+        <li>Hazardous waste disposal: <strong>$800–2,500/year</strong> — gone</li>
+        <li>EHS consultant retainer: <strong>$500–2,000/year</strong> — significantly reduced</li>
+        <li>One-time ventilation build-out for new facility: <strong>$8,000–18,000</strong> — reduced (standard industrial ventilation still needed, not chemical-specific engineering)</li>
+        <li>Building occupancy Group H risk: <strong>$30,000–80,000 potential</strong> — eliminated</li>
+      </ul>
+
+      <p style="font-size:15px; color:var(--charcoal-soft); margin:0 0 8px;"><strong>Conservative annual savings from reformulation: $2,500–7,500/year</strong></p>
+      <p style="font-size:15px; color:var(--charcoal-soft); margin:0 0 32px;"><strong>One-time capital savings at facility build-out: potentially $10,000–30,000+</strong></p>
+
+      <div class="callout-teal">
+        <span class="callout-label">Market and Brand Benefits</span>
+        <ul style="line-height:1.9; font-size:15px; padding-left:20px; margin:12px 0 0;">
+          <li>"Formaldehyde-free" is a real differentiator with health-conscious anglers — this segment is growing, and ingredient transparency is increasingly important to the angler demographic Rusty's is targeting</li>
+          <li>Retail buyer conversations become easier — major outdoor retailers are increasingly sensitive to hazardous ingredients in product formulations and some are beginning to ask about it in vendor onboarding</li>
+          <li>Supports premium brand positioning — a formaldehyde-free product made with food-safe ingredients tells a cleaner story than legacy competitors still on mid-century chemistry</li>
+          <li>Reduces liability exposure that cannot be fully quantified but is real — for Don personally, for Joseph, and for anyone working in the production space</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SECTION 08 — PATH FORWARD
+         ===================================================== -->
+    <section id="path-forward" class="section section-full band-b">
+      <span class="section-num">Section 08</span>
+      <h2 class="section-title">Path Forward</h2>
+
+      <p>What needs to happen, in order.</p>
+
+      <!-- FIGURE 05 — PATH FORWARD FLOW -->
+      <div class="viz">
+        <div class="viz-title">Figure 05</div>
+        <div class="viz-subtitle">Path Forward — Six Steps to Formaldehyde-Free Production</div>
+      </div>
+
+      <div class="path-flow">
+
+        <!-- Step 1 -->
+        <div class="path-step">
+          <div>
+            <div class="path-step-num">1</div>
+          </div>
+          <div class="path-step-body">
+            <p class="path-step-title">Find the Right Consultant</p>
+            <div class="path-step-meta">
+              <span class="path-step-timing">Month 2–3</span>
+              <span class="path-step-cost">$2,000–8,000 engagement budget</span>
+            </div>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:12px 0 0;">A food scientist or product formulation consultant with experience in preserved protein products or fishing bait formulation. This person translates the framework in this document into tested, validated recipes. They do not need to be a bait industry specialist — food science with experience in high-protein preserved products (meat, fish, processed dairy) is the relevant background.</p>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:8px 0 0;"><strong>Where to look:</strong> IFT member directory (ift.org) — search "product development" or "preservation" · SCORE or NC State food science extension · Contract formulation labs (there are several in the Southeast that serve small food manufacturers) · Ingredient supplier application scientists — Ajinomoto has a transglutaminase application team; Brenntag application scientists support guar gum customers. Both are good starting points and these conversations are often free.</p>
+          </div>
+        </div>
+
+        <div class="path-connector"></div>
+
+        <!-- Step 2 -->
+        <div class="path-step">
+          <div>
+            <div class="path-step-num">2</div>
+          </div>
+          <div class="path-step-body">
+            <p class="path-step-title">Initial Consultation</p>
+            <div class="path-step-meta">
+              <span class="path-step-timing">Month 3</span>
+              <span class="path-step-cost">Included in Step 1 budget</span>
+            </div>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:12px 0 0;">Five questions to answer together in the first consultation:</p>
+            <ol style="font-size:14px; color:var(--charcoal-soft); line-height:1.8; padding-left:20px; margin:8px 0;">
+              <li>What is the current water activity of existing Rusty's formulas? (This one test shapes everything else.)</li>
+              <li>What is the current formaldehyde concentration in each formula?</li>
+              <li>What is the target shelf life? (12 months? 18? Room temperature or cold chain permitted?)</li>
+              <li>What are the texture specifications that define "acceptable" for each product type?</li>
+              <li>What are the key scent/attractant compounds and are any already quantified?</li>
+            </ol>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:8px 0 0; font-style:italic;">Arriving with this information saves significant consulting time and signals credibility — that this is a serious reformulation project with clear goals, not a vague exploration.</p>
+          </div>
+        </div>
+
+        <div class="path-connector"></div>
+
+        <!-- Step 3 -->
+        <div class="path-step">
+          <div>
+            <div class="path-step-num">3</div>
+          </div>
+          <div class="path-step-body">
+            <p class="path-step-title">Small Batch Reformulation Testing</p>
+            <div class="path-step-meta">
+              <span class="path-step-timing">Month 4–5</span>
+              <span class="path-step-cost">Lab time + ingredients</span>
+            </div>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:12px 0 0;">Consultant produces 3–5 formula variants based on the proposed system stack. Each variant adjusts the balance of the preservation and texture components. Tests conducted at this stage:</p>
+            <ul style="font-size:14px; color:var(--charcoal-soft); line-height:1.8; padding-left:20px; margin:8px 0;">
+              <li><strong>Microbial stability</strong> — 30/60/90-day shelf life challenge testing. Are the reformulated formulas still clean at the target shelf life?</li>
+              <li><strong>Texture and hook-hold</strong> — physical testing. Does it hold on a hook? Does it load into a bait holder? Does the consistency match expectations?</li>
+              <li><strong>Water activity measurement</strong> — confirmation that the target Aw is being achieved with each formula variant</li>
+            </ul>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:8px 0 0; font-style:italic;">This stage does not require fishing. It is bench science — controlled, measurable, conducted in a lab environment. Field testing comes after bench testing passes.</p>
+          </div>
+        </div>
+
+        <div class="path-connector"></div>
+
+        <!-- Step 4 -->
+        <div class="path-step">
+          <div>
+            <div class="path-step-num">4</div>
+          </div>
+          <div class="path-step-body">
+            <p class="path-step-title">Field Testing</p>
+            <div class="path-step-meta">
+              <span class="path-step-timing">Month 7–8</span>
+              <span class="path-step-cost">Product cost + pro-staff time</span>
+            </div>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:12px 0 0;">One to two variants that pass bench testing go to actual anglers. Rusty's pro-staff are the best candidates — they know the product, they fish serious water, and their feedback is credible. Where possible, run blind tests: the angler uses both the reformulated product and the current formula without knowing which is which, and reports performance (bites, catches, bait behavior on the hook, scent observations).</p>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:8px 0 0;">Tests should happen on multiple water types and in multiple seasons if timing permits. Blue cat water in the Missouri River behaves differently than channel cat water in a southeastern river or reservoir. The reformulation needs to work broadly, not just in one specific environment.</p>
+          </div>
+        </div>
+
+        <div class="path-connector"></div>
+
+        <!-- Step 5 -->
+        <div class="path-step">
+          <div>
+            <div class="path-step-num">5</div>
+          </div>
+          <div class="path-step-body">
+            <p class="path-step-title">Scale-Up and Cost Analysis</p>
+            <div class="path-step-meta">
+              <span class="path-step-timing">Month 8–9</span>
+              <span class="path-step-cost">Full production batch cost</span>
+            </div>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:12px 0 0;">Produce a production-scale batch of the validated formula. This step has two purposes: confirming that the formula behaves the same at production scale as at bench scale (scale effects are real in food formulation), and generating real ingredient cost data.</p>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:8px 0 0;">Calculate per-unit ingredient cost versus the current formula. Weigh against annual compliance savings. Include the heat-treatment process time and energy cost. Factor in the one-time capital savings at the new facility. Make the go/no-go decision with real numbers — not estimates — in front of you.</p>
+          </div>
+        </div>
+
+        <div class="path-connector"></div>
+
+        <!-- Step 6 -->
+        <div class="path-step">
+          <div>
+            <div class="path-step-num">6</div>
+          </div>
+          <div class="path-step-body">
+            <p class="path-step-title">Marketing Integration</p>
+            <div class="path-step-meta">
+              <span class="path-step-timing">Month 10–12+</span>
+              <span class="path-step-cost">Marketing budget TBD</span>
+            </div>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:12px 0 0;">If the go decision is made, transition production and activate the market story. The reformulation is not just an operational improvement — it is a differentiation story that no major competitor can match without their own expensive reformulation work.</p>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:8px 0 0;">Deliverables for this step: press release ("Rusty's Bait &amp; Lures announces formaldehyde-free line") · social campaign (the chemistry, the testing, the field results — transparent and educational) · retail pitch point (buyer conversations about ingredient transparency) · DTC email sequence (the story of the reformulation, why it matters, what was proven).</p>
+            <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:8px 0 0; font-style:italic;">The regulatory relief is the internal win. The market story is the external win.</p>
+          </div>
+        </div>
+
+      </div><!-- end path-flow -->
+    </section>
+
+    <!-- =====================================================
+         SECTION 09 — TIMELINE
+         ===================================================== -->
+    <section id="timeline" class="section section-full band-a">
+      <span class="section-num">Section 09</span>
+      <h2 class="section-title">Timeline</h2>
+
+      <p>This is a parallel track to production restart — not a prerequisite for it. Rusty's launches with existing formulas while the reformulation work runs in the background. The business does not wait on the reformulation; the reformulation runs alongside the business.</p>
+
+      <!-- FIGURE 06 — TIMELINE TABLE -->
+      <div class="viz">
+        <div class="viz-title">Figure 06</div>
+        <div class="viz-subtitle">Reformulation Timeline — Milestones</div>
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Milestone</th>
+            <th>Target</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Identify and engage formulation consultant</td>
+            <td><strong>Month 2–3</strong></td>
+          </tr>
+          <tr>
+            <td>Initial consultation and water activity analysis of existing formulas</td>
+            <td><strong>Month 3</strong></td>
+          </tr>
+          <tr>
+            <td>Small batch formula variants produced (3–5 variants per product)</td>
+            <td><strong>Month 4–5</strong></td>
+          </tr>
+          <tr>
+            <td>Bench testing — 30-day microbial stability minimum, texture, Aw measurement</td>
+            <td><strong>Month 5–7</strong></td>
+          </tr>
+          <tr>
+            <td>Field testing with pro-staff on actual water</td>
+            <td><strong>Month 7–8</strong></td>
+          </tr>
+          <tr>
+            <td>Production scale-up, cost analysis, and go/no-go decision</td>
+            <td><strong>Month 8–9</strong></td>
+          </tr>
+          <tr>
+            <td>Production transition (if go decision made)</td>
+            <td><strong>Month 10–12</strong></td>
+          </tr>
+          <tr>
+            <td>Marketing launch of formaldehyde-free line</td>
+            <td><strong>Month 12+</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>If the process goes well, Rusty's could be producing formaldehyde-free product within 12 months of production restart. If testing reveals significant challenges — texture not matching, scent profile unacceptably altered, cost delta too large — the timeline extends. But the existing formula continues to ship while that work happens. This is not a crisis reformulation. It is a deliberate, well-resourced improvement to an already-functional product.</p>
+
+      <div class="callout">
+        <span class="callout-label">Parallel Track Principle</span>
+        <p>Reformulation does not gate production restart. Rusty's begins producing with existing formulas on existing equipment as soon as the facility is operational. The formaldehyde-free work runs as a funded parallel track. This structure means that if reformulation takes 18 months instead of 12, the business is still generating revenue throughout. The reformulation investment is funded by the operating business, not by pre-launch capital.</p>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SECTION 10 — WHAT SUCCESS LOOKS LIKE
+         ===================================================== -->
+    <section id="success" class="section section-full band-b">
+      <span class="section-num">Section 10</span>
+      <h2 class="section-title">What Success Looks Like</h2>
+
+      <!-- FIGURE 07 — THREE-OUTCOME SUCCESS FRAMING -->
+      <div class="viz">
+        <div class="viz-title">Figure 07</div>
+        <div class="viz-subtitle">Three-Outcome Success Framing</div>
+      </div>
+
+      <div class="success-grid">
+
+        <div class="success-card">
+          <span class="success-card-label">Operationally</span>
+          <h3 class="success-card-title">Simpler by Design</h3>
+          <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:0;">The entire formaldehyde compliance infrastructure — the OSHA written program, the air monitoring schedule, the medical surveillance protocol, the hazardous waste hauler contract, the Group H building occupancy risk — is retired. The production environment is safer for everyone in it. The regulatory picture simplifies dramatically. Future facility conversations with landlords, fire marshals, and insurers do not begin with "we handle formaldehyde."</p>
+        </div>
+
+        <div class="success-card">
+          <span class="success-card-label">Financially</span>
+          <h3 class="success-card-title">Lower Cost Floor</h3>
+          <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:0;">Annual compliance overhead drops by $2,500–7,500. The new facility build-out is less complex and less expensive — standard industrial ventilation rather than chemical-specific engineering, no Group H occupancy provisions, no hazardous material storage requirements beyond what general chemical storage requires. The tail risk that currently sits on Don personally — liability exposure from ongoing formaldehyde use — is eliminated. The cost floor of operating the business drops permanently.</p>
+        </div>
+
+        <div class="success-card">
+          <span class="success-card-label">Commercially</span>
+          <h3 class="success-card-title">A Story to Tell</h3>
+          <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:0;">In a market where most competitors are using formulas unchanged since the 1980s, a reformulated, formaldehyde-free product with equivalent or superior performance is a genuine competitive differentiator — particularly as the brand pushes into DTC and retail channels where ingredient transparency is increasingly expected. No major catfish bait competitor has done this. The first mover gets the story. Rusty's gets the story.</p>
+        </div>
+
+      </div>
+
+      <div class="callout" style="margin-top:16px;">
+        <span class="callout-label">The Line That Does the Work</span>
+        <p style="font-size:16px; font-style:italic; color:var(--charcoal); line-height:1.6; margin:8px 0 0;">"Same legendary stink. No formaldehyde."</p>
+        <p style="font-size:14px; color:var(--charcoal-soft); line-height:1.6; margin:8px 0 0;">This is a press release, a social campaign, a retail pitch point, and a direct-to-consumer email sequence. It is accurate (the scent profile is preserved, the formaldehyde is gone), it is differentiated (no competitor can say it), and it is credible (backed by bench testing and field testing). The regulatory relief is the internal win. The market story is the external win.</p>
+      </div>
+    </section>
+
+    <!-- DOCUMENT NOTES -->
+    <div class="callout" style="margin-top: 48px;">
+      <span class="callout-label">Document Notes</span>
+      <p style="font-size:13px; margin: 4px 0;"><strong>Document Owner:</strong> Joseph Skinner</p>
+      <p style="font-size:13px; margin: 4px 0;"><strong>Status:</strong> Framework document — pre-consultant engagement</p>
+      <p style="font-size:13px; margin: 4px 0;"><strong>Next Action:</strong> Identify formulation consultant (Month 2–3). Review IFT member directory and contact NC State Food Science extension.</p>
+      <p style="font-size:13px; margin: 4px 0; font-style: italic; color: var(--charcoal-mute);">Disclaimer: Chemistry assessments represent informed analysis, not validated laboratory testing. All replacement candidates require professional formulation testing before production implementation.</p>
+    </div>
+
+    <nav class="doc-footer">
+      <a href="05-regulatory.html" class="foot-nav-link">
+        <span class="fn-dir">← Previous</span>
+        <span class="fn-title">Regulatory Compliance</span>
+      </a>
+      <a href="index.html" class="foot-nav-link next">
+        <span class="fn-dir">Back to</span>
+        <span class="fn-title">Home</span>
+      </a>
+    </nav>
+
+  </main>
+</div>
+</body>
+</html>
